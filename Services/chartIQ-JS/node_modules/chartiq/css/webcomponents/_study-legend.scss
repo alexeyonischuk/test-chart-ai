@@ -1,0 +1,355 @@
+/* menu */
+cq-study-legend {
+	:host(&),
+	& {
+		display: block;
+		overflow: hidden;
+		position: relative;
+		padding: 0;
+		h4 {
+			color: #398dff;
+			cursor: default;
+			display: block;
+			white-space: normal;
+			margin: 5px 8px 10px;
+			padding: 0 10px;
+			font-size: 12px;
+			text-transform: uppercase;
+			line-height: 18px;
+			font-weight: 400;
+			font-family: "Roboto Condensed", sans-serif;
+			&.thin {
+				max-height: 5px;
+			}
+		}
+		.item {
+			display: flex;
+			margin: 0 8px;
+			padding: 0 10px;
+			border-radius: 15px;
+			position: relative;
+			cursor: pointer;
+			text-overflow: clip;
+			white-space: nowrap;
+			clear: both;
+			line-height: 28px;
+			height: 28px;
+			outline: none; /* turns off focus outline */
+			&.ciq-btn {
+				margin: 10px 0 0 20px;
+				background: #fff;
+				font-size: 11px;
+				font-weight: 700;
+				text-transform: uppercase;
+				color: #398dff;
+				display: inline-block;
+				position: relative;
+				line-height: 29px;
+				height: 29px;
+				padding: 0 10px;
+				cursor: pointer;
+				border: none;
+				box-sizing: border-box;
+				transition:
+					all 0.2s 0s,
+					opacity 0.2s 0s;
+				border-radius: 1px;
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+			}
+			[label] {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.icon {
+				margin: 1px 0 1px -4px;
+				vertical-align: middle;
+				cursor: pointer;
+			}
+		}
+		.swatch {
+			width: 12px;
+			height: 12px;
+			position: relative;
+			float: left;
+			vertical-align: top;
+			margin: 8px 4px 6px 8px;
+			display: flex;
+			> span {
+				flex-grow: 1;
+				height: 100%;
+				box-sizing: border-box;
+			}
+		}
+		.ciq-screen-reader {
+			opacity: 0;
+			overflow: hidden;
+			position: absolute;
+			height: inherit;
+			width: inherit;
+		}
+		/*.close { // moved to nextgen for now
+			opacity: 0.5;
+			transition: opacity 0.2s;
+		}*/
+		.hidden {
+			&.close,
+			&.ciq-switch {
+				display: none;
+			}
+			&.options {
+				visibility: hidden;
+			}
+		}
+	}
+	:host(&.shaded) [section-dynamic],
+	&.shaded [section-dynamic] {
+		display: block;
+		border-top: solid 5px transparent;
+		padding-bottom: 20px;
+		background: #f3f3f3;
+		margin-bottom: 10px;
+	}
+	:host(&.#{$DARK}.shaded) [section-dynamic],
+	.#{$DARK} &.shaded [section-dynamic] {
+		background: #202f3d;
+		border-bottom: solid 1px rgba(255, 255, 255, 0.25);
+	}
+	:host(&:not([last-interaction="touch"])) .icon:hover,
+	#{$hovering} .icon:hover {
+		opacity: 1;
+	}
+	:host(&.#{$DARK}) .item.ciq-btn,
+	.#{$DARK} & .item.ciq-btn {
+		background-color: #243645;
+		border: none;
+		box-shadow: none;
+	}
+	:host(&) .item.ciq-btn:active,
+	& .item.ciq-btn:active {
+		transition: all 0s 0s;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+	}
+	:host(&:not([last-interaction="touch"])) .item.ciq-btn:hover,
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .item.ciq-btn:hover,
+	:host(&) .item.ciq-btn:active,
+	#{$hovering} .item.ciq-btn:hover,
+	#{$hovering} .#{$DARK} .item.ciq-btn:hover,
+	& .item.ciq-btn:active {
+		border: none;
+		color: #1076ff;
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	}
+	:host(&:not([last-interaction="touch"])) .item:hover,
+	:host(&) .item:active,
+	:host(&) .item[cq-focused],
+	#{$hovering} .item:hover,
+	& .item:active,
+	& .item[cq-focused] {
+		background-color: #efefef;
+		color: #000;
+	}
+	:host(&.shaded:not([last-interaction="touch"])) .item:hover,
+	:host(&.shaded) .item:active,
+	:host(&.shaded) .item[cq-focused],
+	#{$hovering} &.shaded .item:hover,
+	&.shaded .item:active,
+	&.shaded .item[cq-focused] {
+		background-color: #e6e6e6;
+	}
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+	:host(&.#{$DARK}) .item:active,
+	:host(&.#{$DARK}) .item[cq-focused],
+	#{$hovering} .#{$DARK} & .item:hover,
+	.#{$DARK} & .item:active,
+	.#{$DARK} & .item[cq-focused] {
+		background-color: var(--DARK-menu-highlight-bg);
+		color: var(--DARK-text);
+	}
+}
+
+/*  Up until here is study legend in the menu */
+
+/* panel */
+cq-study-legend {
+	:host(&.break-sm),
+	:host(&.sharing),
+	.break-sm &,
+	.sharing & {
+		width: inherit;
+	}
+	.fixed-wrapper & {
+		margin-top: 3px;
+	}
+}
+
+/* drillable legends */
+cq-study-legend[chart-legend] {
+	:host(&),
+	& {
+		color: black;
+		margin: 1px 0 5px 10px;
+		clear: left;
+		border-radius: 6px;
+		padding: 4px 0;
+		&.full-screen,
+		.full-screen & {
+			float: left;
+			clear: left;
+			position: relative;
+		}
+		&.break-sm,
+		.break-sm & {
+			display: none;
+		}
+		[label] {
+			font-weight: normal;
+			margin-left: 5px;
+			padding-right: 5px;
+		}
+		.item {
+			cursor: auto;
+			border-radius: 1px;
+			padding-left: 15px;
+			transition:
+				opacity 0.2s 0.5s,
+				background-color 0.25s ease-in-out;
+		}
+		.hidden {
+			display: none !important;
+		}
+		.marker-label {
+			cursor: pointer;
+			margin-right: 10px;
+		}
+		[section-dynamic] {
+			margin-top: 5px;
+		}
+	}
+	:host(&.#{$DARK}),
+	.#{$DARK} & {
+		background-color: rgba(28, 42, 53, 0.8823529412) !important;
+		&:hover .item {
+			color: var(--DARK-text);
+		}
+		> * {
+			color: #a2a8ad;
+		}
+	}
+	:host(&.#{$DARK}:not([last-interaction="touch"]):hover) > .marker-label,
+	#{$hovering} .#{$DARK} &:hover > .marker-label {
+		color: white;
+	}
+	/*
+	  :host([last-interaction='touch']) is commented out to allow for drilling down on a hovershow legend by clicking
+	  on its header.  This can be disabled by uncommenting them.
+	*/
+	//:host(&/*[last-interaction='touch']*/.ciq-active),
+	:host(&.ciq-active),
+	:host(&:not([last-interaction=touch]):hover),
+	:host(&.sharing),
+	/*#{$touching}*/ &.ciq-active,
+	#{$hovering} &:hover,
+	.sharing & {
+		background-color: rgba(243, 243, 243, 0.8);
+	}
+	//:host(&.#{$DARK}/*[last-interaction='touch']*/.ciq-active),
+	:host(&.#{$DARK}.ciq-active),
+	:host(&.#{$DARK}:not([last-interaction=touch]):hover),
+	/*#{$touching}*/ .#{$DARK} &.ciq-active,
+	#{$hovering} .#{$DARK} &:hover {
+		background-color: rgba(28, 42, 53, 0.7);
+	}
+	//:host(&/*[last-interaction='touch']*/.ciq-active:not(.sharing)) .item,
+	:host(&.ciq-active:not(.sharing)) .item,
+	//:host(&/*[last-interaction='touch']*/.ciq-active) .icon:active,
+	:host(&.ciq-active) .icon:active,
+	:host(&:not([last-interaction=touch]):hover) .item,
+	:host(&.sharing) .item.ciq-active,
+	/*#{$touching}*/ cq-context:not(.sharing) > .ciq-chart-area &.ciq-active .item,
+	/*#{$touching}*/ &.ciq-active .icon:active,
+	#{$hovering} &:hover .item,
+	.sharing & .item.ciq-active {
+		display: flex;
+		opacity: 1;
+	}
+	:host(&:not([last-interaction="touch"])) .item:hover,
+	#{$hovering} & .item:hover {
+		background-color: #fafafa;
+		border-radius: 1px;
+		box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+	}
+
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+	#{$hovering} .#{$DARK} & .item:hover {
+		background: #21323f;
+	}
+	:host(&.sharing) > .marker-label,
+	:host(&.sharing) .ciq-switch,
+	:host(&.sharing) .icon,
+	.sharing & > .marker-label,
+	.sharing & .ciq-switch,
+	.sharing & .icon {
+		display: none;
+	}
+	:host(&.sharing) .item,
+	.sharing & .item {
+		padding-left: 0px;
+		margin-left: 0px;
+	}
+	&.hovershow {
+		:host(&),
+		& {
+			height: 16px;
+			max-width: 120px;
+			min-width: 120px;
+			outline: none;
+
+			.item {
+				display: none;
+				opacity: 0;
+			}
+			.marker-label:after {
+				content: "";
+				height: 12px;
+				width: 12px;
+				float: left;
+				margin-left: 6px;
+				margin-right: 4px;
+				background-image: url(img/stx-sprite-ui.svg);
+				background-position: -731px -31px;
+				transform: rotate(0deg);
+				transform-origin: 50% 50%;
+				transition: transform 0.25s ease-out;
+			}
+			* {
+				outline: none;
+			}
+		}
+		:host(&:not([last-interaction="touch"]):hover),
+		:host(&.ciq-active),
+		:host(&.sharing),
+		#{$hovering} &:hover,
+		&.ciq-active,
+		.sharing & {
+			height: auto;
+			max-width: 226px;
+		}
+		:host(&:not([last-interaction="touch"]):hover) > .marker-label:after,
+		:host(&.ciq-active) > .marker-label:after,
+		#{$hovering} &:hover > .marker-label:after,
+		&.ciq-active > .marker-label:after {
+			transform: rotate(90deg);
+		}
+	}
+}
+
+cq-study-legend[cq-marker] {
+	:host(&),
+	& {
+		.clickable-item {
+			display: none;
+		}
+	}
+}

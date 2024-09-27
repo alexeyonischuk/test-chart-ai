@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate JavaScript Code</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0056b3;
+            font-weight: 600;
+        }
+        label {
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            resize: none;
+            overflow: hidden;
+        }
+        textarea:focus {
+            border-color: #0056b3;
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 86, 179, 0.2);
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: #003d99;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1rem;
+            color: #333;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        .message {
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ff0000;
+        }
+        .loading {
+            color: #0056b3;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generate JavaScript Code</h1>
+        <label for="inputQuery">Enter your question:</label>
+        <textarea id="inputQuery" placeholder="Type your question here..." oninput="autoResize(this)"></textarea>
+        <button id="generateBtn" onclick="generateCode()">Generate JavaScript</button>
+        
+        <div class="message" id="message"></div>
+        
+        <pre id="outputCode"></pre>
+    </div>
+
+    <script>
+        // Automatically resize the textarea as the user types
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+
+        async function generateCode() {
+            const inputQuery = document.getElementById('inputQuery').value;
+            const outputElement = document.getElementById('outputCode');
+            const messageElement = document.getElementById('message');
+            const generateBtn = document.getElementById('generateBtn');
+
+            outputElement.style.display = "none"; // Hide previous output
+            messageElement.innerText = ""; // Clear any previous messages
+
+            if (!inputQuery.trim()) {
+                messageElement.innerText = "Please enter a question!";
+                return;
+            }
+
+            // Disable the button while processing
+            generateBtn.disabled = true;
+            messageElement.innerHTML = '<span class="loading">Generating JavaScript, please wait...</span>';
+
+            try {
+                const response = await fetch("/api/v1/generate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        question: inputQuery
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    outputElement.innerText = data.code || "No JavaScript generated.";
+                    outputElement.style.display = "block";
+                    messageElement.innerText = "";
+                } else {
+                    messageElement.innerText = "Error: Unable to generate code.";
+                }
+            } catch (error) {
+                messageElement.innerText = "Error: Something went wrong!";
+            }
+
+            // Re-enable the button
+            generateBtn.disabled = false;
+        }
+    </script>
+</body>
+</html>

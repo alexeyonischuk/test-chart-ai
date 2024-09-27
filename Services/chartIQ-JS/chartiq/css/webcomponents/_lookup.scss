@@ -1,0 +1,303 @@
+cq-lookup {
+	:host(&),
+	& {
+		--result-width-lg: 481px;
+		--result-width-md: 300px;
+		--result-width-sm: 300px;
+
+		display: block;
+		width: 100%;
+		transition: width 200ms 0s;
+		z-index: 2;
+		white-space: normal;
+
+		.input-area {
+			position: relative;
+			width: 100%;
+
+			input:not([type]),
+			input[type="text"] {
+				width: 100%;
+				height: 27px;
+				box-sizing: border-box;
+				border: none;
+				border-radius: 1px;
+				transition: background 0.6s 0s;
+				padding-left: 30px;
+			}
+			.icon {
+				position: absolute;
+				left: 0;
+				margin-top: 0;
+				transform: none;
+				opacity: 0.6;
+				transition: opacity 0.2s 0s;
+			}
+		}
+		.results-area {
+			display: block;
+			visibility: hidden;
+			text-align: left;
+			background-color: #fff;
+			color: #666;
+			opacity: 0;
+			transition: opacity 0.2s 0.5s;
+			height: 0px;
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+		}
+		.filters {
+			/* Results Filter Row */
+			text-align: center;
+			height: 45px;
+			padding: 0;
+			border-bottom: solid thin #ddd;
+			display: block;
+			margin-top: 0;
+			margin-bottom: 0;
+
+			> * {
+				/* Filter Options */
+				margin: 0 10px;
+				padding: 0 5px;
+				display: inline-block;
+				line-height: 45px;
+				height: 42px;
+				font-size: 12px;
+				text-transform: uppercase;
+				color: #999;
+				font-weight: 700;
+				font-family: "Roboto Condensed", sans-serif;
+				cursor: pointer;
+				transition: color 0.2s 0s;
+			}
+		}
+		cq-dropdown.lookup {
+			/* Search Results Panel */
+			display: block;
+			position: relative;
+			padding: 0px;
+			transition: opacity 0.2s 0.5s;
+		}
+	}
+	&.active {
+		:host(&),
+		& {
+			width: var(--result-width-lg);
+
+			.input-area {
+				input {
+					background: #fcfcfc;
+				}
+				.icon {
+					opacity: 1;
+				}
+			}
+			.results-area {
+				visibility: visible;
+				opacity: 1;
+				height: auto;
+			}
+		}
+	}
+	:host(&.break-sm),
+	.break-sm & {
+		width: 30px;
+	}
+	:host(&.break-md),
+	.break-md & {
+		width: 95px;
+	}
+	:host(&.break-md.active),
+	.break-md &.active {
+		width: var(--result-width-md);
+	}
+	:host(&.break-sm.active),
+	.break-sm &.active {
+		width: var(--result-width-sm);
+	}
+	:host(&.break-md) .filters,
+	.break-md & .filters,
+	:host(&.break-sm) .filters,
+	.break-sm & .filters {
+		height: 90px;
+	}
+	:host(&.break-sm) .input-area .icon,
+	.break-sm & .input-area .icon {
+		right: 0;
+	}
+	:host(&:not(.break-sm)) cq-dropdown,
+	cq-context:not(.break-sm) & cq-dropdown {
+		width: auto;
+	}
+	:host(&.break-md) cq-dropdown,
+	:host(&.break-sm) cq-dropdown,
+	.break-md & cq-dropdown,
+	.break-sm & cq-dropdown {
+		left: 0px;
+		right: 0px;
+		bottom: auto;
+	}
+	:host(&.full-screen:not(.active)),
+	.full-screen &:not(.active) {
+		width: 30px;
+	}
+	:host(&:not(.full-screen):not(.break-sm)) .input-area [cq-tooltip],
+	.full-screen:not(.break-sm) & .input-area [cq-tooltip] {
+		display: none !important;
+	}
+	:host(&:not([last-interaction="touch"])) .input-area:hover input,
+	#{$hovering} & .input-area:hover input {
+		background: #fafafa;
+	}
+	:host(&:not([last-interaction="touch"])) .input-area:hover .icon,
+	#{$hovering} & .input-area:hover .icon {
+		opacity: 0.75;
+	}
+	:host(&:not([last-interaction="touch"]):hover) .input-area [cq-tooltip],
+	#{$hovering} &:hover .input-area [cq-tooltip] {
+		top: 133%;
+	}
+	:host(&:not([last-interaction="touch"])) .filters > *:hover,
+	:host(&) .filters > *:active,
+	#{$hovering} & .filters > *:hover,
+	& .filters > *:active {
+		color: #666;
+	}
+	:host(&) .filters > *.true,
+	:host(&:not([last-interaction="touch"])) .filters > *.true:hover,
+	:host(&) .filters > *.true:active,
+	& .filters > *.true,
+	#{$hovering} & .filters > *.true:hover,
+	& .filters > *.true:active {
+		/* Selected Filter Options */
+		border-bottom: 3px solid #398dff;
+		color: #398dff;
+	}
+	:host(&.#{$DARK}) .input-area input,
+	.#{$DARK} & .input-area input {
+		background: rgba(21, 31, 40, 0);
+		color: var(--DARK-text);
+	}
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .input-area:hover input,
+	:host(&.#{$DARK}.active) .input-area input,
+	#{$hovering} .#{$DARK} & .input-area:hover input,
+	.#{$DARK} &.active .input-area input {
+		background: #233542;
+	}
+	:host(&.#{$DARK}) .results-area,
+	.#{$DARK} & .results-area {
+		background: var(--DARK-bg);
+		color: var(--DARK-text);
+		box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.2);
+	}
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .filters > *:hover,
+	:host(&.#{$DARK}) .filters > *:active,
+	#{$hovering} .#{$DARK} & .filters > *:hover,
+	.#{$DARK} & .filters > *:active {
+		color: #ccc;
+	}
+}
+
+cq-menu.search {
+	:host(&),
+	& {
+		line-height: normal;
+		margin: 0;
+		width: 140px;
+		height: 45px;
+		padding: 9px 10px 0 10px;
+
+		&:after {
+			content: none;
+		}
+		&.stxMenuActive {
+			z-index: 4;
+		}
+		input {
+			height: 27px;
+			border: none;
+		}
+	}
+	:host(&.break-sm),
+	.break-sm & {
+		width: 40px;
+		padding: 9px 5px 0 5px;
+	}
+	:host(&.break-md),
+	.break-md & {
+		width: 100px;
+	}
+	:host(&.full-screen),
+	.full-screen & {
+		margin-right: 10px;
+		padding: 5px 0 0 0;
+		height: 27px;
+		width: 30px;
+	}
+}
+
+cq-dropdown.lookup {
+	:host(&) .content,
+	& .content {
+		margin-top: -12px;
+		position: absolute;
+		width: 100%;
+		box-sizing: border-box;
+
+		> .item {
+			height: auto;
+
+			> * {
+				padding: 0;
+				margin: 0;
+			}
+		}
+		[label] {
+			height: auto;
+			cursor: pointer;
+			white-space: nowrap;
+
+			span {
+				/* Results Row Content */
+				line-height: 1.5em;
+				margin: 0px;
+				padding: 0.5em 0 0;
+
+				&:nth-of-type(1) {
+					/* Search results Symbol */
+					color: #333333;
+					font-weight: bold;
+					padding-right: 10px;
+					padding-left: 20px;
+					display: block;
+				}
+				&:nth-of-type(2) {
+					/* Search results Company */
+					padding: 0 3px 0 30px;
+					width: 83%;
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+				&:nth-of-type(3) {
+					/* Search results exchange */
+					color: #333333;
+					font-size: 10px;
+					min-width: 40px;
+					text-align: right;
+					margin-top: -3.9em;
+					padding-right: 20px;
+					position: absolute;
+					right: 0;
+				}
+			}
+		}
+	}
+	:host(&.#{$DARK}) .content > .item [label] span,
+	.#{$DARK} & .content > .item [label] span {
+		&:nth-of-type(1),
+		&:nth-of-type(3) {
+			color: inherit;
+		}
+	}
+}

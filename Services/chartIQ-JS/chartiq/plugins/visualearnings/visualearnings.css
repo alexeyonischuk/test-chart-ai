@@ -1,0 +1,88 @@
+.stx-visualearnings {
+	width: 60px;
+	height: 40px;
+	z-index: 100;
+}
+
+.ciq-empty-chart .stx-visualearnings {
+	display: none;
+}
+
+.ciq-multi-chart .stx-visualearnings {
+	vertical-align: top;
+	margin-top: 10px;
+	float: none;
+}
+
+.ciq-multi-chart .stx-visualearnings::after {
+	top: 16px;
+}
+
+.stx-visualearnings > span,
+.stx-visualearnings .menu-clickable span.icon {
+	margin-top: 6px;
+	background: url(estimize.png) no-repeat !important;
+	background-size: 27px 27px !important;
+	background-position: 0px 0px;
+	width: 27px !important;
+	height: 27px;
+	display: block;
+	left: 1px !important;
+}
+
+.estimize_label {
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	background-color: #fff;
+	border-color: #000;
+}
+
+.estimize_estimize {
+	color: #1f98c0;
+}
+.estimize_wallstreet {
+	color: #646c70;
+}
+
+.estimize_data_font,
+.estimize_legend {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.estimize_small_font,
+.estimize_small_legend {
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.estimize_legend,
+.estimize_small_legend {
+	font-weight: bold;
+	color: transparent;
+}
+
+.estimize_miss {
+	color: #b82c0c;
+}
+
+.estimize_beat {
+	color: #8cc176;
+}
+.estimize_shading {
+	color: transparent;
+	opacity: 0.1;
+}
+.estimize_data_panel .stx-panel-title {
+	display: none;
+}
+.estimize_data_panel:hover .stx-panel-control.stx-show:not(.stx-chart-panel) {
+	display: block;
+	background: #ffffffe1;
+}
+.ciq-night
+	.estimize_data_panel:hover
+	.stx-panel-control.stx-show:not(.stx-chart-panel) {
+	background: #1c2a35e1;
+}

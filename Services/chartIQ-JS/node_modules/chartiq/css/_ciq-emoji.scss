@@ -1,0 +1,5756 @@
+/* Emojis.
+   List is generated as follows:
+   1. Fetch reference JSON from https://raw.githubusercontent.com/iamcal/emoji-data/master/emoji.json
+   2. Run the following script, after assigning the JSON to "complete":
+   		let res = "";
+		complete.forEach((record)=>{
+    		record.short_names.forEach((name) => {
+        		res += ".emoji_" + name + ":before { content: \"\\" + record.unified.toLowerCase().replace(/-/g, "\\") + "\"; }\n";
+    		});
+		});
+		console.log(res);
+   3. Copy result into this file.  You may need to clean up a backslash at the EOL.
+*/
+
+.emoji_hash:before {
+	content: "\0023\fe0f\20e3";
+}
+.emoji_keycap_star:before {
+	content: "\002a\fe0f\20e3";
+}
+.emoji_zero:before {
+	content: "\0030\fe0f\20e3";
+}
+.emoji_one:before {
+	content: "\0031\fe0f\20e3";
+}
+.emoji_two:before {
+	content: "\0032\fe0f\20e3";
+}
+.emoji_three:before {
+	content: "\0033\fe0f\20e3";
+}
+.emoji_four:before {
+	content: "\0034\fe0f\20e3";
+}
+.emoji_five:before {
+	content: "\0035\fe0f\20e3";
+}
+.emoji_six:before {
+	content: "\0036\fe0f\20e3";
+}
+.emoji_seven:before {
+	content: "\0037\fe0f\20e3";
+}
+.emoji_eight:before {
+	content: "\0038\fe0f\20e3";
+}
+.emoji_nine:before {
+	content: "\0039\fe0f\20e3";
+}
+.emoji_copyright:before {
+	content: "\00a9\fe0f";
+}
+.emoji_registered:before {
+	content: "\00ae\fe0f";
+}
+.emoji_mahjong:before {
+	content: "\1f004";
+}
+.emoji_black_joker:before {
+	content: "\1f0cf";
+}
+.emoji_a:before {
+	content: "\1f170\fe0f";
+}
+.emoji_b:before {
+	content: "\1f171\fe0f";
+}
+.emoji_o2:before {
+	content: "\1f17e\fe0f";
+}
+.emoji_parking:before {
+	content: "\1f17f\fe0f";
+}
+.emoji_ab:before {
+	content: "\1f18e";
+}
+.emoji_cl:before {
+	content: "\1f191";
+}
+.emoji_cool:before {
+	content: "\1f192";
+}
+.emoji_free:before {
+	content: "\1f193";
+}
+.emoji_id:before {
+	content: "\1f194";
+}
+.emoji_new:before {
+	content: "\1f195";
+}
+.emoji_ng:before {
+	content: "\1f196";
+}
+.emoji_ok:before {
+	content: "\1f197";
+}
+.emoji_sos:before {
+	content: "\1f198";
+}
+.emoji_up:before {
+	content: "\1f199";
+}
+.emoji_vs:before {
+	content: "\1f19a";
+}
+.emoji_flag-ac:before {
+	content: "\1f1e6\1f1e8";
+}
+.emoji_flag-ad:before {
+	content: "\1f1e6\1f1e9";
+}
+.emoji_flag-ae:before {
+	content: "\1f1e6\1f1ea";
+}
+.emoji_flag-af:before {
+	content: "\1f1e6\1f1eb";
+}
+.emoji_flag-ag:before {
+	content: "\1f1e6\1f1ec";
+}
+.emoji_flag-ai:before {
+	content: "\1f1e6\1f1ee";
+}
+.emoji_flag-al:before {
+	content: "\1f1e6\1f1f1";
+}
+.emoji_flag-am:before {
+	content: "\1f1e6\1f1f2";
+}
+.emoji_flag-ao:before {
+	content: "\1f1e6\1f1f4";
+}
+.emoji_flag-aq:before {
+	content: "\1f1e6\1f1f6";
+}
+.emoji_flag-ar:before {
+	content: "\1f1e6\1f1f7";
+}
+.emoji_flag-as:before {
+	content: "\1f1e6\1f1f8";
+}
+.emoji_flag-at:before {
+	content: "\1f1e6\1f1f9";
+}
+.emoji_flag-au:before {
+	content: "\1f1e6\1f1fa";
+}
+.emoji_flag-aw:before {
+	content: "\1f1e6\1f1fc";
+}
+.emoji_flag-ax:before {
+	content: "\1f1e6\1f1fd";
+}
+.emoji_flag-az:before {
+	content: "\1f1e6\1f1ff";
+}
+.emoji_flag-ba:before {
+	content: "\1f1e7\1f1e6";
+}
+.emoji_flag-bb:before {
+	content: "\1f1e7\1f1e7";
+}
+.emoji_flag-bd:before {
+	content: "\1f1e7\1f1e9";
+}
+.emoji_flag-be:before {
+	content: "\1f1e7\1f1ea";
+}
+.emoji_flag-bf:before {
+	content: "\1f1e7\1f1eb";
+}
+.emoji_flag-bg:before {
+	content: "\1f1e7\1f1ec";
+}
+.emoji_flag-bh:before {
+	content: "\1f1e7\1f1ed";
+}
+.emoji_flag-bi:before {
+	content: "\1f1e7\1f1ee";
+}
+.emoji_flag-bj:before {
+	content: "\1f1e7\1f1ef";
+}
+.emoji_flag-bl:before {
+	content: "\1f1e7\1f1f1";
+}
+.emoji_flag-bm:before {
+	content: "\1f1e7\1f1f2";
+}
+.emoji_flag-bn:before {
+	content: "\1f1e7\1f1f3";
+}
+.emoji_flag-bo:before {
+	content: "\1f1e7\1f1f4";
+}
+.emoji_flag-bq:before {
+	content: "\1f1e7\1f1f6";
+}
+.emoji_flag-br:before {
+	content: "\1f1e7\1f1f7";
+}
+.emoji_flag-bs:before {
+	content: "\1f1e7\1f1f8";
+}
+.emoji_flag-bt:before {
+	content: "\1f1e7\1f1f9";
+}
+.emoji_flag-bv:before {
+	content: "\1f1e7\1f1fb";
+}
+.emoji_flag-bw:before {
+	content: "\1f1e7\1f1fc";
+}
+.emoji_flag-by:before {
+	content: "\1f1e7\1f1fe";
+}
+.emoji_flag-bz:before {
+	content: "\1f1e7\1f1ff";
+}
+.emoji_flag-ca:before {
+	content: "\1f1e8\1f1e6";
+}
+.emoji_flag-cc:before {
+	content: "\1f1e8\1f1e8";
+}
+.emoji_flag-cd:before {
+	content: "\1f1e8\1f1e9";
+}
+.emoji_flag-cf:before {
+	content: "\1f1e8\1f1eb";
+}
+.emoji_flag-cg:before {
+	content: "\1f1e8\1f1ec";
+}
+.emoji_flag-ch:before {
+	content: "\1f1e8\1f1ed";
+}
+.emoji_flag-ci:before {
+	content: "\1f1e8\1f1ee";
+}
+.emoji_flag-ck:before {
+	content: "\1f1e8\1f1f0";
+}
+.emoji_flag-cl:before {
+	content: "\1f1e8\1f1f1";
+}
+.emoji_flag-cm:before {
+	content: "\1f1e8\1f1f2";
+}
+.emoji_cn:before {
+	content: "\1f1e8\1f1f3";
+}
+.emoji_flag-cn:before {
+	content: "\1f1e8\1f1f3";
+}
+.emoji_flag-co:before {
+	content: "\1f1e8\1f1f4";
+}
+.emoji_flag-cp:before {
+	content: "\1f1e8\1f1f5";
+}
+.emoji_flag-cr:before {
+	content: "\1f1e8\1f1f7";
+}
+.emoji_flag-cu:before {
+	content: "\1f1e8\1f1fa";
+}
+.emoji_flag-cv:before {
+	content: "\1f1e8\1f1fb";
+}
+.emoji_flag-cw:before {
+	content: "\1f1e8\1f1fc";
+}
+.emoji_flag-cx:before {
+	content: "\1f1e8\1f1fd";
+}
+.emoji_flag-cy:before {
+	content: "\1f1e8\1f1fe";
+}
+.emoji_flag-cz:before {
+	content: "\1f1e8\1f1ff";
+}
+.emoji_de:before {
+	content: "\1f1e9\1f1ea";
+}
+.emoji_flag-de:before {
+	content: "\1f1e9\1f1ea";
+}
+.emoji_flag-dg:before {
+	content: "\1f1e9\1f1ec";
+}
+.emoji_flag-dj:before {
+	content: "\1f1e9\1f1ef";
+}
+.emoji_flag-dk:before {
+	content: "\1f1e9\1f1f0";
+}
+.emoji_flag-dm:before {
+	content: "\1f1e9\1f1f2";
+}
+.emoji_flag-do:before {
+	content: "\1f1e9\1f1f4";
+}
+.emoji_flag-dz:before {
+	content: "\1f1e9\1f1ff";
+}
+.emoji_flag-ea:before {
+	content: "\1f1ea\1f1e6";
+}
+.emoji_flag-ec:before {
+	content: "\1f1ea\1f1e8";
+}
+.emoji_flag-ee:before {
+	content: "\1f1ea\1f1ea";
+}
+.emoji_flag-eg:before {
+	content: "\1f1ea\1f1ec";
+}
+.emoji_flag-eh:before {
+	content: "\1f1ea\1f1ed";
+}
+.emoji_flag-er:before {
+	content: "\1f1ea\1f1f7";
+}
+.emoji_es:before {
+	content: "\1f1ea\1f1f8";
+}
+.emoji_flag-es:before {
+	content: "\1f1ea\1f1f8";
+}
+.emoji_flag-et:before {
+	content: "\1f1ea\1f1f9";
+}
+.emoji_flag-eu:before {
+	content: "\1f1ea\1f1fa";
+}
+.emoji_flag-fi:before {
+	content: "\1f1eb\1f1ee";
+}
+.emoji_flag-fj:before {
+	content: "\1f1eb\1f1ef";
+}
+.emoji_flag-fk:before {
+	content: "\1f1eb\1f1f0";
+}
+.emoji_flag-fm:before {
+	content: "\1f1eb\1f1f2";
+}
+.emoji_flag-fo:before {
+	content: "\1f1eb\1f1f4";
+}
+.emoji_fr:before {
+	content: "\1f1eb\1f1f7";
+}
+.emoji_flag-fr:before {
+	content: "\1f1eb\1f1f7";
+}
+.emoji_flag-ga:before {
+	content: "\1f1ec\1f1e6";
+}
+.emoji_gb:before {
+	content: "\1f1ec\1f1e7";
+}
+.emoji_uk:before {
+	content: "\1f1ec\1f1e7";
+}
+.emoji_flag-gb:before {
+	content: "\1f1ec\1f1e7";
+}
+.emoji_flag-gd:before {
+	content: "\1f1ec\1f1e9";
+}
+.emoji_flag-ge:before {
+	content: "\1f1ec\1f1ea";
+}
+.emoji_flag-gf:before {
+	content: "\1f1ec\1f1eb";
+}
+.emoji_flag-gg:before {
+	content: "\1f1ec\1f1ec";
+}
+.emoji_flag-gh:before {
+	content: "\1f1ec\1f1ed";
+}
+.emoji_flag-gi:before {
+	content: "\1f1ec\1f1ee";
+}
+.emoji_flag-gl:before {
+	content: "\1f1ec\1f1f1";
+}
+.emoji_flag-gm:before {
+	content: "\1f1ec\1f1f2";
+}
+.emoji_flag-gn:before {
+	content: "\1f1ec\1f1f3";
+}
+.emoji_flag-gp:before {
+	content: "\1f1ec\1f1f5";
+}
+.emoji_flag-gq:before {
+	content: "\1f1ec\1f1f6";
+}
+.emoji_flag-gr:before {
+	content: "\1f1ec\1f1f7";
+}
+.emoji_flag-gs:before {
+	content: "\1f1ec\1f1f8";
+}
+.emoji_flag-gt:before {
+	content: "\1f1ec\1f1f9";
+}
+.emoji_flag-gu:before {
+	content: "\1f1ec\1f1fa";
+}
+.emoji_flag-gw:before {
+	content: "\1f1ec\1f1fc";
+}
+.emoji_flag-gy:before {
+	content: "\1f1ec\1f1fe";
+}
+.emoji_flag-hk:before {
+	content: "\1f1ed\1f1f0";
+}
+.emoji_flag-hm:before {
+	content: "\1f1ed\1f1f2";
+}
+.emoji_flag-hn:before {
+	content: "\1f1ed\1f1f3";
+}
+.emoji_flag-hr:before {
+	content: "\1f1ed\1f1f7";
+}
+.emoji_flag-ht:before {
+	content: "\1f1ed\1f1f9";
+}
+.emoji_flag-hu:before {
+	content: "\1f1ed\1f1fa";
+}
+.emoji_flag-ic:before {
+	content: "\1f1ee\1f1e8";
+}
+.emoji_flag-id:before {
+	content: "\1f1ee\1f1e9";
+}
+.emoji_flag-ie:before {
+	content: "\1f1ee\1f1ea";
+}
+.emoji_flag-il:before {
+	content: "\1f1ee\1f1f1";
+}
+.emoji_flag-im:before {
+	content: "\1f1ee\1f1f2";
+}
+.emoji_flag-in:before {
+	content: "\1f1ee\1f1f3";
+}
+.emoji_flag-io:before {
+	content: "\1f1ee\1f1f4";
+}
+.emoji_flag-iq:before {
+	content: "\1f1ee\1f1f6";
+}
+.emoji_flag-ir:before {
+	content: "\1f1ee\1f1f7";
+}
+.emoji_flag-is:before {
+	content: "\1f1ee\1f1f8";
+}
+.emoji_it:before {
+	content: "\1f1ee\1f1f9";
+}
+.emoji_flag-it:before {
+	content: "\1f1ee\1f1f9";
+}
+.emoji_flag-je:before {
+	content: "\1f1ef\1f1ea";
+}
+.emoji_flag-jm:before {
+	content: "\1f1ef\1f1f2";
+}
+.emoji_flag-jo:before {
+	content: "\1f1ef\1f1f4";
+}
+.emoji_jp:before {
+	content: "\1f1ef\1f1f5";
+}
+.emoji_flag-jp:before {
+	content: "\1f1ef\1f1f5";
+}
+.emoji_flag-ke:before {
+	content: "\1f1f0\1f1ea";
+}
+.emoji_flag-kg:before {
+	content: "\1f1f0\1f1ec";
+}
+.emoji_flag-kh:before {
+	content: "\1f1f0\1f1ed";
+}
+.emoji_flag-ki:before {
+	content: "\1f1f0\1f1ee";
+}
+.emoji_flag-km:before {
+	content: "\1f1f0\1f1f2";
+}
+.emoji_flag-kn:before {
+	content: "\1f1f0\1f1f3";
+}
+.emoji_flag-kp:before {
+	content: "\1f1f0\1f1f5";
+}
+.emoji_kr:before {
+	content: "\1f1f0\1f1f7";
+}
+.emoji_flag-kr:before {
+	content: "\1f1f0\1f1f7";
+}
+.emoji_flag-kw:before {
+	content: "\1f1f0\1f1fc";
+}
+.emoji_flag-ky:before {
+	content: "\1f1f0\1f1fe";
+}
+.emoji_flag-kz:before {
+	content: "\1f1f0\1f1ff";
+}
+.emoji_flag-la:before {
+	content: "\1f1f1\1f1e6";
+}
+.emoji_flag-lb:before {
+	content: "\1f1f1\1f1e7";
+}
+.emoji_flag-lc:before {
+	content: "\1f1f1\1f1e8";
+}
+.emoji_flag-li:before {
+	content: "\1f1f1\1f1ee";
+}
+.emoji_flag-lk:before {
+	content: "\1f1f1\1f1f0";
+}
+.emoji_flag-lr:before {
+	content: "\1f1f1\1f1f7";
+}
+.emoji_flag-ls:before {
+	content: "\1f1f1\1f1f8";
+}
+.emoji_flag-lt:before {
+	content: "\1f1f1\1f1f9";
+}
+.emoji_flag-lu:before {
+	content: "\1f1f1\1f1fa";
+}
+.emoji_flag-lv:before {
+	content: "\1f1f1\1f1fb";
+}
+.emoji_flag-ly:before {
+	content: "\1f1f1\1f1fe";
+}
+.emoji_flag-ma:before {
+	content: "\1f1f2\1f1e6";
+}
+.emoji_flag-mc:before {
+	content: "\1f1f2\1f1e8";
+}
+.emoji_flag-md:before {
+	content: "\1f1f2\1f1e9";
+}
+.emoji_flag-me:before {
+	content: "\1f1f2\1f1ea";
+}
+.emoji_flag-mf:before {
+	content: "\1f1f2\1f1eb";
+}
+.emoji_flag-mg:before {
+	content: "\1f1f2\1f1ec";
+}
+.emoji_flag-mh:before {
+	content: "\1f1f2\1f1ed";
+}
+.emoji_flag-mk:before {
+	content: "\1f1f2\1f1f0";
+}
+.emoji_flag-ml:before {
+	content: "\1f1f2\1f1f1";
+}
+.emoji_flag-mm:before {
+	content: "\1f1f2\1f1f2";
+}
+.emoji_flag-mn:before {
+	content: "\1f1f2\1f1f3";
+}
+.emoji_flag-mo:before {
+	content: "\1f1f2\1f1f4";
+}
+.emoji_flag-mp:before {
+	content: "\1f1f2\1f1f5";
+}
+.emoji_flag-mq:before {
+	content: "\1f1f2\1f1f6";
+}
+.emoji_flag-mr:before {
+	content: "\1f1f2\1f1f7";
+}
+.emoji_flag-ms:before {
+	content: "\1f1f2\1f1f8";
+}
+.emoji_flag-mt:before {
+	content: "\1f1f2\1f1f9";
+}
+.emoji_flag-mu:before {
+	content: "\1f1f2\1f1fa";
+}
+.emoji_flag-mv:before {
+	content: "\1f1f2\1f1fb";
+}
+.emoji_flag-mw:before {
+	content: "\1f1f2\1f1fc";
+}
+.emoji_flag-mx:before {
+	content: "\1f1f2\1f1fd";
+}
+.emoji_flag-my:before {
+	content: "\1f1f2\1f1fe";
+}
+.emoji_flag-mz:before {
+	content: "\1f1f2\1f1ff";
+}
+.emoji_flag-na:before {
+	content: "\1f1f3\1f1e6";
+}
+.emoji_flag-nc:before {
+	content: "\1f1f3\1f1e8";
+}
+.emoji_flag-ne:before {
+	content: "\1f1f3\1f1ea";
+}
+.emoji_flag-nf:before {
+	content: "\1f1f3\1f1eb";
+}
+.emoji_flag-ng:before {
+	content: "\1f1f3\1f1ec";
+}
+.emoji_flag-ni:before {
+	content: "\1f1f3\1f1ee";
+}
+.emoji_flag-nl:before {
+	content: "\1f1f3\1f1f1";
+}
+.emoji_flag-no:before {
+	content: "\1f1f3\1f1f4";
+}
+.emoji_flag-np:before {
+	content: "\1f1f3\1f1f5";
+}
+.emoji_flag-nr:before {
+	content: "\1f1f3\1f1f7";
+}
+.emoji_flag-nu:before {
+	content: "\1f1f3\1f1fa";
+}
+.emoji_flag-nz:before {
+	content: "\1f1f3\1f1ff";
+}
+.emoji_flag-om:before {
+	content: "\1f1f4\1f1f2";
+}
+.emoji_flag-pa:before {
+	content: "\1f1f5\1f1e6";
+}
+.emoji_flag-pe:before {
+	content: "\1f1f5\1f1ea";
+}
+.emoji_flag-pf:before {
+	content: "\1f1f5\1f1eb";
+}
+.emoji_flag-pg:before {
+	content: "\1f1f5\1f1ec";
+}
+.emoji_flag-ph:before {
+	content: "\1f1f5\1f1ed";
+}
+.emoji_flag-pk:before {
+	content: "\1f1f5\1f1f0";
+}
+.emoji_flag-pl:before {
+	content: "\1f1f5\1f1f1";
+}
+.emoji_flag-pm:before {
+	content: "\1f1f5\1f1f2";
+}
+.emoji_flag-pn:before {
+	content: "\1f1f5\1f1f3";
+}
+.emoji_flag-pr:before {
+	content: "\1f1f5\1f1f7";
+}
+.emoji_flag-ps:before {
+	content: "\1f1f5\1f1f8";
+}
+.emoji_flag-pt:before {
+	content: "\1f1f5\1f1f9";
+}
+.emoji_flag-pw:before {
+	content: "\1f1f5\1f1fc";
+}
+.emoji_flag-py:before {
+	content: "\1f1f5\1f1fe";
+}
+.emoji_flag-qa:before {
+	content: "\1f1f6\1f1e6";
+}
+.emoji_flag-re:before {
+	content: "\1f1f7\1f1ea";
+}
+.emoji_flag-ro:before {
+	content: "\1f1f7\1f1f4";
+}
+.emoji_flag-rs:before {
+	content: "\1f1f7\1f1f8";
+}
+.emoji_ru:before {
+	content: "\1f1f7\1f1fa";
+}
+.emoji_flag-ru:before {
+	content: "\1f1f7\1f1fa";
+}
+.emoji_flag-rw:before {
+	content: "\1f1f7\1f1fc";
+}
+.emoji_flag-sa:before {
+	content: "\1f1f8\1f1e6";
+}
+.emoji_flag-sb:before {
+	content: "\1f1f8\1f1e7";
+}
+.emoji_flag-sc:before {
+	content: "\1f1f8\1f1e8";
+}
+.emoji_flag-sd:before {
+	content: "\1f1f8\1f1e9";
+}
+.emoji_flag-se:before {
+	content: "\1f1f8\1f1ea";
+}
+.emoji_flag-sg:before {
+	content: "\1f1f8\1f1ec";
+}
+.emoji_flag-sh:before {
+	content: "\1f1f8\1f1ed";
+}
+.emoji_flag-si:before {
+	content: "\1f1f8\1f1ee";
+}
+.emoji_flag-sj:before {
+	content: "\1f1f8\1f1ef";
+}
+.emoji_flag-sk:before {
+	content: "\1f1f8\1f1f0";
+}
+.emoji_flag-sl:before {
+	content: "\1f1f8\1f1f1";
+}
+.emoji_flag-sm:before {
+	content: "\1f1f8\1f1f2";
+}
+.emoji_flag-sn:before {
+	content: "\1f1f8\1f1f3";
+}
+.emoji_flag-so:before {
+	content: "\1f1f8\1f1f4";
+}
+.emoji_flag-sr:before {
+	content: "\1f1f8\1f1f7";
+}
+.emoji_flag-ss:before {
+	content: "\1f1f8\1f1f8";
+}
+.emoji_flag-st:before {
+	content: "\1f1f8\1f1f9";
+}
+.emoji_flag-sv:before {
+	content: "\1f1f8\1f1fb";
+}
+.emoji_flag-sx:before {
+	content: "\1f1f8\1f1fd";
+}
+.emoji_flag-sy:before {
+	content: "\1f1f8\1f1fe";
+}
+.emoji_flag-sz:before {
+	content: "\1f1f8\1f1ff";
+}
+.emoji_flag-ta:before {
+	content: "\1f1f9\1f1e6";
+}
+.emoji_flag-tc:before {
+	content: "\1f1f9\1f1e8";
+}
+.emoji_flag-td:before {
+	content: "\1f1f9\1f1e9";
+}
+.emoji_flag-tf:before {
+	content: "\1f1f9\1f1eb";
+}
+.emoji_flag-tg:before {
+	content: "\1f1f9\1f1ec";
+}
+.emoji_flag-th:before {
+	content: "\1f1f9\1f1ed";
+}
+.emoji_flag-tj:before {
+	content: "\1f1f9\1f1ef";
+}
+.emoji_flag-tk:before {
+	content: "\1f1f9\1f1f0";
+}
+.emoji_flag-tl:before {
+	content: "\1f1f9\1f1f1";
+}
+.emoji_flag-tm:before {
+	content: "\1f1f9\1f1f2";
+}
+.emoji_flag-tn:before {
+	content: "\1f1f9\1f1f3";
+}
+.emoji_flag-to:before {
+	content: "\1f1f9\1f1f4";
+}
+.emoji_flag-tr:before {
+	content: "\1f1f9\1f1f7";
+}
+.emoji_flag-tt:before {
+	content: "\1f1f9\1f1f9";
+}
+.emoji_flag-tv:before {
+	content: "\1f1f9\1f1fb";
+}
+.emoji_flag-tw:before {
+	content: "\1f1f9\1f1fc";
+}
+.emoji_flag-tz:before {
+	content: "\1f1f9\1f1ff";
+}
+.emoji_flag-ua:before {
+	content: "\1f1fa\1f1e6";
+}
+.emoji_flag-ug:before {
+	content: "\1f1fa\1f1ec";
+}
+.emoji_flag-um:before {
+	content: "\1f1fa\1f1f2";
+}
+.emoji_flag-un:before {
+	content: "\1f1fa\1f1f3";
+}
+.emoji_us:before {
+	content: "\1f1fa\1f1f8";
+}
+.emoji_flag-us:before {
+	content: "\1f1fa\1f1f8";
+}
+.emoji_flag-uy:before {
+	content: "\1f1fa\1f1fe";
+}
+.emoji_flag-uz:before {
+	content: "\1f1fa\1f1ff";
+}
+.emoji_flag-va:before {
+	content: "\1f1fb\1f1e6";
+}
+.emoji_flag-vc:before {
+	content: "\1f1fb\1f1e8";
+}
+.emoji_flag-ve:before {
+	content: "\1f1fb\1f1ea";
+}
+.emoji_flag-vg:before {
+	content: "\1f1fb\1f1ec";
+}
+.emoji_flag-vi:before {
+	content: "\1f1fb\1f1ee";
+}
+.emoji_flag-vn:before {
+	content: "\1f1fb\1f1f3";
+}
+.emoji_flag-vu:before {
+	content: "\1f1fb\1f1fa";
+}
+.emoji_flag-wf:before {
+	content: "\1f1fc\1f1eb";
+}
+.emoji_flag-ws:before {
+	content: "\1f1fc\1f1f8";
+}
+.emoji_flag-xk:before {
+	content: "\1f1fd\1f1f0";
+}
+.emoji_flag-ye:before {
+	content: "\1f1fe\1f1ea";
+}
+.emoji_flag-yt:before {
+	content: "\1f1fe\1f1f9";
+}
+.emoji_flag-za:before {
+	content: "\1f1ff\1f1e6";
+}
+.emoji_flag-zm:before {
+	content: "\1f1ff\1f1f2";
+}
+.emoji_flag-zw:before {
+	content: "\1f1ff\1f1fc";
+}
+.emoji_koko:before {
+	content: "\1f201";
+}
+.emoji_sa:before {
+	content: "\1f202\fe0f";
+}
+.emoji_u7121:before {
+	content: "\1f21a";
+}
+.emoji_u6307:before {
+	content: "\1f22f";
+}
+.emoji_u7981:before {
+	content: "\1f232";
+}
+.emoji_u7a7a:before {
+	content: "\1f233";
+}
+.emoji_u5408:before {
+	content: "\1f234";
+}
+.emoji_u6e80:before {
+	content: "\1f235";
+}
+.emoji_u6709:before {
+	content: "\1f236";
+}
+.emoji_u6708:before {
+	content: "\1f237\fe0f";
+}
+.emoji_u7533:before {
+	content: "\1f238";
+}
+.emoji_u5272:before {
+	content: "\1f239";
+}
+.emoji_u55b6:before {
+	content: "\1f23a";
+}
+.emoji_ideograph_advantage:before {
+	content: "\1f250";
+}
+.emoji_accept:before {
+	content: "\1f251";
+}
+.emoji_cyclone:before {
+	content: "\1f300";
+}
+.emoji_foggy:before {
+	content: "\1f301";
+}
+.emoji_closed_umbrella:before {
+	content: "\1f302";
+}
+.emoji_night_with_stars:before {
+	content: "\1f303";
+}
+.emoji_sunrise_over_mountains:before {
+	content: "\1f304";
+}
+.emoji_sunrise:before {
+	content: "\1f305";
+}
+.emoji_city_sunset:before {
+	content: "\1f306";
+}
+.emoji_city_sunrise:before {
+	content: "\1f307";
+}
+.emoji_rainbow:before {
+	content: "\1f308";
+}
+.emoji_bridge_at_night:before {
+	content: "\1f309";
+}
+.emoji_ocean:before {
+	content: "\1f30a";
+}
+.emoji_volcano:before {
+	content: "\1f30b";
+}
+.emoji_milky_way:before {
+	content: "\1f30c";
+}
+.emoji_earth_africa:before {
+	content: "\1f30d";
+}
+.emoji_earth_americas:before {
+	content: "\1f30e";
+}
+.emoji_earth_asia:before {
+	content: "\1f30f";
+}
+.emoji_globe_with_meridians:before {
+	content: "\1f310";
+}
+.emoji_new_moon:before {
+	content: "\1f311";
+}
+.emoji_waxing_crescent_moon:before {
+	content: "\1f312";
+}
+.emoji_first_quarter_moon:before {
+	content: "\1f313";
+}
+.emoji_moon:before {
+	content: "\1f314";
+}
+.emoji_waxing_gibbous_moon:before {
+	content: "\1f314";
+}
+.emoji_full_moon:before {
+	content: "\1f315";
+}
+.emoji_waning_gibbous_moon:before {
+	content: "\1f316";
+}
+.emoji_last_quarter_moon:before {
+	content: "\1f317";
+}
+.emoji_waning_crescent_moon:before {
+	content: "\1f318";
+}
+.emoji_crescent_moon:before {
+	content: "\1f319";
+}
+.emoji_new_moon_with_face:before {
+	content: "\1f31a";
+}
+.emoji_first_quarter_moon_with_face:before {
+	content: "\1f31b";
+}
+.emoji_last_quarter_moon_with_face:before {
+	content: "\1f31c";
+}
+.emoji_full_moon_with_face:before {
+	content: "\1f31d";
+}
+.emoji_sun_with_face:before {
+	content: "\1f31e";
+}
+.emoji_star2:before {
+	content: "\1f31f";
+}
+.emoji_stars:before {
+	content: "\1f320";
+}
+.emoji_thermometer:before {
+	content: "\1f321\fe0f";
+}
+.emoji_mostly_sunny:before {
+	content: "\1f324\fe0f";
+}
+.emoji_sun_small_cloud:before {
+	content: "\1f324\fe0f";
+}
+.emoji_barely_sunny:before {
+	content: "\1f325\fe0f";
+}
+.emoji_sun_behind_cloud:before {
+	content: "\1f325\fe0f";
+}
+.emoji_partly_sunny_rain:before {
+	content: "\1f326\fe0f";
+}
+.emoji_sun_behind_rain_cloud:before {
+	content: "\1f326\fe0f";
+}
+.emoji_rain_cloud:before {
+	content: "\1f327\fe0f";
+}
+.emoji_snow_cloud:before {
+	content: "\1f328\fe0f";
+}
+.emoji_lightning:before {
+	content: "\1f329\fe0f";
+}
+.emoji_lightning_cloud:before {
+	content: "\1f329\fe0f";
+}
+.emoji_tornado:before {
+	content: "\1f32a\fe0f";
+}
+.emoji_tornado_cloud:before {
+	content: "\1f32a\fe0f";
+}
+.emoji_fog:before {
+	content: "\1f32b\fe0f";
+}
+.emoji_wind_blowing_face:before {
+	content: "\1f32c\fe0f";
+}
+.emoji_hotdog:before {
+	content: "\1f32d";
+}
+.emoji_taco:before {
+	content: "\1f32e";
+}
+.emoji_burrito:before {
+	content: "\1f32f";
+}
+.emoji_chestnut:before {
+	content: "\1f330";
+}
+.emoji_seedling:before {
+	content: "\1f331";
+}
+.emoji_evergreen_tree:before {
+	content: "\1f332";
+}
+.emoji_deciduous_tree:before {
+	content: "\1f333";
+}
+.emoji_palm_tree:before {
+	content: "\1f334";
+}
+.emoji_cactus:before {
+	content: "\1f335";
+}
+.emoji_hot_pepper:before {
+	content: "\1f336\fe0f";
+}
+.emoji_tulip:before {
+	content: "\1f337";
+}
+.emoji_cherry_blossom:before {
+	content: "\1f338";
+}
+.emoji_rose:before {
+	content: "\1f339";
+}
+.emoji_hibiscus:before {
+	content: "\1f33a";
+}
+.emoji_sunflower:before {
+	content: "\1f33b";
+}
+.emoji_blossom:before {
+	content: "\1f33c";
+}
+.emoji_corn:before {
+	content: "\1f33d";
+}
+.emoji_ear_of_rice:before {
+	content: "\1f33e";
+}
+.emoji_herb:before {
+	content: "\1f33f";
+}
+.emoji_four_leaf_clover:before {
+	content: "\1f340";
+}
+.emoji_maple_leaf:before {
+	content: "\1f341";
+}
+.emoji_fallen_leaf:before {
+	content: "\1f342";
+}
+.emoji_leaves:before {
+	content: "\1f343";
+}
+.emoji_mushroom:before {
+	content: "\1f344";
+}
+.emoji_tomato:before {
+	content: "\1f345";
+}
+.emoji_eggplant:before {
+	content: "\1f346";
+}
+.emoji_grapes:before {
+	content: "\1f347";
+}
+.emoji_melon:before {
+	content: "\1f348";
+}
+.emoji_watermelon:before {
+	content: "\1f349";
+}
+.emoji_tangerine:before {
+	content: "\1f34a";
+}
+.emoji_lemon:before {
+	content: "\1f34b";
+}
+.emoji_banana:before {
+	content: "\1f34c";
+}
+.emoji_pineapple:before {
+	content: "\1f34d";
+}
+.emoji_apple:before {
+	content: "\1f34e";
+}
+.emoji_green_apple:before {
+	content: "\1f34f";
+}
+.emoji_pear:before {
+	content: "\1f350";
+}
+.emoji_peach:before {
+	content: "\1f351";
+}
+.emoji_cherries:before {
+	content: "\1f352";
+}
+.emoji_strawberry:before {
+	content: "\1f353";
+}
+.emoji_hamburger:before {
+	content: "\1f354";
+}
+.emoji_pizza:before {
+	content: "\1f355";
+}
+.emoji_meat_on_bone:before {
+	content: "\1f356";
+}
+.emoji_poultry_leg:before {
+	content: "\1f357";
+}
+.emoji_rice_cracker:before {
+	content: "\1f358";
+}
+.emoji_rice_ball:before {
+	content: "\1f359";
+}
+.emoji_rice:before {
+	content: "\1f35a";
+}
+.emoji_curry:before {
+	content: "\1f35b";
+}
+.emoji_ramen:before {
+	content: "\1f35c";
+}
+.emoji_spaghetti:before {
+	content: "\1f35d";
+}
+.emoji_bread:before {
+	content: "\1f35e";
+}
+.emoji_fries:before {
+	content: "\1f35f";
+}
+.emoji_sweet_potato:before {
+	content: "\1f360";
+}
+.emoji_dango:before {
+	content: "\1f361";
+}
+.emoji_oden:before {
+	content: "\1f362";
+}
+.emoji_sushi:before {
+	content: "\1f363";
+}
+.emoji_fried_shrimp:before {
+	content: "\1f364";
+}
+.emoji_fish_cake:before {
+	content: "\1f365";
+}
+.emoji_icecream:before {
+	content: "\1f366";
+}
+.emoji_shaved_ice:before {
+	content: "\1f367";
+}
+.emoji_ice_cream:before {
+	content: "\1f368";
+}
+.emoji_doughnut:before {
+	content: "\1f369";
+}
+.emoji_cookie:before {
+	content: "\1f36a";
+}
+.emoji_chocolate_bar:before {
+	content: "\1f36b";
+}
+.emoji_candy:before {
+	content: "\1f36c";
+}
+.emoji_lollipop:before {
+	content: "\1f36d";
+}
+.emoji_custard:before {
+	content: "\1f36e";
+}
+.emoji_honey_pot:before {
+	content: "\1f36f";
+}
+.emoji_cake:before {
+	content: "\1f370";
+}
+.emoji_bento:before {
+	content: "\1f371";
+}
+.emoji_stew:before {
+	content: "\1f372";
+}
+.emoji_fried_egg:before {
+	content: "\1f373";
+}
+.emoji_cooking:before {
+	content: "\1f373";
+}
+.emoji_fork_and_knife:before {
+	content: "\1f374";
+}
+.emoji_tea:before {
+	content: "\1f375";
+}
+.emoji_sake:before {
+	content: "\1f376";
+}
+.emoji_wine_glass:before {
+	content: "\1f377";
+}
+.emoji_cocktail:before {
+	content: "\1f378";
+}
+.emoji_tropical_drink:before {
+	content: "\1f379";
+}
+.emoji_beer:before {
+	content: "\1f37a";
+}
+.emoji_beers:before {
+	content: "\1f37b";
+}
+.emoji_baby_bottle:before {
+	content: "\1f37c";
+}
+.emoji_knife_fork_plate:before {
+	content: "\1f37d\fe0f";
+}
+.emoji_champagne:before {
+	content: "\1f37e";
+}
+.emoji_popcorn:before {
+	content: "\1f37f";
+}
+.emoji_ribbon:before {
+	content: "\1f380";
+}
+.emoji_gift:before {
+	content: "\1f381";
+}
+.emoji_birthday:before {
+	content: "\1f382";
+}
+.emoji_jack_o_lantern:before {
+	content: "\1f383";
+}
+.emoji_christmas_tree:before {
+	content: "\1f384";
+}
+.emoji_santa:before {
+	content: "\1f385";
+}
+.emoji_fireworks:before {
+	content: "\1f386";
+}
+.emoji_sparkler:before {
+	content: "\1f387";
+}
+.emoji_balloon:before {
+	content: "\1f388";
+}
+.emoji_tada:before {
+	content: "\1f389";
+}
+.emoji_confetti_ball:before {
+	content: "\1f38a";
+}
+.emoji_tanabata_tree:before {
+	content: "\1f38b";
+}
+.emoji_crossed_flags:before {
+	content: "\1f38c";
+}
+.emoji_bamboo:before {
+	content: "\1f38d";
+}
+.emoji_dolls:before {
+	content: "\1f38e";
+}
+.emoji_flags:before {
+	content: "\1f38f";
+}
+.emoji_wind_chime:before {
+	content: "\1f390";
+}
+.emoji_rice_scene:before {
+	content: "\1f391";
+}
+.emoji_school_satchel:before {
+	content: "\1f392";
+}
+.emoji_mortar_board:before {
+	content: "\1f393";
+}
+.emoji_medal:before {
+	content: "\1f396\fe0f";
+}
+.emoji_reminder_ribbon:before {
+	content: "\1f397\fe0f";
+}
+.emoji_studio_microphone:before {
+	content: "\1f399\fe0f";
+}
+.emoji_level_slider:before {
+	content: "\1f39a\fe0f";
+}
+.emoji_control_knobs:before {
+	content: "\1f39b\fe0f";
+}
+.emoji_film_frames:before {
+	content: "\1f39e\fe0f";
+}
+.emoji_admission_tickets:before {
+	content: "\1f39f\fe0f";
+}
+.emoji_carousel_horse:before {
+	content: "\1f3a0";
+}
+.emoji_ferris_wheel:before {
+	content: "\1f3a1";
+}
+.emoji_roller_coaster:before {
+	content: "\1f3a2";
+}
+.emoji_fishing_pole_and_fish:before {
+	content: "\1f3a3";
+}
+.emoji_microphone:before {
+	content: "\1f3a4";
+}
+.emoji_movie_camera:before {
+	content: "\1f3a5";
+}
+.emoji_cinema:before {
+	content: "\1f3a6";
+}
+.emoji_headphones:before {
+	content: "\1f3a7";
+}
+.emoji_art:before {
+	content: "\1f3a8";
+}
+.emoji_tophat:before {
+	content: "\1f3a9";
+}
+.emoji_circus_tent:before {
+	content: "\1f3aa";
+}
+.emoji_ticket:before {
+	content: "\1f3ab";
+}
+.emoji_clapper:before {
+	content: "\1f3ac";
+}
+.emoji_performing_arts:before {
+	content: "\1f3ad";
+}
+.emoji_video_game:before {
+	content: "\1f3ae";
+}
+.emoji_dart:before {
+	content: "\1f3af";
+}
+.emoji_slot_machine:before {
+	content: "\1f3b0";
+}
+.emoji_8ball:before {
+	content: "\1f3b1";
+}
+.emoji_game_die:before {
+	content: "\1f3b2";
+}
+.emoji_bowling:before {
+	content: "\1f3b3";
+}
+.emoji_flower_playing_cards:before {
+	content: "\1f3b4";
+}
+.emoji_musical_note:before {
+	content: "\1f3b5";
+}
+.emoji_notes:before {
+	content: "\1f3b6";
+}
+.emoji_saxophone:before {
+	content: "\1f3b7";
+}
+.emoji_guitar:before {
+	content: "\1f3b8";
+}
+.emoji_musical_keyboard:before {
+	content: "\1f3b9";
+}
+.emoji_trumpet:before {
+	content: "\1f3ba";
+}
+.emoji_violin:before {
+	content: "\1f3bb";
+}
+.emoji_musical_score:before {
+	content: "\1f3bc";
+}
+.emoji_running_shirt_with_sash:before {
+	content: "\1f3bd";
+}
+.emoji_tennis:before {
+	content: "\1f3be";
+}
+.emoji_ski:before {
+	content: "\1f3bf";
+}
+.emoji_basketball:before {
+	content: "\1f3c0";
+}
+.emoji_checkered_flag:before {
+	content: "\1f3c1";
+}
+.emoji_snowboarder:before {
+	content: "\1f3c2";
+}
+.emoji_woman-running:before {
+	content: "\1f3c3\200d\2640\fe0f";
+}
+.emoji_man-running:before {
+	content: "\1f3c3\200d\2642\fe0f";
+}
+.emoji_runner:before {
+	content: "\1f3c3";
+}
+.emoji_running:before {
+	content: "\1f3c3";
+}
+.emoji_woman-surfing:before {
+	content: "\1f3c4\200d\2640\fe0f";
+}
+.emoji_man-surfing:before {
+	content: "\1f3c4\200d\2642\fe0f";
+}
+.emoji_surfer:before {
+	content: "\1f3c4";
+}
+.emoji_sports_medal:before {
+	content: "\1f3c5";
+}
+.emoji_trophy:before {
+	content: "\1f3c6";
+}
+.emoji_horse_racing:before {
+	content: "\1f3c7";
+}
+.emoji_football:before {
+	content: "\1f3c8";
+}
+.emoji_rugby_football:before {
+	content: "\1f3c9";
+}
+.emoji_woman-swimming:before {
+	content: "\1f3ca\200d\2640\fe0f";
+}
+.emoji_man-swimming:before {
+	content: "\1f3ca\200d\2642\fe0f";
+}
+.emoji_swimmer:before {
+	content: "\1f3ca";
+}
+.emoji_woman-lifting-weights:before {
+	content: "\1f3cb\fe0f\200d\2640\fe0f";
+}
+.emoji_man-lifting-weights:before {
+	content: "\1f3cb\fe0f\200d\2642\fe0f";
+}
+.emoji_weight_lifter:before {
+	content: "\1f3cb\fe0f";
+}
+.emoji_woman-golfing:before {
+	content: "\1f3cc\fe0f\200d\2640\fe0f";
+}
+.emoji_man-golfing:before {
+	content: "\1f3cc\fe0f\200d\2642\fe0f";
+}
+.emoji_golfer:before {
+	content: "\1f3cc\fe0f";
+}
+.emoji_racing_motorcycle:before {
+	content: "\1f3cd\fe0f";
+}
+.emoji_racing_car:before {
+	content: "\1f3ce\fe0f";
+}
+.emoji_cricket_bat_and_ball:before {
+	content: "\1f3cf";
+}
+.emoji_volleyball:before {
+	content: "\1f3d0";
+}
+.emoji_field_hockey_stick_and_ball:before {
+	content: "\1f3d1";
+}
+.emoji_ice_hockey_stick_and_puck:before {
+	content: "\1f3d2";
+}
+.emoji_table_tennis_paddle_and_ball:before {
+	content: "\1f3d3";
+}
+.emoji_snow_capped_mountain:before {
+	content: "\1f3d4\fe0f";
+}
+.emoji_camping:before {
+	content: "\1f3d5\fe0f";
+}
+.emoji_beach_with_umbrella:before {
+	content: "\1f3d6\fe0f";
+}
+.emoji_building_construction:before {
+	content: "\1f3d7\fe0f";
+}
+.emoji_house_buildings:before {
+	content: "\1f3d8\fe0f";
+}
+.emoji_cityscape:before {
+	content: "\1f3d9\fe0f";
+}
+.emoji_derelict_house_building:before {
+	content: "\1f3da\fe0f";
+}
+.emoji_classical_building:before {
+	content: "\1f3db\fe0f";
+}
+.emoji_desert:before {
+	content: "\1f3dc\fe0f";
+}
+.emoji_desert_island:before {
+	content: "\1f3dd\fe0f";
+}
+.emoji_national_park:before {
+	content: "\1f3de\fe0f";
+}
+.emoji_stadium:before {
+	content: "\1f3df\fe0f";
+}
+.emoji_house:before {
+	content: "\1f3e0";
+}
+.emoji_house_with_garden:before {
+	content: "\1f3e1";
+}
+.emoji_office:before {
+	content: "\1f3e2";
+}
+.emoji_post_office:before {
+	content: "\1f3e3";
+}
+.emoji_european_post_office:before {
+	content: "\1f3e4";
+}
+.emoji_hospital:before {
+	content: "\1f3e5";
+}
+.emoji_bank:before {
+	content: "\1f3e6";
+}
+.emoji_atm:before {
+	content: "\1f3e7";
+}
+.emoji_hotel:before {
+	content: "\1f3e8";
+}
+.emoji_love_hotel:before {
+	content: "\1f3e9";
+}
+.emoji_convenience_store:before {
+	content: "\1f3ea";
+}
+.emoji_school:before {
+	content: "\1f3eb";
+}
+.emoji_department_store:before {
+	content: "\1f3ec";
+}
+.emoji_factory:before {
+	content: "\1f3ed";
+}
+.emoji_izakaya_lantern:before {
+	content: "\1f3ee";
+}
+.emoji_lantern:before {
+	content: "\1f3ee";
+}
+.emoji_japanese_castle:before {
+	content: "\1f3ef";
+}
+.emoji_european_castle:before {
+	content: "\1f3f0";
+}
+.emoji_rainbow-flag:before {
+	content: "\1f3f3\fe0f\200d\1f308";
+}
+.emoji_transgender_flag:before {
+	content: "\1f3f3\fe0f\200d\26a7\fe0f";
+}
+.emoji_waving_white_flag:before {
+	content: "\1f3f3\fe0f";
+}
+.emoji_pirate_flag:before {
+	content: "\1f3f4\200d\2620\fe0f";
+}
+.emoji_flag-england:before {
+	content: "\1f3f4\e0067\e0062\e0065\e006e\e0067\e007f";
+}
+.emoji_flag-scotland:before {
+	content: "\1f3f4\e0067\e0062\e0073\e0063\e0074\e007f";
+}
+.emoji_flag-wales:before {
+	content: "\1f3f4\e0067\e0062\e0077\e006c\e0073\e007f";
+}
+.emoji_waving_black_flag:before {
+	content: "\1f3f4";
+}
+.emoji_rosette:before {
+	content: "\1f3f5\fe0f";
+}
+.emoji_label:before {
+	content: "\1f3f7\fe0f";
+}
+.emoji_badminton_racquet_and_shuttlecock:before {
+	content: "\1f3f8";
+}
+.emoji_bow_and_arrow:before {
+	content: "\1f3f9";
+}
+.emoji_amphora:before {
+	content: "\1f3fa";
+}
+.emoji_skin-tone-2:before {
+	content: "\1f3fb";
+}
+.emoji_skin-tone-3:before {
+	content: "\1f3fc";
+}
+.emoji_skin-tone-4:before {
+	content: "\1f3fd";
+}
+.emoji_skin-tone-5:before {
+	content: "\1f3fe";
+}
+.emoji_skin-tone-6:before {
+	content: "\1f3ff";
+}
+.emoji_rat:before {
+	content: "\1f400";
+}
+.emoji_mouse2:before {
+	content: "\1f401";
+}
+.emoji_ox:before {
+	content: "\1f402";
+}
+.emoji_water_buffalo:before {
+	content: "\1f403";
+}
+.emoji_cow2:before {
+	content: "\1f404";
+}
+.emoji_tiger2:before {
+	content: "\1f405";
+}
+.emoji_leopard:before {
+	content: "\1f406";
+}
+.emoji_rabbit2:before {
+	content: "\1f407";
+}
+.emoji_black_cat:before {
+	content: "\1f408\200d\2b1b";
+}
+.emoji_cat2:before {
+	content: "\1f408";
+}
+.emoji_dragon:before {
+	content: "\1f409";
+}
+.emoji_crocodile:before {
+	content: "\1f40a";
+}
+.emoji_whale2:before {
+	content: "\1f40b";
+}
+.emoji_snail:before {
+	content: "\1f40c";
+}
+.emoji_snake:before {
+	content: "\1f40d";
+}
+.emoji_racehorse:before {
+	content: "\1f40e";
+}
+.emoji_ram:before {
+	content: "\1f40f";
+}
+.emoji_goat:before {
+	content: "\1f410";
+}
+.emoji_sheep:before {
+	content: "\1f411";
+}
+.emoji_monkey:before {
+	content: "\1f412";
+}
+.emoji_rooster:before {
+	content: "\1f413";
+}
+.emoji_chicken:before {
+	content: "\1f414";
+}
+.emoji_service_dog:before {
+	content: "\1f415\200d\1f9ba";
+}
+.emoji_dog2:before {
+	content: "\1f415";
+}
+.emoji_pig2:before {
+	content: "\1f416";
+}
+.emoji_boar:before {
+	content: "\1f417";
+}
+.emoji_elephant:before {
+	content: "\1f418";
+}
+.emoji_octopus:before {
+	content: "\1f419";
+}
+.emoji_shell:before {
+	content: "\1f41a";
+}
+.emoji_bug:before {
+	content: "\1f41b";
+}
+.emoji_ant:before {
+	content: "\1f41c";
+}
+.emoji_bee:before {
+	content: "\1f41d";
+}
+.emoji_honeybee:before {
+	content: "\1f41d";
+}
+.emoji_ladybug:before {
+	content: "\1f41e";
+}
+.emoji_lady_beetle:before {
+	content: "\1f41e";
+}
+.emoji_fish:before {
+	content: "\1f41f";
+}
+.emoji_tropical_fish:before {
+	content: "\1f420";
+}
+.emoji_blowfish:before {
+	content: "\1f421";
+}
+.emoji_turtle:before {
+	content: "\1f422";
+}
+.emoji_hatching_chick:before {
+	content: "\1f423";
+}
+.emoji_baby_chick:before {
+	content: "\1f424";
+}
+.emoji_hatched_chick:before {
+	content: "\1f425";
+}
+.emoji_bird:before {
+	content: "\1f426";
+}
+.emoji_penguin:before {
+	content: "\1f427";
+}
+.emoji_koala:before {
+	content: "\1f428";
+}
+.emoji_poodle:before {
+	content: "\1f429";
+}
+.emoji_dromedary_camel:before {
+	content: "\1f42a";
+}
+.emoji_camel:before {
+	content: "\1f42b";
+}
+.emoji_dolphin:before {
+	content: "\1f42c";
+}
+.emoji_flipper:before {
+	content: "\1f42c";
+}
+.emoji_mouse:before {
+	content: "\1f42d";
+}
+.emoji_cow:before {
+	content: "\1f42e";
+}
+.emoji_tiger:before {
+	content: "\1f42f";
+}
+.emoji_rabbit:before {
+	content: "\1f430";
+}
+.emoji_cat:before {
+	content: "\1f431";
+}
+.emoji_dragon_face:before {
+	content: "\1f432";
+}
+.emoji_whale:before {
+	content: "\1f433";
+}
+.emoji_horse:before {
+	content: "\1f434";
+}
+.emoji_monkey_face:before {
+	content: "\1f435";
+}
+.emoji_dog:before {
+	content: "\1f436";
+}
+.emoji_pig:before {
+	content: "\1f437";
+}
+.emoji_frog:before {
+	content: "\1f438";
+}
+.emoji_hamster:before {
+	content: "\1f439";
+}
+.emoji_wolf:before {
+	content: "\1f43a";
+}
+.emoji_polar_bear:before {
+	content: "\1f43b\200d\2744\fe0f";
+}
+.emoji_bear:before {
+	content: "\1f43b";
+}
+.emoji_panda_face:before {
+	content: "\1f43c";
+}
+.emoji_pig_nose:before {
+	content: "\1f43d";
+}
+.emoji_feet:before {
+	content: "\1f43e";
+}
+.emoji_paw_prints:before {
+	content: "\1f43e";
+}
+.emoji_chipmunk:before {
+	content: "\1f43f\fe0f";
+}
+.emoji_eyes:before {
+	content: "\1f440";
+}
+.emoji_eye-in-speech-bubble:before {
+	content: "\1f441\fe0f\200d\1f5e8\fe0f";
+}
+.emoji_eye:before {
+	content: "\1f441\fe0f";
+}
+.emoji_ear:before {
+	content: "\1f442";
+}
+.emoji_nose:before {
+	content: "\1f443";
+}
+.emoji_lips:before {
+	content: "\1f444";
+}
+.emoji_tongue:before {
+	content: "\1f445";
+}
+.emoji_point_up_2:before {
+	content: "\1f446";
+}
+.emoji_point_down:before {
+	content: "\1f447";
+}
+.emoji_point_left:before {
+	content: "\1f448";
+}
+.emoji_point_right:before {
+	content: "\1f449";
+}
+.emoji_facepunch:before {
+	content: "\1f44a";
+}
+.emoji_punch:before {
+	content: "\1f44a";
+}
+.emoji_wave:before {
+	content: "\1f44b";
+}
+.emoji_ok_hand:before {
+	content: "\1f44c";
+}
+.emoji_thumbsup:before {
+	content: "\1f44d";
+}
+.emoji_-1:before {
+	content: "\1f44e";
+}
+.emoji_thumbsdown:before {
+	content: "\1f44e";
+}
+.emoji_clap:before {
+	content: "\1f44f";
+}
+.emoji_open_hands:before {
+	content: "\1f450";
+}
+.emoji_crown:before {
+	content: "\1f451";
+}
+.emoji_womans_hat:before {
+	content: "\1f452";
+}
+.emoji_eyeglasses:before {
+	content: "\1f453";
+}
+.emoji_necktie:before {
+	content: "\1f454";
+}
+.emoji_shirt:before {
+	content: "\1f455";
+}
+.emoji_tshirt:before {
+	content: "\1f455";
+}
+.emoji_jeans:before {
+	content: "\1f456";
+}
+.emoji_dress:before {
+	content: "\1f457";
+}
+.emoji_kimono:before {
+	content: "\1f458";
+}
+.emoji_bikini:before {
+	content: "\1f459";
+}
+.emoji_womans_clothes:before {
+	content: "\1f45a";
+}
+.emoji_purse:before {
+	content: "\1f45b";
+}
+.emoji_handbag:before {
+	content: "\1f45c";
+}
+.emoji_pouch:before {
+	content: "\1f45d";
+}
+.emoji_mans_shoe:before {
+	content: "\1f45e";
+}
+.emoji_shoe:before {
+	content: "\1f45e";
+}
+.emoji_athletic_shoe:before {
+	content: "\1f45f";
+}
+.emoji_high_heel:before {
+	content: "\1f460";
+}
+.emoji_sandal:before {
+	content: "\1f461";
+}
+.emoji_boot:before {
+	content: "\1f462";
+}
+.emoji_footprints:before {
+	content: "\1f463";
+}
+.emoji_bust_in_silhouette:before {
+	content: "\1f464";
+}
+.emoji_busts_in_silhouette:before {
+	content: "\1f465";
+}
+.emoji_boy:before {
+	content: "\1f466";
+}
+.emoji_girl:before {
+	content: "\1f467";
+}
+.emoji_male-farmer:before {
+	content: "\1f468\200d\1f33e";
+}
+.emoji_male-cook:before {
+	content: "\1f468\200d\1f373";
+}
+.emoji_man_feeding_baby:before {
+	content: "\1f468\200d\1f37c";
+}
+.emoji_male-student:before {
+	content: "\1f468\200d\1f393";
+}
+.emoji_male-singer:before {
+	content: "\1f468\200d\1f3a4";
+}
+.emoji_male-artist:before {
+	content: "\1f468\200d\1f3a8";
+}
+.emoji_male-teacher:before {
+	content: "\1f468\200d\1f3eb";
+}
+.emoji_male-factory-worker:before {
+	content: "\1f468\200d\1f3ed";
+}
+.emoji_man-boy-boy:before {
+	content: "\1f468\200d\1f466\200d\1f466";
+}
+.emoji_man-boy:before {
+	content: "\1f468\200d\1f466";
+}
+.emoji_man-girl-boy:before {
+	content: "\1f468\200d\1f467\200d\1f466";
+}
+.emoji_man-girl-girl:before {
+	content: "\1f468\200d\1f467\200d\1f467";
+}
+.emoji_man-girl:before {
+	content: "\1f468\200d\1f467";
+}
+.emoji_man-man-boy:before {
+	content: "\1f468\200d\1f468\200d\1f466";
+}
+.emoji_man-man-boy-boy:before {
+	content: "\1f468\200d\1f468\200d\1f466\200d\1f466";
+}
+.emoji_man-man-girl:before {
+	content: "\1f468\200d\1f468\200d\1f467";
+}
+.emoji_man-man-girl-boy:before {
+	content: "\1f468\200d\1f468\200d\1f467\200d\1f466";
+}
+.emoji_man-man-girl-girl:before {
+	content: "\1f468\200d\1f468\200d\1f467\200d\1f467";
+}
+.emoji_man-woman-boy:before {
+	content: "\1f468\200d\1f469\200d\1f466";
+}
+.emoji_man-woman-boy-boy:before {
+	content: "\1f468\200d\1f469\200d\1f466\200d\1f466";
+}
+.emoji_man-woman-girl:before {
+	content: "\1f468\200d\1f469\200d\1f467";
+}
+.emoji_man-woman-girl-boy:before {
+	content: "\1f468\200d\1f469\200d\1f467\200d\1f466";
+}
+.emoji_man-woman-girl-girl:before {
+	content: "\1f468\200d\1f469\200d\1f467\200d\1f467";
+}
+.emoji_male-technologist:before {
+	content: "\1f468\200d\1f4bb";
+}
+.emoji_male-office-worker:before {
+	content: "\1f468\200d\1f4bc";
+}
+.emoji_male-mechanic:before {
+	content: "\1f468\200d\1f527";
+}
+.emoji_male-scientist:before {
+	content: "\1f468\200d\1f52c";
+}
+.emoji_male-astronaut:before {
+	content: "\1f468\200d\1f680";
+}
+.emoji_male-firefighter:before {
+	content: "\1f468\200d\1f692";
+}
+.emoji_man_with_probing_cane:before {
+	content: "\1f468\200d\1f9af";
+}
+.emoji_red_haired_man:before {
+	content: "\1f468\200d\1f9b0";
+}
+.emoji_curly_haired_man:before {
+	content: "\1f468\200d\1f9b1";
+}
+.emoji_bald_man:before {
+	content: "\1f468\200d\1f9b2";
+}
+.emoji_white_haired_man:before {
+	content: "\1f468\200d\1f9b3";
+}
+.emoji_man_in_motorized_wheelchair:before {
+	content: "\1f468\200d\1f9bc";
+}
+.emoji_man_in_manual_wheelchair:before {
+	content: "\1f468\200d\1f9bd";
+}
+.emoji_male-doctor:before {
+	content: "\1f468\200d\2695\fe0f";
+}
+.emoji_male-judge:before {
+	content: "\1f468\200d\2696\fe0f";
+}
+.emoji_male-pilot:before {
+	content: "\1f468\200d\2708\fe0f";
+}
+.emoji_man-heart-man:before {
+	content: "\1f468\200d\2764\fe0f\200d\1f468";
+}
+.emoji_man-kiss-man:before {
+	content: "\1f468\200d\2764\fe0f\200d\1f48b\200d\1f468";
+}
+.emoji_man:before {
+	content: "\1f468";
+}
+.emoji_female-farmer:before {
+	content: "\1f469\200d\1f33e";
+}
+.emoji_female-cook:before {
+	content: "\1f469\200d\1f373";
+}
+.emoji_woman_feeding_baby:before {
+	content: "\1f469\200d\1f37c";
+}
+.emoji_female-student:before {
+	content: "\1f469\200d\1f393";
+}
+.emoji_female-singer:before {
+	content: "\1f469\200d\1f3a4";
+}
+.emoji_female-artist:before {
+	content: "\1f469\200d\1f3a8";
+}
+.emoji_female-teacher:before {
+	content: "\1f469\200d\1f3eb";
+}
+.emoji_female-factory-worker:before {
+	content: "\1f469\200d\1f3ed";
+}
+.emoji_woman-boy-boy:before {
+	content: "\1f469\200d\1f466\200d\1f466";
+}
+.emoji_woman-boy:before {
+	content: "\1f469\200d\1f466";
+}
+.emoji_woman-girl-boy:before {
+	content: "\1f469\200d\1f467\200d\1f466";
+}
+.emoji_woman-girl-girl:before {
+	content: "\1f469\200d\1f467\200d\1f467";
+}
+.emoji_woman-girl:before {
+	content: "\1f469\200d\1f467";
+}
+.emoji_woman-woman-boy:before {
+	content: "\1f469\200d\1f469\200d\1f466";
+}
+.emoji_woman-woman-boy-boy:before {
+	content: "\1f469\200d\1f469\200d\1f466\200d\1f466";
+}
+.emoji_woman-woman-girl:before {
+	content: "\1f469\200d\1f469\200d\1f467";
+}
+.emoji_woman-woman-girl-boy:before {
+	content: "\1f469\200d\1f469\200d\1f467\200d\1f466";
+}
+.emoji_woman-woman-girl-girl:before {
+	content: "\1f469\200d\1f469\200d\1f467\200d\1f467";
+}
+.emoji_female-technologist:before {
+	content: "\1f469\200d\1f4bb";
+}
+.emoji_female-office-worker:before {
+	content: "\1f469\200d\1f4bc";
+}
+.emoji_female-mechanic:before {
+	content: "\1f469\200d\1f527";
+}
+.emoji_female-scientist:before {
+	content: "\1f469\200d\1f52c";
+}
+.emoji_female-astronaut:before {
+	content: "\1f469\200d\1f680";
+}
+.emoji_female-firefighter:before {
+	content: "\1f469\200d\1f692";
+}
+.emoji_woman_with_probing_cane:before {
+	content: "\1f469\200d\1f9af";
+}
+.emoji_red_haired_woman:before {
+	content: "\1f469\200d\1f9b0";
+}
+.emoji_curly_haired_woman:before {
+	content: "\1f469\200d\1f9b1";
+}
+.emoji_bald_woman:before {
+	content: "\1f469\200d\1f9b2";
+}
+.emoji_white_haired_woman:before {
+	content: "\1f469\200d\1f9b3";
+}
+.emoji_woman_in_motorized_wheelchair:before {
+	content: "\1f469\200d\1f9bc";
+}
+.emoji_woman_in_manual_wheelchair:before {
+	content: "\1f469\200d\1f9bd";
+}
+.emoji_female-doctor:before {
+	content: "\1f469\200d\2695\fe0f";
+}
+.emoji_female-judge:before {
+	content: "\1f469\200d\2696\fe0f";
+}
+.emoji_female-pilot:before {
+	content: "\1f469\200d\2708\fe0f";
+}
+.emoji_woman-heart-man:before {
+	content: "\1f469\200d\2764\fe0f\200d\1f468";
+}
+.emoji_woman-heart-woman:before {
+	content: "\1f469\200d\2764\fe0f\200d\1f469";
+}
+.emoji_woman-kiss-man:before {
+	content: "\1f469\200d\2764\fe0f\200d\1f48b\200d\1f468";
+}
+.emoji_woman-kiss-woman:before {
+	content: "\1f469\200d\2764\fe0f\200d\1f48b\200d\1f469";
+}
+.emoji_woman:before {
+	content: "\1f469";
+}
+.emoji_family:before {
+	content: "\1f46a";
+}
+.emoji_man_and_woman_holding_hands:before {
+	content: "\1f46b";
+}
+.emoji_woman_and_man_holding_hands:before {
+	content: "\1f46b";
+}
+.emoji_couple:before {
+	content: "\1f46b";
+}
+.emoji_two_men_holding_hands:before {
+	content: "\1f46c";
+}
+.emoji_men_holding_hands:before {
+	content: "\1f46c";
+}
+.emoji_two_women_holding_hands:before {
+	content: "\1f46d";
+}
+.emoji_women_holding_hands:before {
+	content: "\1f46d";
+}
+.emoji_female-police-officer:before {
+	content: "\1f46e\200d\2640\fe0f";
+}
+.emoji_male-police-officer:before {
+	content: "\1f46e\200d\2642\fe0f";
+}
+.emoji_cop:before {
+	content: "\1f46e";
+}
+.emoji_women-with-bunny-ears-partying:before {
+	content: "\1f46f\200d\2640\fe0f";
+}
+.emoji_woman-with-bunny-ears-partying:before {
+	content: "\1f46f\200d\2640\fe0f";
+}
+.emoji_men-with-bunny-ears-partying:before {
+	content: "\1f46f\200d\2642\fe0f";
+}
+.emoji_man-with-bunny-ears-partying:before {
+	content: "\1f46f\200d\2642\fe0f";
+}
+.emoji_dancers:before {
+	content: "\1f46f";
+}
+.emoji_woman_with_veil:before {
+	content: "\1f470\200d\2640\fe0f";
+}
+.emoji_man_with_veil:before {
+	content: "\1f470\200d\2642\fe0f";
+}
+.emoji_bride_with_veil:before {
+	content: "\1f470";
+}
+.emoji_blond-haired-woman:before {
+	content: "\1f471\200d\2640\fe0f";
+}
+.emoji_blond-haired-man:before {
+	content: "\1f471\200d\2642\fe0f";
+}
+.emoji_person_with_blond_hair:before {
+	content: "\1f471";
+}
+.emoji_man_with_gua_pi_mao:before {
+	content: "\1f472";
+}
+.emoji_woman-wearing-turban:before {
+	content: "\1f473\200d\2640\fe0f";
+}
+.emoji_man-wearing-turban:before {
+	content: "\1f473\200d\2642\fe0f";
+}
+.emoji_man_with_turban:before {
+	content: "\1f473";
+}
+.emoji_older_man:before {
+	content: "\1f474";
+}
+.emoji_older_woman:before {
+	content: "\1f475";
+}
+.emoji_baby:before {
+	content: "\1f476";
+}
+.emoji_female-construction-worker:before {
+	content: "\1f477\200d\2640\fe0f";
+}
+.emoji_male-construction-worker:before {
+	content: "\1f477\200d\2642\fe0f";
+}
+.emoji_construction_worker:before {
+	content: "\1f477";
+}
+.emoji_princess:before {
+	content: "\1f478";
+}
+.emoji_japanese_ogre:before {
+	content: "\1f479";
+}
+.emoji_japanese_goblin:before {
+	content: "\1f47a";
+}
+.emoji_ghost:before {
+	content: "\1f47b";
+}
+.emoji_angel:before {
+	content: "\1f47c";
+}
+.emoji_alien:before {
+	content: "\1f47d";
+}
+.emoji_space_invader:before {
+	content: "\1f47e";
+}
+.emoji_imp:before {
+	content: "\1f47f";
+}
+.emoji_skull:before {
+	content: "\1f480";
+}
+.emoji_woman-tipping-hand:before {
+	content: "\1f481\200d\2640\fe0f";
+}
+.emoji_man-tipping-hand:before {
+	content: "\1f481\200d\2642\fe0f";
+}
+.emoji_information_desk_person:before {
+	content: "\1f481";
+}
+.emoji_female-guard:before {
+	content: "\1f482\200d\2640\fe0f";
+}
+.emoji_male-guard:before {
+	content: "\1f482\200d\2642\fe0f";
+}
+.emoji_guardsman:before {
+	content: "\1f482";
+}
+.emoji_dancer:before {
+	content: "\1f483";
+}
+.emoji_lipstick:before {
+	content: "\1f484";
+}
+.emoji_nail_care:before {
+	content: "\1f485";
+}
+.emoji_woman-getting-massage:before {
+	content: "\1f486\200d\2640\fe0f";
+}
+.emoji_man-getting-massage:before {
+	content: "\1f486\200d\2642\fe0f";
+}
+.emoji_massage:before {
+	content: "\1f486";
+}
+.emoji_woman-getting-haircut:before {
+	content: "\1f487\200d\2640\fe0f";
+}
+.emoji_man-getting-haircut:before {
+	content: "\1f487\200d\2642\fe0f";
+}
+.emoji_haircut:before {
+	content: "\1f487";
+}
+.emoji_barber:before {
+	content: "\1f488";
+}
+.emoji_syringe:before {
+	content: "\1f489";
+}
+.emoji_pill:before {
+	content: "\1f48a";
+}
+.emoji_kiss:before {
+	content: "\1f48b";
+}
+.emoji_love_letter:before {
+	content: "\1f48c";
+}
+.emoji_ring:before {
+	content: "\1f48d";
+}
+.emoji_gem:before {
+	content: "\1f48e";
+}
+.emoji_couplekiss:before {
+	content: "\1f48f";
+}
+.emoji_bouquet:before {
+	content: "\1f490";
+}
+.emoji_couple_with_heart:before {
+	content: "\1f491";
+}
+.emoji_wedding:before {
+	content: "\1f492";
+}
+.emoji_heartbeat:before {
+	content: "\1f493";
+}
+.emoji_broken_heart:before {
+	content: "\1f494";
+}
+.emoji_two_hearts:before {
+	content: "\1f495";
+}
+.emoji_sparkling_heart:before {
+	content: "\1f496";
+}
+.emoji_heartpulse:before {
+	content: "\1f497";
+}
+.emoji_cupid:before {
+	content: "\1f498";
+}
+.emoji_blue_heart:before {
+	content: "\1f499";
+}
+.emoji_green_heart:before {
+	content: "\1f49a";
+}
+.emoji_yellow_heart:before {
+	content: "\1f49b";
+}
+.emoji_purple_heart:before {
+	content: "\1f49c";
+}
+.emoji_gift_heart:before {
+	content: "\1f49d";
+}
+.emoji_revolving_hearts:before {
+	content: "\1f49e";
+}
+.emoji_heart_decoration:before {
+	content: "\1f49f";
+}
+.emoji_diamond_shape_with_a_dot_inside:before {
+	content: "\1f4a0";
+}
+.emoji_bulb:before {
+	content: "\1f4a1";
+}
+.emoji_anger:before {
+	content: "\1f4a2";
+}
+.emoji_bomb:before {
+	content: "\1f4a3";
+}
+.emoji_zzz:before {
+	content: "\1f4a4";
+}
+.emoji_boom:before {
+	content: "\1f4a5";
+}
+.emoji_collision:before {
+	content: "\1f4a5";
+}
+.emoji_sweat_drops:before {
+	content: "\1f4a6";
+}
+.emoji_droplet:before {
+	content: "\1f4a7";
+}
+.emoji_dash:before {
+	content: "\1f4a8";
+}
+.emoji_hankey:before {
+	content: "\1f4a9";
+}
+.emoji_poop:before {
+	content: "\1f4a9";
+}
+.emoji_shit:before {
+	content: "\1f4a9";
+}
+.emoji_muscle:before {
+	content: "\1f4aa";
+}
+.emoji_dizzy:before {
+	content: "\1f4ab";
+}
+.emoji_speech_balloon:before {
+	content: "\1f4ac";
+}
+.emoji_thought_balloon:before {
+	content: "\1f4ad";
+}
+.emoji_white_flower:before {
+	content: "\1f4ae";
+}
+.emoji_100:before {
+	content: "\1f4af";
+}
+.emoji_moneybag:before {
+	content: "\1f4b0";
+}
+.emoji_currency_exchange:before {
+	content: "\1f4b1";
+}
+.emoji_heavy_dollar_sign:before {
+	content: "\1f4b2";
+}
+.emoji_credit_card:before {
+	content: "\1f4b3";
+}
+.emoji_yen:before {
+	content: "\1f4b4";
+}
+.emoji_dollar:before {
+	content: "\1f4b5";
+}
+.emoji_euro:before {
+	content: "\1f4b6";
+}
+.emoji_pound:before {
+	content: "\1f4b7";
+}
+.emoji_money_with_wings:before {
+	content: "\1f4b8";
+}
+.emoji_chart:before {
+	content: "\1f4b9";
+}
+.emoji_seat:before {
+	content: "\1f4ba";
+}
+.emoji_computer:before {
+	content: "\1f4bb";
+}
+.emoji_briefcase:before {
+	content: "\1f4bc";
+}
+.emoji_minidisc:before {
+	content: "\1f4bd";
+}
+.emoji_floppy_disk:before {
+	content: "\1f4be";
+}
+.emoji_cd:before {
+	content: "\1f4bf";
+}
+.emoji_dvd:before {
+	content: "\1f4c0";
+}
+.emoji_file_folder:before {
+	content: "\1f4c1";
+}
+.emoji_open_file_folder:before {
+	content: "\1f4c2";
+}
+.emoji_page_with_curl:before {
+	content: "\1f4c3";
+}
+.emoji_page_facing_up:before {
+	content: "\1f4c4";
+}
+.emoji_date:before {
+	content: "\1f4c5";
+}
+.emoji_calendar:before {
+	content: "\1f4c6";
+}
+.emoji_card_index:before {
+	content: "\1f4c7";
+}
+.emoji_chart_with_upwards_trend:before {
+	content: "\1f4c8";
+}
+.emoji_chart_with_downwards_trend:before {
+	content: "\1f4c9";
+}
+.emoji_bar_chart:before {
+	content: "\1f4ca";
+}
+.emoji_clipboard:before {
+	content: "\1f4cb";
+}
+.emoji_pushpin:before {
+	content: "\1f4cc";
+}
+.emoji_round_pushpin:before {
+	content: "\1f4cd";
+}
+.emoji_paperclip:before {
+	content: "\1f4ce";
+}
+.emoji_straight_ruler:before {
+	content: "\1f4cf";
+}
+.emoji_triangular_ruler:before {
+	content: "\1f4d0";
+}
+.emoji_bookmark_tabs:before {
+	content: "\1f4d1";
+}
+.emoji_ledger:before {
+	content: "\1f4d2";
+}
+.emoji_notebook:before {
+	content: "\1f4d3";
+}
+.emoji_notebook_with_decorative_cover:before {
+	content: "\1f4d4";
+}
+.emoji_closed_book:before {
+	content: "\1f4d5";
+}
+.emoji_book:before {
+	content: "\1f4d6";
+}
+.emoji_open_book:before {
+	content: "\1f4d6";
+}
+.emoji_green_book:before {
+	content: "\1f4d7";
+}
+.emoji_blue_book:before {
+	content: "\1f4d8";
+}
+.emoji_orange_book:before {
+	content: "\1f4d9";
+}
+.emoji_books:before {
+	content: "\1f4da";
+}
+.emoji_name_badge:before {
+	content: "\1f4db";
+}
+.emoji_scroll:before {
+	content: "\1f4dc";
+}
+.emoji_memo:before {
+	content: "\1f4dd";
+}
+.emoji_pencil:before {
+	content: "\1f4dd";
+}
+.emoji_telephone_receiver:before {
+	content: "\1f4de";
+}
+.emoji_pager:before {
+	content: "\1f4df";
+}
+.emoji_fax:before {
+	content: "\1f4e0";
+}
+.emoji_satellite_antenna:before {
+	content: "\1f4e1";
+}
+.emoji_loudspeaker:before {
+	content: "\1f4e2";
+}
+.emoji_mega:before {
+	content: "\1f4e3";
+}
+.emoji_outbox_tray:before {
+	content: "\1f4e4";
+}
+.emoji_inbox_tray:before {
+	content: "\1f4e5";
+}
+.emoji_package:before {
+	content: "\1f4e6";
+}
+.emoji_e-mail:before {
+	content: "\1f4e7";
+}
+.emoji_incoming_envelope:before {
+	content: "\1f4e8";
+}
+.emoji_envelope_with_arrow:before {
+	content: "\1f4e9";
+}
+.emoji_mailbox_closed:before {
+	content: "\1f4ea";
+}
+.emoji_mailbox:before {
+	content: "\1f4eb";
+}
+.emoji_mailbox_with_mail:before {
+	content: "\1f4ec";
+}
+.emoji_mailbox_with_no_mail:before {
+	content: "\1f4ed";
+}
+.emoji_postbox:before {
+	content: "\1f4ee";
+}
+.emoji_postal_horn:before {
+	content: "\1f4ef";
+}
+.emoji_newspaper:before {
+	content: "\1f4f0";
+}
+.emoji_iphone:before {
+	content: "\1f4f1";
+}
+.emoji_calling:before {
+	content: "\1f4f2";
+}
+.emoji_vibration_mode:before {
+	content: "\1f4f3";
+}
+.emoji_mobile_phone_off:before {
+	content: "\1f4f4";
+}
+.emoji_no_mobile_phones:before {
+	content: "\1f4f5";
+}
+.emoji_signal_strength:before {
+	content: "\1f4f6";
+}
+.emoji_camera:before {
+	content: "\1f4f7";
+}
+.emoji_camera_with_flash:before {
+	content: "\1f4f8";
+}
+.emoji_video_camera:before {
+	content: "\1f4f9";
+}
+.emoji_tv:before {
+	content: "\1f4fa";
+}
+.emoji_radio:before {
+	content: "\1f4fb";
+}
+.emoji_vhs:before {
+	content: "\1f4fc";
+}
+.emoji_film_projector:before {
+	content: "\1f4fd\fe0f";
+}
+.emoji_prayer_beads:before {
+	content: "\1f4ff";
+}
+.emoji_twisted_rightwards_arrows:before {
+	content: "\1f500";
+}
+.emoji_repeat:before {
+	content: "\1f501";
+}
+.emoji_repeat_one:before {
+	content: "\1f502";
+}
+.emoji_arrows_clockwise:before {
+	content: "\1f503";
+}
+.emoji_arrows_counterclockwise:before {
+	content: "\1f504";
+}
+.emoji_low_brightness:before {
+	content: "\1f505";
+}
+.emoji_high_brightness:before {
+	content: "\1f506";
+}
+.emoji_mute:before {
+	content: "\1f507";
+}
+.emoji_speaker:before {
+	content: "\1f508";
+}
+.emoji_sound:before {
+	content: "\1f509";
+}
+.emoji_loud_sound:before {
+	content: "\1f50a";
+}
+.emoji_battery:before {
+	content: "\1f50b";
+}
+.emoji_electric_plug:before {
+	content: "\1f50c";
+}
+.emoji_mag:before {
+	content: "\1f50d";
+}
+.emoji_mag_right:before {
+	content: "\1f50e";
+}
+.emoji_lock_with_ink_pen:before {
+	content: "\1f50f";
+}
+.emoji_closed_lock_with_key:before {
+	content: "\1f510";
+}
+.emoji_key:before {
+	content: "\1f511";
+}
+.emoji_lock:before {
+	content: "\1f512";
+}
+.emoji_unlock:before {
+	content: "\1f513";
+}
+.emoji_bell:before {
+	content: "\1f514";
+}
+.emoji_no_bell:before {
+	content: "\1f515";
+}
+.emoji_bookmark:before {
+	content: "\1f516";
+}
+.emoji_link:before {
+	content: "\1f517";
+}
+.emoji_radio_button:before {
+	content: "\1f518";
+}
+.emoji_back:before {
+	content: "\1f519";
+}
+.emoji_end:before {
+	content: "\1f51a";
+}
+.emoji_on:before {
+	content: "\1f51b";
+}
+.emoji_soon:before {
+	content: "\1f51c";
+}
+.emoji_top:before {
+	content: "\1f51d";
+}
+.emoji_underage:before {
+	content: "\1f51e";
+}
+.emoji_keycap_ten:before {
+	content: "\1f51f";
+}
+.emoji_capital_abcd:before {
+	content: "\1f520";
+}
+.emoji_abcd:before {
+	content: "\1f521";
+}
+.emoji_1234:before {
+	content: "\1f522";
+}
+.emoji_symbols:before {
+	content: "\1f523";
+}
+.emoji_abc:before {
+	content: "\1f524";
+}
+.emoji_fire:before {
+	content: "\1f525";
+}
+.emoji_flashlight:before {
+	content: "\1f526";
+}
+.emoji_wrench:before {
+	content: "\1f527";
+}
+.emoji_hammer:before {
+	content: "\1f528";
+}
+.emoji_nut_and_bolt:before {
+	content: "\1f529";
+}
+.emoji_hocho:before {
+	content: "\1f52a";
+}
+.emoji_knife:before {
+	content: "\1f52a";
+}
+.emoji_gun:before {
+	content: "\1f52b";
+}
+.emoji_microscope:before {
+	content: "\1f52c";
+}
+.emoji_telescope:before {
+	content: "\1f52d";
+}
+.emoji_crystal_ball:before {
+	content: "\1f52e";
+}
+.emoji_six_pointed_star:before {
+	content: "\1f52f";
+}
+.emoji_beginner:before {
+	content: "\1f530";
+}
+.emoji_trident:before {
+	content: "\1f531";
+}
+.emoji_black_square_button:before {
+	content: "\1f532";
+}
+.emoji_white_square_button:before {
+	content: "\1f533";
+}
+.emoji_red_circle:before {
+	content: "\1f534";
+}
+.emoji_large_blue_circle:before {
+	content: "\1f535";
+}
+.emoji_large_orange_diamond:before {
+	content: "\1f536";
+}
+.emoji_large_blue_diamond:before {
+	content: "\1f537";
+}
+.emoji_small_orange_diamond:before {
+	content: "\1f538";
+}
+.emoji_small_blue_diamond:before {
+	content: "\1f539";
+}
+.emoji_small_red_triangle:before {
+	content: "\1f53a";
+}
+.emoji_small_red_triangle_down:before {
+	content: "\1f53b";
+}
+.emoji_arrow_up_small:before {
+	content: "\1f53c";
+}
+.emoji_arrow_down_small:before {
+	content: "\1f53d";
+}
+.emoji_om_symbol:before {
+	content: "\1f549\fe0f";
+}
+.emoji_dove_of_peace:before {
+	content: "\1f54a\fe0f";
+}
+.emoji_kaaba:before {
+	content: "\1f54b";
+}
+.emoji_mosque:before {
+	content: "\1f54c";
+}
+.emoji_synagogue:before {
+	content: "\1f54d";
+}
+.emoji_menorah_with_nine_branches:before {
+	content: "\1f54e";
+}
+.emoji_clock1:before {
+	content: "\1f550";
+}
+.emoji_clock2:before {
+	content: "\1f551";
+}
+.emoji_clock3:before {
+	content: "\1f552";
+}
+.emoji_clock4:before {
+	content: "\1f553";
+}
+.emoji_clock5:before {
+	content: "\1f554";
+}
+.emoji_clock6:before {
+	content: "\1f555";
+}
+.emoji_clock7:before {
+	content: "\1f556";
+}
+.emoji_clock8:before {
+	content: "\1f557";
+}
+.emoji_clock9:before {
+	content: "\1f558";
+}
+.emoji_clock10:before {
+	content: "\1f559";
+}
+.emoji_clock11:before {
+	content: "\1f55a";
+}
+.emoji_clock12:before {
+	content: "\1f55b";
+}
+.emoji_clock130:before {
+	content: "\1f55c";
+}
+.emoji_clock230:before {
+	content: "\1f55d";
+}
+.emoji_clock330:before {
+	content: "\1f55e";
+}
+.emoji_clock430:before {
+	content: "\1f55f";
+}
+.emoji_clock530:before {
+	content: "\1f560";
+}
+.emoji_clock630:before {
+	content: "\1f561";
+}
+.emoji_clock730:before {
+	content: "\1f562";
+}
+.emoji_clock830:before {
+	content: "\1f563";
+}
+.emoji_clock930:before {
+	content: "\1f564";
+}
+.emoji_clock1030:before {
+	content: "\1f565";
+}
+.emoji_clock1130:before {
+	content: "\1f566";
+}
+.emoji_clock1230:before {
+	content: "\1f567";
+}
+.emoji_candle:before {
+	content: "\1f56f\fe0f";
+}
+.emoji_mantelpiece_clock:before {
+	content: "\1f570\fe0f";
+}
+.emoji_hole:before {
+	content: "\1f573\fe0f";
+}
+.emoji_man_in_business_suit_levitating:before {
+	content: "\1f574\fe0f";
+}
+.emoji_female-detective:before {
+	content: "\1f575\fe0f\200d\2640\fe0f";
+}
+.emoji_male-detective:before {
+	content: "\1f575\fe0f\200d\2642\fe0f";
+}
+.emoji_sleuth_or_spy:before {
+	content: "\1f575\fe0f";
+}
+.emoji_dark_sunglasses:before {
+	content: "\1f576\fe0f";
+}
+.emoji_spider:before {
+	content: "\1f577\fe0f";
+}
+.emoji_spider_web:before {
+	content: "\1f578\fe0f";
+}
+.emoji_joystick:before {
+	content: "\1f579\fe0f";
+}
+.emoji_man_dancing:before {
+	content: "\1f57a";
+}
+.emoji_linked_paperclips:before {
+	content: "\1f587\fe0f";
+}
+.emoji_lower_left_ballpoint_pen:before {
+	content: "\1f58a\fe0f";
+}
+.emoji_lower_left_fountain_pen:before {
+	content: "\1f58b\fe0f";
+}
+.emoji_lower_left_paintbrush:before {
+	content: "\1f58c\fe0f";
+}
+.emoji_lower_left_crayon:before {
+	content: "\1f58d\fe0f";
+}
+.emoji_raised_hand_with_fingers_splayed:before {
+	content: "\1f590\fe0f";
+}
+.emoji_middle_finger:before {
+	content: "\1f595";
+}
+.emoji_reversed_hand_with_middle_finger_extended:before {
+	content: "\1f595";
+}
+.emoji_spock-hand:before {
+	content: "\1f596";
+}
+.emoji_black_heart:before {
+	content: "\1f5a4";
+}
+.emoji_desktop_computer:before {
+	content: "\1f5a5\fe0f";
+}
+.emoji_printer:before {
+	content: "\1f5a8\fe0f";
+}
+.emoji_three_button_mouse:before {
+	content: "\1f5b1\fe0f";
+}
+.emoji_trackball:before {
+	content: "\1f5b2\fe0f";
+}
+.emoji_frame_with_picture:before {
+	content: "\1f5bc\fe0f";
+}
+.emoji_card_index_dividers:before {
+	content: "\1f5c2\fe0f";
+}
+.emoji_card_file_box:before {
+	content: "\1f5c3\fe0f";
+}
+.emoji_file_cabinet:before {
+	content: "\1f5c4\fe0f";
+}
+.emoji_wastebasket:before {
+	content: "\1f5d1\fe0f";
+}
+.emoji_spiral_note_pad:before {
+	content: "\1f5d2\fe0f";
+}
+.emoji_spiral_calendar_pad:before {
+	content: "\1f5d3\fe0f";
+}
+.emoji_compression:before {
+	content: "\1f5dc\fe0f";
+}
+.emoji_old_key:before {
+	content: "\1f5dd\fe0f";
+}
+.emoji_rolled_up_newspaper:before {
+	content: "\1f5de\fe0f";
+}
+.emoji_dagger_knife:before {
+	content: "\1f5e1\fe0f";
+}
+.emoji_speaking_head_in_silhouette:before {
+	content: "\1f5e3\fe0f";
+}
+.emoji_left_speech_bubble:before {
+	content: "\1f5e8\fe0f";
+}
+.emoji_right_anger_bubble:before {
+	content: "\1f5ef\fe0f";
+}
+.emoji_ballot_box_with_ballot:before {
+	content: "\1f5f3\fe0f";
+}
+.emoji_world_map:before {
+	content: "\1f5fa\fe0f";
+}
+.emoji_mount_fuji:before {
+	content: "\1f5fb";
+}
+.emoji_tokyo_tower:before {
+	content: "\1f5fc";
+}
+.emoji_statue_of_liberty:before {
+	content: "\1f5fd";
+}
+.emoji_japan:before {
+	content: "\1f5fe";
+}
+.emoji_moyai:before {
+	content: "\1f5ff";
+}
+.emoji_grinning:before {
+	content: "\1f600";
+}
+.emoji_grin:before {
+	content: "\1f601";
+}
+.emoji_joy:before {
+	content: "\1f602";
+}
+.emoji_smiley:before {
+	content: "\1f603";
+}
+.emoji_smile:before {
+	content: "\1f604";
+}
+.emoji_sweat_smile:before {
+	content: "\1f605";
+}
+.emoji_laughing:before {
+	content: "\1f606";
+}
+.emoji_satisfied:before {
+	content: "\1f606";
+}
+.emoji_innocent:before {
+	content: "\1f607";
+}
+.emoji_smiling_imp:before {
+	content: "\1f608";
+}
+.emoji_wink:before {
+	content: "\1f609";
+}
+.emoji_blush:before {
+	content: "\1f60a";
+}
+.emoji_yum:before {
+	content: "\1f60b";
+}
+.emoji_relieved:before {
+	content: "\1f60c";
+}
+.emoji_heart_eyes:before {
+	content: "\1f60d";
+}
+.emoji_sunglasses:before {
+	content: "\1f60e";
+}
+.emoji_smirk:before {
+	content: "\1f60f";
+}
+.emoji_neutral_face:before {
+	content: "\1f610";
+}
+.emoji_expressionless:before {
+	content: "\1f611";
+}
+.emoji_unamused:before {
+	content: "\1f612";
+}
+.emoji_sweat:before {
+	content: "\1f613";
+}
+.emoji_pensive:before {
+	content: "\1f614";
+}
+.emoji_confused:before {
+	content: "\1f615";
+}
+.emoji_confounded:before {
+	content: "\1f616";
+}
+.emoji_kissing:before {
+	content: "\1f617";
+}
+.emoji_kissing_heart:before {
+	content: "\1f618";
+}
+.emoji_kissing_smiling_eyes:before {
+	content: "\1f619";
+}
+.emoji_kissing_closed_eyes:before {
+	content: "\1f61a";
+}
+.emoji_stuck_out_tongue:before {
+	content: "\1f61b";
+}
+.emoji_stuck_out_tongue_winking_eye:before {
+	content: "\1f61c";
+}
+.emoji_stuck_out_tongue_closed_eyes:before {
+	content: "\1f61d";
+}
+.emoji_disappointed:before {
+	content: "\1f61e";
+}
+.emoji_worried:before {
+	content: "\1f61f";
+}
+.emoji_angry:before {
+	content: "\1f620";
+}
+.emoji_rage:before {
+	content: "\1f621";
+}
+.emoji_cry:before {
+	content: "\1f622";
+}
+.emoji_persevere:before {
+	content: "\1f623";
+}
+.emoji_triumph:before {
+	content: "\1f624";
+}
+.emoji_disappointed_relieved:before {
+	content: "\1f625";
+}
+.emoji_frowning:before {
+	content: "\1f626";
+}
+.emoji_anguished:before {
+	content: "\1f627";
+}
+.emoji_fearful:before {
+	content: "\1f628";
+}
+.emoji_weary:before {
+	content: "\1f629";
+}
+.emoji_sleepy:before {
+	content: "\1f62a";
+}
+.emoji_tired_face:before {
+	content: "\1f62b";
+}
+.emoji_grimacing:before {
+	content: "\1f62c";
+}
+.emoji_sob:before {
+	content: "\1f62d";
+}
+.emoji_face_exhaling:before {
+	content: "\1f62e\200d\1f4a8";
+}
+.emoji_open_mouth:before {
+	content: "\1f62e";
+}
+.emoji_hushed:before {
+	content: "\1f62f";
+}
+.emoji_cold_sweat:before {
+	content: "\1f630";
+}
+.emoji_scream:before {
+	content: "\1f631";
+}
+.emoji_astonished:before {
+	content: "\1f632";
+}
+.emoji_flushed:before {
+	content: "\1f633";
+}
+.emoji_sleeping:before {
+	content: "\1f634";
+}
+.emoji_face_with_spiral_eyes:before {
+	content: "\1f635\200d\1f4ab";
+}
+.emoji_dizzy_face:before {
+	content: "\1f635";
+}
+.emoji_face_in_clouds:before {
+	content: "\1f636\200d\1f32b\fe0f";
+}
+.emoji_no_mouth:before {
+	content: "\1f636";
+}
+.emoji_mask:before {
+	content: "\1f637";
+}
+.emoji_smile_cat:before {
+	content: "\1f638";
+}
+.emoji_joy_cat:before {
+	content: "\1f639";
+}
+.emoji_smiley_cat:before {
+	content: "\1f63a";
+}
+.emoji_heart_eyes_cat:before {
+	content: "\1f63b";
+}
+.emoji_smirk_cat:before {
+	content: "\1f63c";
+}
+.emoji_kissing_cat:before {
+	content: "\1f63d";
+}
+.emoji_pouting_cat:before {
+	content: "\1f63e";
+}
+.emoji_crying_cat_face:before {
+	content: "\1f63f";
+}
+.emoji_scream_cat:before {
+	content: "\1f640";
+}
+.emoji_slightly_frowning_face:before {
+	content: "\1f641";
+}
+.emoji_slightly_smiling_face:before {
+	content: "\1f642";
+}
+.emoji_upside_down_face:before {
+	content: "\1f643";
+}
+.emoji_face_with_rolling_eyes:before {
+	content: "\1f644";
+}
+.emoji_woman-gesturing-no:before {
+	content: "\1f645\200d\2640\fe0f";
+}
+.emoji_man-gesturing-no:before {
+	content: "\1f645\200d\2642\fe0f";
+}
+.emoji_no_good:before {
+	content: "\1f645";
+}
+.emoji_woman-gesturing-ok:before {
+	content: "\1f646\200d\2640\fe0f";
+}
+.emoji_man-gesturing-ok:before {
+	content: "\1f646\200d\2642\fe0f";
+}
+.emoji_ok_woman:before {
+	content: "\1f646";
+}
+.emoji_woman-bowing:before {
+	content: "\1f647\200d\2640\fe0f";
+}
+.emoji_man-bowing:before {
+	content: "\1f647\200d\2642\fe0f";
+}
+.emoji_bow:before {
+	content: "\1f647";
+}
+.emoji_see_no_evil:before {
+	content: "\1f648";
+}
+.emoji_hear_no_evil:before {
+	content: "\1f649";
+}
+.emoji_speak_no_evil:before {
+	content: "\1f64a";
+}
+.emoji_woman-raising-hand:before {
+	content: "\1f64b\200d\2640\fe0f";
+}
+.emoji_man-raising-hand:before {
+	content: "\1f64b\200d\2642\fe0f";
+}
+.emoji_raising_hand:before {
+	content: "\1f64b";
+}
+.emoji_raised_hands:before {
+	content: "\1f64c";
+}
+.emoji_woman-frowning:before {
+	content: "\1f64d\200d\2640\fe0f";
+}
+.emoji_man-frowning:before {
+	content: "\1f64d\200d\2642\fe0f";
+}
+.emoji_person_frowning:before {
+	content: "\1f64d";
+}
+.emoji_woman-pouting:before {
+	content: "\1f64e\200d\2640\fe0f";
+}
+.emoji_man-pouting:before {
+	content: "\1f64e\200d\2642\fe0f";
+}
+.emoji_person_with_pouting_face:before {
+	content: "\1f64e";
+}
+.emoji_pray:before {
+	content: "\1f64f";
+}
+.emoji_rocket:before {
+	content: "\1f680";
+}
+.emoji_helicopter:before {
+	content: "\1f681";
+}
+.emoji_steam_locomotive:before {
+	content: "\1f682";
+}
+.emoji_railway_car:before {
+	content: "\1f683";
+}
+.emoji_bullettrain_side:before {
+	content: "\1f684";
+}
+.emoji_bullettrain_front:before {
+	content: "\1f685";
+}
+.emoji_train2:before {
+	content: "\1f686";
+}
+.emoji_metro:before {
+	content: "\1f687";
+}
+.emoji_light_rail:before {
+	content: "\1f688";
+}
+.emoji_station:before {
+	content: "\1f689";
+}
+.emoji_tram:before {
+	content: "\1f68a";
+}
+.emoji_train:before {
+	content: "\1f68b";
+}
+.emoji_bus:before {
+	content: "\1f68c";
+}
+.emoji_oncoming_bus:before {
+	content: "\1f68d";
+}
+.emoji_trolleybus:before {
+	content: "\1f68e";
+}
+.emoji_busstop:before {
+	content: "\1f68f";
+}
+.emoji_minibus:before {
+	content: "\1f690";
+}
+.emoji_ambulance:before {
+	content: "\1f691";
+}
+.emoji_fire_engine:before {
+	content: "\1f692";
+}
+.emoji_police_car:before {
+	content: "\1f693";
+}
+.emoji_oncoming_police_car:before {
+	content: "\1f694";
+}
+.emoji_taxi:before {
+	content: "\1f695";
+}
+.emoji_oncoming_taxi:before {
+	content: "\1f696";
+}
+.emoji_car:before {
+	content: "\1f697";
+}
+.emoji_red_car:before {
+	content: "\1f697";
+}
+.emoji_oncoming_automobile:before {
+	content: "\1f698";
+}
+.emoji_blue_car:before {
+	content: "\1f699";
+}
+.emoji_truck:before {
+	content: "\1f69a";
+}
+.emoji_articulated_lorry:before {
+	content: "\1f69b";
+}
+.emoji_tractor:before {
+	content: "\1f69c";
+}
+.emoji_monorail:before {
+	content: "\1f69d";
+}
+.emoji_mountain_railway:before {
+	content: "\1f69e";
+}
+.emoji_suspension_railway:before {
+	content: "\1f69f";
+}
+.emoji_mountain_cableway:before {
+	content: "\1f6a0";
+}
+.emoji_aerial_tramway:before {
+	content: "\1f6a1";
+}
+.emoji_ship:before {
+	content: "\1f6a2";
+}
+.emoji_woman-rowing-boat:before {
+	content: "\1f6a3\200d\2640\fe0f";
+}
+.emoji_man-rowing-boat:before {
+	content: "\1f6a3\200d\2642\fe0f";
+}
+.emoji_rowboat:before {
+	content: "\1f6a3";
+}
+.emoji_speedboat:before {
+	content: "\1f6a4";
+}
+.emoji_traffic_light:before {
+	content: "\1f6a5";
+}
+.emoji_vertical_traffic_light:before {
+	content: "\1f6a6";
+}
+.emoji_construction:before {
+	content: "\1f6a7";
+}
+.emoji_rotating_light:before {
+	content: "\1f6a8";
+}
+.emoji_triangular_flag_on_post:before {
+	content: "\1f6a9";
+}
+.emoji_door:before {
+	content: "\1f6aa";
+}
+.emoji_no_entry_sign:before {
+	content: "\1f6ab";
+}
+.emoji_smoking:before {
+	content: "\1f6ac";
+}
+.emoji_no_smoking:before {
+	content: "\1f6ad";
+}
+.emoji_put_litter_in_its_place:before {
+	content: "\1f6ae";
+}
+.emoji_do_not_litter:before {
+	content: "\1f6af";
+}
+.emoji_potable_water:before {
+	content: "\1f6b0";
+}
+.emoji_non-potable_water:before {
+	content: "\1f6b1";
+}
+.emoji_bike:before {
+	content: "\1f6b2";
+}
+.emoji_no_bicycles:before {
+	content: "\1f6b3";
+}
+.emoji_woman-biking:before {
+	content: "\1f6b4\200d\2640\fe0f";
+}
+.emoji_man-biking:before {
+	content: "\1f6b4\200d\2642\fe0f";
+}
+.emoji_bicyclist:before {
+	content: "\1f6b4";
+}
+.emoji_woman-mountain-biking:before {
+	content: "\1f6b5\200d\2640\fe0f";
+}
+.emoji_man-mountain-biking:before {
+	content: "\1f6b5\200d\2642\fe0f";
+}
+.emoji_mountain_bicyclist:before {
+	content: "\1f6b5";
+}
+.emoji_woman-walking:before {
+	content: "\1f6b6\200d\2640\fe0f";
+}
+.emoji_man-walking:before {
+	content: "\1f6b6\200d\2642\fe0f";
+}
+.emoji_walking:before {
+	content: "\1f6b6";
+}
+.emoji_no_pedestrians:before {
+	content: "\1f6b7";
+}
+.emoji_children_crossing:before {
+	content: "\1f6b8";
+}
+.emoji_mens:before {
+	content: "\1f6b9";
+}
+.emoji_womens:before {
+	content: "\1f6ba";
+}
+.emoji_restroom:before {
+	content: "\1f6bb";
+}
+.emoji_baby_symbol:before {
+	content: "\1f6bc";
+}
+.emoji_toilet:before {
+	content: "\1f6bd";
+}
+.emoji_wc:before {
+	content: "\1f6be";
+}
+.emoji_shower:before {
+	content: "\1f6bf";
+}
+.emoji_bath:before {
+	content: "\1f6c0";
+}
+.emoji_bathtub:before {
+	content: "\1f6c1";
+}
+.emoji_passport_control:before {
+	content: "\1f6c2";
+}
+.emoji_customs:before {
+	content: "\1f6c3";
+}
+.emoji_baggage_claim:before {
+	content: "\1f6c4";
+}
+.emoji_left_luggage:before {
+	content: "\1f6c5";
+}
+.emoji_couch_and_lamp:before {
+	content: "\1f6cb\fe0f";
+}
+.emoji_sleeping_accommodation:before {
+	content: "\1f6cc";
+}
+.emoji_shopping_bags:before {
+	content: "\1f6cd\fe0f";
+}
+.emoji_bellhop_bell:before {
+	content: "\1f6ce\fe0f";
+}
+.emoji_bed:before {
+	content: "\1f6cf\fe0f";
+}
+.emoji_place_of_worship:before {
+	content: "\1f6d0";
+}
+.emoji_octagonal_sign:before {
+	content: "\1f6d1";
+}
+.emoji_shopping_trolley:before {
+	content: "\1f6d2";
+}
+.emoji_hindu_temple:before {
+	content: "\1f6d5";
+}
+.emoji_hut:before {
+	content: "\1f6d6";
+}
+.emoji_elevator:before {
+	content: "\1f6d7";
+}
+.emoji_playground_slide:before {
+	content: "\1f6dd";
+}
+.emoji_wheel:before {
+	content: "\1f6de";
+}
+.emoji_ring_buoy:before {
+	content: "\1f6df";
+}
+.emoji_hammer_and_wrench:before {
+	content: "\1f6e0\fe0f";
+}
+.emoji_shield:before {
+	content: "\1f6e1\fe0f";
+}
+.emoji_oil_drum:before {
+	content: "\1f6e2\fe0f";
+}
+.emoji_motorway:before {
+	content: "\1f6e3\fe0f";
+}
+.emoji_railway_track:before {
+	content: "\1f6e4\fe0f";
+}
+.emoji_motor_boat:before {
+	content: "\1f6e5\fe0f";
+}
+.emoji_small_airplane:before {
+	content: "\1f6e9\fe0f";
+}
+.emoji_airplane_departure:before {
+	content: "\1f6eb";
+}
+.emoji_airplane_arriving:before {
+	content: "\1f6ec";
+}
+.emoji_satellite:before {
+	content: "\1f6f0\fe0f";
+}
+.emoji_passenger_ship:before {
+	content: "\1f6f3\fe0f";
+}
+.emoji_scooter:before {
+	content: "\1f6f4";
+}
+.emoji_motor_scooter:before {
+	content: "\1f6f5";
+}
+.emoji_canoe:before {
+	content: "\1f6f6";
+}
+.emoji_sled:before {
+	content: "\1f6f7";
+}
+.emoji_flying_saucer:before {
+	content: "\1f6f8";
+}
+.emoji_skateboard:before {
+	content: "\1f6f9";
+}
+.emoji_auto_rickshaw:before {
+	content: "\1f6fa";
+}
+.emoji_pickup_truck:before {
+	content: "\1f6fb";
+}
+.emoji_roller_skate:before {
+	content: "\1f6fc";
+}
+.emoji_large_orange_circle:before {
+	content: "\1f7e0";
+}
+.emoji_large_yellow_circle:before {
+	content: "\1f7e1";
+}
+.emoji_large_green_circle:before {
+	content: "\1f7e2";
+}
+.emoji_large_purple_circle:before {
+	content: "\1f7e3";
+}
+.emoji_large_brown_circle:before {
+	content: "\1f7e4";
+}
+.emoji_large_red_square:before {
+	content: "\1f7e5";
+}
+.emoji_large_blue_square:before {
+	content: "\1f7e6";
+}
+.emoji_large_orange_square:before {
+	content: "\1f7e7";
+}
+.emoji_large_yellow_square:before {
+	content: "\1f7e8";
+}
+.emoji_large_green_square:before {
+	content: "\1f7e9";
+}
+.emoji_large_purple_square:before {
+	content: "\1f7ea";
+}
+.emoji_large_brown_square:before {
+	content: "\1f7eb";
+}
+.emoji_heavy_equals_sign:before {
+	content: "\1f7f0";
+}
+.emoji_pinched_fingers:before {
+	content: "\1f90c";
+}
+.emoji_white_heart:before {
+	content: "\1f90d";
+}
+.emoji_brown_heart:before {
+	content: "\1f90e";
+}
+.emoji_pinching_hand:before {
+	content: "\1f90f";
+}
+.emoji_zipper_mouth_face:before {
+	content: "\1f910";
+}
+.emoji_money_mouth_face:before {
+	content: "\1f911";
+}
+.emoji_face_with_thermometer:before {
+	content: "\1f912";
+}
+.emoji_nerd_face:before {
+	content: "\1f913";
+}
+.emoji_thinking_face:before {
+	content: "\1f914";
+}
+.emoji_face_with_head_bandage:before {
+	content: "\1f915";
+}
+.emoji_robot_face:before {
+	content: "\1f916";
+}
+.emoji_hugging_face:before {
+	content: "\1f917";
+}
+.emoji_the_horns:before {
+	content: "\1f918";
+}
+.emoji_sign_of_the_horns:before {
+	content: "\1f918";
+}
+.emoji_call_me_hand:before {
+	content: "\1f919";
+}
+.emoji_raised_back_of_hand:before {
+	content: "\1f91a";
+}
+.emoji_left-facing_fist:before {
+	content: "\1f91b";
+}
+.emoji_right-facing_fist:before {
+	content: "\1f91c";
+}
+.emoji_handshake:before {
+	content: "\1f91d";
+}
+.emoji_crossed_fingers:before {
+	content: "\1f91e";
+}
+.emoji_hand_with_index_and_middle_fingers_crossed:before {
+	content: "\1f91e";
+}
+.emoji_i_love_you_hand_sign:before {
+	content: "\1f91f";
+}
+.emoji_face_with_cowboy_hat:before {
+	content: "\1f920";
+}
+.emoji_clown_face:before {
+	content: "\1f921";
+}
+.emoji_nauseated_face:before {
+	content: "\1f922";
+}
+.emoji_rolling_on_the_floor_laughing:before {
+	content: "\1f923";
+}
+.emoji_drooling_face:before {
+	content: "\1f924";
+}
+.emoji_lying_face:before {
+	content: "\1f925";
+}
+.emoji_woman-facepalming:before {
+	content: "\1f926\200d\2640\fe0f";
+}
+.emoji_man-facepalming:before {
+	content: "\1f926\200d\2642\fe0f";
+}
+.emoji_face_palm:before {
+	content: "\1f926";
+}
+.emoji_sneezing_face:before {
+	content: "\1f927";
+}
+.emoji_face_with_raised_eyebrow:before {
+	content: "\1f928";
+}
+.emoji_face_with_one_eyebrow_raised:before {
+	content: "\1f928";
+}
+.emoji_star-struck:before {
+	content: "\1f929";
+}
+.emoji_grinning_face_with_star_eyes:before {
+	content: "\1f929";
+}
+.emoji_zany_face:before {
+	content: "\1f92a";
+}
+.emoji_grinning_face_with_one_large_and_one_small_eye:before {
+	content: "\1f92a";
+}
+.emoji_shushing_face:before {
+	content: "\1f92b";
+}
+.emoji_face_with_finger_covering_closed_lips:before {
+	content: "\1f92b";
+}
+.emoji_face_with_symbols_on_mouth:before {
+	content: "\1f92c";
+}
+.emoji_serious_face_with_symbols_covering_mouth:before {
+	content: "\1f92c";
+}
+.emoji_face_with_hand_over_mouth:before {
+	content: "\1f92d";
+}
+.emoji_smiling_face_with_smiling_eyes_and_hand_covering_mouth:before {
+	content: "\1f92d";
+}
+.emoji_face_vomiting:before {
+	content: "\1f92e";
+}
+.emoji_face_with_open_mouth_vomiting:before {
+	content: "\1f92e";
+}
+.emoji_exploding_head:before {
+	content: "\1f92f";
+}
+.emoji_shocked_face_with_exploding_head:before {
+	content: "\1f92f";
+}
+.emoji_pregnant_woman:before {
+	content: "\1f930";
+}
+.emoji_breast-feeding:before {
+	content: "\1f931";
+}
+.emoji_palms_up_together:before {
+	content: "\1f932";
+}
+.emoji_selfie:before {
+	content: "\1f933";
+}
+.emoji_prince:before {
+	content: "\1f934";
+}
+.emoji_woman_in_tuxedo:before {
+	content: "\1f935\200d\2640\fe0f";
+}
+.emoji_man_in_tuxedo:before {
+	content: "\1f935\200d\2642\fe0f";
+}
+.emoji_person_in_tuxedo:before {
+	content: "\1f935";
+}
+.emoji_mrs_claus:before {
+	content: "\1f936";
+}
+.emoji_mother_christmas:before {
+	content: "\1f936";
+}
+.emoji_woman-shrugging:before {
+	content: "\1f937\200d\2640\fe0f";
+}
+.emoji_man-shrugging:before {
+	content: "\1f937\200d\2642\fe0f";
+}
+.emoji_shrug:before {
+	content: "\1f937";
+}
+.emoji_woman-cartwheeling:before {
+	content: "\1f938\200d\2640\fe0f";
+}
+.emoji_man-cartwheeling:before {
+	content: "\1f938\200d\2642\fe0f";
+}
+.emoji_person_doing_cartwheel:before {
+	content: "\1f938";
+}
+.emoji_woman-juggling:before {
+	content: "\1f939\200d\2640\fe0f";
+}
+.emoji_man-juggling:before {
+	content: "\1f939\200d\2642\fe0f";
+}
+.emoji_juggling:before {
+	content: "\1f939";
+}
+.emoji_fencer:before {
+	content: "\1f93a";
+}
+.emoji_woman-wrestling:before {
+	content: "\1f93c\200d\2640\fe0f";
+}
+.emoji_man-wrestling:before {
+	content: "\1f93c\200d\2642\fe0f";
+}
+.emoji_wrestlers:before {
+	content: "\1f93c";
+}
+.emoji_woman-playing-water-polo:before {
+	content: "\1f93d\200d\2640\fe0f";
+}
+.emoji_man-playing-water-polo:before {
+	content: "\1f93d\200d\2642\fe0f";
+}
+.emoji_water_polo:before {
+	content: "\1f93d";
+}
+.emoji_woman-playing-handball:before {
+	content: "\1f93e\200d\2640\fe0f";
+}
+.emoji_man-playing-handball:before {
+	content: "\1f93e\200d\2642\fe0f";
+}
+.emoji_handball:before {
+	content: "\1f93e";
+}
+.emoji_diving_mask:before {
+	content: "\1f93f";
+}
+.emoji_wilted_flower:before {
+	content: "\1f940";
+}
+.emoji_drum_with_drumsticks:before {
+	content: "\1f941";
+}
+.emoji_clinking_glasses:before {
+	content: "\1f942";
+}
+.emoji_tumbler_glass:before {
+	content: "\1f943";
+}
+.emoji_spoon:before {
+	content: "\1f944";
+}
+.emoji_goal_net:before {
+	content: "\1f945";
+}
+.emoji_first_place_medal:before {
+	content: "\1f947";
+}
+.emoji_second_place_medal:before {
+	content: "\1f948";
+}
+.emoji_third_place_medal:before {
+	content: "\1f949";
+}
+.emoji_boxing_glove:before {
+	content: "\1f94a";
+}
+.emoji_martial_arts_uniform:before {
+	content: "\1f94b";
+}
+.emoji_curling_stone:before {
+	content: "\1f94c";
+}
+.emoji_lacrosse:before {
+	content: "\1f94d";
+}
+.emoji_softball:before {
+	content: "\1f94e";
+}
+.emoji_flying_disc:before {
+	content: "\1f94f";
+}
+.emoji_croissant:before {
+	content: "\1f950";
+}
+.emoji_avocado:before {
+	content: "\1f951";
+}
+.emoji_cucumber:before {
+	content: "\1f952";
+}
+.emoji_bacon:before {
+	content: "\1f953";
+}
+.emoji_potato:before {
+	content: "\1f954";
+}
+.emoji_carrot:before {
+	content: "\1f955";
+}
+.emoji_baguette_bread:before {
+	content: "\1f956";
+}
+.emoji_green_salad:before {
+	content: "\1f957";
+}
+.emoji_shallow_pan_of_food:before {
+	content: "\1f958";
+}
+.emoji_stuffed_flatbread:before {
+	content: "\1f959";
+}
+.emoji_egg:before {
+	content: "\1f95a";
+}
+.emoji_glass_of_milk:before {
+	content: "\1f95b";
+}
+.emoji_peanuts:before {
+	content: "\1f95c";
+}
+.emoji_kiwifruit:before {
+	content: "\1f95d";
+}
+.emoji_pancakes:before {
+	content: "\1f95e";
+}
+.emoji_dumpling:before {
+	content: "\1f95f";
+}
+.emoji_fortune_cookie:before {
+	content: "\1f960";
+}
+.emoji_takeout_box:before {
+	content: "\1f961";
+}
+.emoji_chopsticks:before {
+	content: "\1f962";
+}
+.emoji_bowl_with_spoon:before {
+	content: "\1f963";
+}
+.emoji_cup_with_straw:before {
+	content: "\1f964";
+}
+.emoji_coconut:before {
+	content: "\1f965";
+}
+.emoji_broccoli:before {
+	content: "\1f966";
+}
+.emoji_pie:before {
+	content: "\1f967";
+}
+.emoji_pretzel:before {
+	content: "\1f968";
+}
+.emoji_cut_of_meat:before {
+	content: "\1f969";
+}
+.emoji_sandwich:before {
+	content: "\1f96a";
+}
+.emoji_canned_food:before {
+	content: "\1f96b";
+}
+.emoji_leafy_green:before {
+	content: "\1f96c";
+}
+.emoji_mango:before {
+	content: "\1f96d";
+}
+.emoji_moon_cake:before {
+	content: "\1f96e";
+}
+.emoji_bagel:before {
+	content: "\1f96f";
+}
+.emoji_smiling_face_with_3_hearts:before {
+	content: "\1f970";
+}
+.emoji_yawning_face:before {
+	content: "\1f971";
+}
+.emoji_smiling_face_with_tear:before {
+	content: "\1f972";
+}
+.emoji_partying_face:before {
+	content: "\1f973";
+}
+.emoji_woozy_face:before {
+	content: "\1f974";
+}
+.emoji_hot_face:before {
+	content: "\1f975";
+}
+.emoji_cold_face:before {
+	content: "\1f976";
+}
+.emoji_ninja:before {
+	content: "\1f977";
+}
+.emoji_disguised_face:before {
+	content: "\1f978";
+}
+.emoji_face_holding_back_tears:before {
+	content: "\1f979";
+}
+.emoji_pleading_face:before {
+	content: "\1f97a";
+}
+.emoji_sari:before {
+	content: "\1f97b";
+}
+.emoji_lab_coat:before {
+	content: "\1f97c";
+}
+.emoji_goggles:before {
+	content: "\1f97d";
+}
+.emoji_hiking_boot:before {
+	content: "\1f97e";
+}
+.emoji_womans_flat_shoe:before {
+	content: "\1f97f";
+}
+.emoji_crab:before {
+	content: "\1f980";
+}
+.emoji_lion_face:before {
+	content: "\1f981";
+}
+.emoji_scorpion:before {
+	content: "\1f982";
+}
+.emoji_turkey:before {
+	content: "\1f983";
+}
+.emoji_unicorn_face:before {
+	content: "\1f984";
+}
+.emoji_eagle:before {
+	content: "\1f985";
+}
+.emoji_duck:before {
+	content: "\1f986";
+}
+.emoji_bat:before {
+	content: "\1f987";
+}
+.emoji_shark:before {
+	content: "\1f988";
+}
+.emoji_owl:before {
+	content: "\1f989";
+}
+.emoji_fox_face:before {
+	content: "\1f98a";
+}
+.emoji_butterfly:before {
+	content: "\1f98b";
+}
+.emoji_deer:before {
+	content: "\1f98c";
+}
+.emoji_gorilla:before {
+	content: "\1f98d";
+}
+.emoji_lizard:before {
+	content: "\1f98e";
+}
+.emoji_rhinoceros:before {
+	content: "\1f98f";
+}
+.emoji_shrimp:before {
+	content: "\1f990";
+}
+.emoji_squid:before {
+	content: "\1f991";
+}
+.emoji_giraffe_face:before {
+	content: "\1f992";
+}
+.emoji_zebra_face:before {
+	content: "\1f993";
+}
+.emoji_hedgehog:before {
+	content: "\1f994";
+}
+.emoji_sauropod:before {
+	content: "\1f995";
+}
+.emoji_t-rex:before {
+	content: "\1f996";
+}
+.emoji_cricket:before {
+	content: "\1f997";
+}
+.emoji_kangaroo:before {
+	content: "\1f998";
+}
+.emoji_llama:before {
+	content: "\1f999";
+}
+.emoji_peacock:before {
+	content: "\1f99a";
+}
+.emoji_hippopotamus:before {
+	content: "\1f99b";
+}
+.emoji_parrot:before {
+	content: "\1f99c";
+}
+.emoji_raccoon:before {
+	content: "\1f99d";
+}
+.emoji_lobster:before {
+	content: "\1f99e";
+}
+.emoji_mosquito:before {
+	content: "\1f99f";
+}
+.emoji_microbe:before {
+	content: "\1f9a0";
+}
+.emoji_badger:before {
+	content: "\1f9a1";
+}
+.emoji_swan:before {
+	content: "\1f9a2";
+}
+.emoji_mammoth:before {
+	content: "\1f9a3";
+}
+.emoji_dodo:before {
+	content: "\1f9a4";
+}
+.emoji_sloth:before {
+	content: "\1f9a5";
+}
+.emoji_otter:before {
+	content: "\1f9a6";
+}
+.emoji_orangutan:before {
+	content: "\1f9a7";
+}
+.emoji_skunk:before {
+	content: "\1f9a8";
+}
+.emoji_flamingo:before {
+	content: "\1f9a9";
+}
+.emoji_oyster:before {
+	content: "\1f9aa";
+}
+.emoji_beaver:before {
+	content: "\1f9ab";
+}
+.emoji_bison:before {
+	content: "\1f9ac";
+}
+.emoji_seal:before {
+	content: "\1f9ad";
+}
+.emoji_guide_dog:before {
+	content: "\1f9ae";
+}
+.emoji_probing_cane:before {
+	content: "\1f9af";
+}
+.emoji_bone:before {
+	content: "\1f9b4";
+}
+.emoji_leg:before {
+	content: "\1f9b5";
+}
+.emoji_foot:before {
+	content: "\1f9b6";
+}
+.emoji_tooth:before {
+	content: "\1f9b7";
+}
+.emoji_female_superhero:before {
+	content: "\1f9b8\200d\2640\fe0f";
+}
+.emoji_male_superhero:before {
+	content: "\1f9b8\200d\2642\fe0f";
+}
+.emoji_superhero:before {
+	content: "\1f9b8";
+}
+.emoji_female_supervillain:before {
+	content: "\1f9b9\200d\2640\fe0f";
+}
+.emoji_male_supervillain:before {
+	content: "\1f9b9\200d\2642\fe0f";
+}
+.emoji_supervillain:before {
+	content: "\1f9b9";
+}
+.emoji_safety_vest:before {
+	content: "\1f9ba";
+}
+.emoji_ear_with_hearing_aid:before {
+	content: "\1f9bb";
+}
+.emoji_motorized_wheelchair:before {
+	content: "\1f9bc";
+}
+.emoji_manual_wheelchair:before {
+	content: "\1f9bd";
+}
+.emoji_mechanical_arm:before {
+	content: "\1f9be";
+}
+.emoji_mechanical_leg:before {
+	content: "\1f9bf";
+}
+.emoji_cheese_wedge:before {
+	content: "\1f9c0";
+}
+.emoji_cupcake:before {
+	content: "\1f9c1";
+}
+.emoji_salt:before {
+	content: "\1f9c2";
+}
+.emoji_beverage_box:before {
+	content: "\1f9c3";
+}
+.emoji_garlic:before {
+	content: "\1f9c4";
+}
+.emoji_onion:before {
+	content: "\1f9c5";
+}
+.emoji_falafel:before {
+	content: "\1f9c6";
+}
+.emoji_waffle:before {
+	content: "\1f9c7";
+}
+.emoji_butter:before {
+	content: "\1f9c8";
+}
+.emoji_mate_drink:before {
+	content: "\1f9c9";
+}
+.emoji_ice_cube:before {
+	content: "\1f9ca";
+}
+.emoji_bubble_tea:before {
+	content: "\1f9cb";
+}
+.emoji_troll:before {
+	content: "\1f9cc";
+}
+.emoji_woman_standing:before {
+	content: "\1f9cd\200d\2640\fe0f";
+}
+.emoji_man_standing:before {
+	content: "\1f9cd\200d\2642\fe0f";
+}
+.emoji_standing_person:before {
+	content: "\1f9cd";
+}
+.emoji_woman_kneeling:before {
+	content: "\1f9ce\200d\2640\fe0f";
+}
+.emoji_man_kneeling:before {
+	content: "\1f9ce\200d\2642\fe0f";
+}
+.emoji_kneeling_person:before {
+	content: "\1f9ce";
+}
+.emoji_deaf_woman:before {
+	content: "\1f9cf\200d\2640\fe0f";
+}
+.emoji_deaf_man:before {
+	content: "\1f9cf\200d\2642\fe0f";
+}
+.emoji_deaf_person:before {
+	content: "\1f9cf";
+}
+.emoji_face_with_monocle:before {
+	content: "\1f9d0";
+}
+.emoji_farmer:before {
+	content: "\1f9d1\200d\1f33e";
+}
+.emoji_cook:before {
+	content: "\1f9d1\200d\1f373";
+}
+.emoji_person_feeding_baby:before {
+	content: "\1f9d1\200d\1f37c";
+}
+.emoji_mx_claus:before {
+	content: "\1f9d1\200d\1f384";
+}
+.emoji_student:before {
+	content: "\1f9d1\200d\1f393";
+}
+.emoji_singer:before {
+	content: "\1f9d1\200d\1f3a4";
+}
+.emoji_artist:before {
+	content: "\1f9d1\200d\1f3a8";
+}
+.emoji_teacher:before {
+	content: "\1f9d1\200d\1f3eb";
+}
+.emoji_factory_worker:before {
+	content: "\1f9d1\200d\1f3ed";
+}
+.emoji_technologist:before {
+	content: "\1f9d1\200d\1f4bb";
+}
+.emoji_office_worker:before {
+	content: "\1f9d1\200d\1f4bc";
+}
+.emoji_mechanic:before {
+	content: "\1f9d1\200d\1f527";
+}
+.emoji_scientist:before {
+	content: "\1f9d1\200d\1f52c";
+}
+.emoji_astronaut:before {
+	content: "\1f9d1\200d\1f680";
+}
+.emoji_firefighter:before {
+	content: "\1f9d1\200d\1f692";
+}
+.emoji_people_holding_hands:before {
+	content: "\1f9d1\200d\1f91d\200d\1f9d1";
+}
+.emoji_person_with_probing_cane:before {
+	content: "\1f9d1\200d\1f9af";
+}
+.emoji_red_haired_person:before {
+	content: "\1f9d1\200d\1f9b0";
+}
+.emoji_curly_haired_person:before {
+	content: "\1f9d1\200d\1f9b1";
+}
+.emoji_bald_person:before {
+	content: "\1f9d1\200d\1f9b2";
+}
+.emoji_white_haired_person:before {
+	content: "\1f9d1\200d\1f9b3";
+}
+.emoji_person_in_motorized_wheelchair:before {
+	content: "\1f9d1\200d\1f9bc";
+}
+.emoji_person_in_manual_wheelchair:before {
+	content: "\1f9d1\200d\1f9bd";
+}
+.emoji_health_worker:before {
+	content: "\1f9d1\200d\2695\fe0f";
+}
+.emoji_judge:before {
+	content: "\1f9d1\200d\2696\fe0f";
+}
+.emoji_pilot:before {
+	content: "\1f9d1\200d\2708\fe0f";
+}
+.emoji_adult:before {
+	content: "\1f9d1";
+}
+.emoji_child:before {
+	content: "\1f9d2";
+}
+.emoji_older_adult:before {
+	content: "\1f9d3";
+}
+.emoji_woman_with_beard:before {
+	content: "\1f9d4\200d\2640\fe0f";
+}
+.emoji_man_with_beard:before {
+	content: "\1f9d4\200d\2642\fe0f";
+}
+.emoji_bearded_person:before {
+	content: "\1f9d4";
+}
+.emoji_person_with_headscarf:before {
+	content: "\1f9d5";
+}
+.emoji_woman_in_steamy_room:before {
+	content: "\1f9d6\200d\2640\fe0f";
+}
+.emoji_man_in_steamy_room:before {
+	content: "\1f9d6\200d\2642\fe0f";
+}
+.emoji_person_in_steamy_room:before {
+	content: "\1f9d6";
+}
+.emoji_woman_climbing:before {
+	content: "\1f9d7\200d\2640\fe0f";
+}
+.emoji_man_climbing:before {
+	content: "\1f9d7\200d\2642\fe0f";
+}
+.emoji_person_climbing:before {
+	content: "\1f9d7";
+}
+.emoji_woman_in_lotus_position:before {
+	content: "\1f9d8\200d\2640\fe0f";
+}
+.emoji_man_in_lotus_position:before {
+	content: "\1f9d8\200d\2642\fe0f";
+}
+.emoji_person_in_lotus_position:before {
+	content: "\1f9d8";
+}
+.emoji_female_mage:before {
+	content: "\1f9d9\200d\2640\fe0f";
+}
+.emoji_male_mage:before {
+	content: "\1f9d9\200d\2642\fe0f";
+}
+.emoji_mage:before {
+	content: "\1f9d9";
+}
+.emoji_female_fairy:before {
+	content: "\1f9da\200d\2640\fe0f";
+}
+.emoji_male_fairy:before {
+	content: "\1f9da\200d\2642\fe0f";
+}
+.emoji_fairy:before {
+	content: "\1f9da";
+}
+.emoji_female_vampire:before {
+	content: "\1f9db\200d\2640\fe0f";
+}
+.emoji_male_vampire:before {
+	content: "\1f9db\200d\2642\fe0f";
+}
+.emoji_vampire:before {
+	content: "\1f9db";
+}
+.emoji_mermaid:before {
+	content: "\1f9dc\200d\2640\fe0f";
+}
+.emoji_merman:before {
+	content: "\1f9dc\200d\2642\fe0f";
+}
+.emoji_merperson:before {
+	content: "\1f9dc";
+}
+.emoji_female_elf:before {
+	content: "\1f9dd\200d\2640\fe0f";
+}
+.emoji_male_elf:before {
+	content: "\1f9dd\200d\2642\fe0f";
+}
+.emoji_elf:before {
+	content: "\1f9dd";
+}
+.emoji_female_genie:before {
+	content: "\1f9de\200d\2640\fe0f";
+}
+.emoji_male_genie:before {
+	content: "\1f9de\200d\2642\fe0f";
+}
+.emoji_genie:before {
+	content: "\1f9de";
+}
+.emoji_female_zombie:before {
+	content: "\1f9df\200d\2640\fe0f";
+}
+.emoji_male_zombie:before {
+	content: "\1f9df\200d\2642\fe0f";
+}
+.emoji_zombie:before {
+	content: "\1f9df";
+}
+.emoji_brain:before {
+	content: "\1f9e0";
+}
+.emoji_orange_heart:before {
+	content: "\1f9e1";
+}
+.emoji_billed_cap:before {
+	content: "\1f9e2";
+}
+.emoji_scarf:before {
+	content: "\1f9e3";
+}
+.emoji_gloves:before {
+	content: "\1f9e4";
+}
+.emoji_coat:before {
+	content: "\1f9e5";
+}
+.emoji_socks:before {
+	content: "\1f9e6";
+}
+.emoji_red_envelope:before {
+	content: "\1f9e7";
+}
+.emoji_firecracker:before {
+	content: "\1f9e8";
+}
+.emoji_jigsaw:before {
+	content: "\1f9e9";
+}
+.emoji_test_tube:before {
+	content: "\1f9ea";
+}
+.emoji_petri_dish:before {
+	content: "\1f9eb";
+}
+.emoji_dna:before {
+	content: "\1f9ec";
+}
+.emoji_compass:before {
+	content: "\1f9ed";
+}
+.emoji_abacus:before {
+	content: "\1f9ee";
+}
+.emoji_fire_extinguisher:before {
+	content: "\1f9ef";
+}
+.emoji_toolbox:before {
+	content: "\1f9f0";
+}
+.emoji_bricks:before {
+	content: "\1f9f1";
+}
+.emoji_magnet:before {
+	content: "\1f9f2";
+}
+.emoji_luggage:before {
+	content: "\1f9f3";
+}
+.emoji_lotion_bottle:before {
+	content: "\1f9f4";
+}
+.emoji_thread:before {
+	content: "\1f9f5";
+}
+.emoji_yarn:before {
+	content: "\1f9f6";
+}
+.emoji_safety_pin:before {
+	content: "\1f9f7";
+}
+.emoji_teddy_bear:before {
+	content: "\1f9f8";
+}
+.emoji_broom:before {
+	content: "\1f9f9";
+}
+.emoji_basket:before {
+	content: "\1f9fa";
+}
+.emoji_roll_of_paper:before {
+	content: "\1f9fb";
+}
+.emoji_soap:before {
+	content: "\1f9fc";
+}
+.emoji_sponge:before {
+	content: "\1f9fd";
+}
+.emoji_receipt:before {
+	content: "\1f9fe";
+}
+.emoji_nazar_amulet:before {
+	content: "\1f9ff";
+}
+.emoji_ballet_shoes:before {
+	content: "\1fa70";
+}
+.emoji_one-piece_swimsuit:before {
+	content: "\1fa71";
+}
+.emoji_briefs:before {
+	content: "\1fa72";
+}
+.emoji_shorts:before {
+	content: "\1fa73";
+}
+.emoji_thong_sandal:before {
+	content: "\1fa74";
+}
+.emoji_drop_of_blood:before {
+	content: "\1fa78";
+}
+.emoji_adhesive_bandage:before {
+	content: "\1fa79";
+}
+.emoji_stethoscope:before {
+	content: "\1fa7a";
+}
+.emoji_x-ray:before {
+	content: "\1fa7b";
+}
+.emoji_crutch:before {
+	content: "\1fa7c";
+}
+.emoji_yo-yo:before {
+	content: "\1fa80";
+}
+.emoji_kite:before {
+	content: "\1fa81";
+}
+.emoji_parachute:before {
+	content: "\1fa82";
+}
+.emoji_boomerang:before {
+	content: "\1fa83";
+}
+.emoji_magic_wand:before {
+	content: "\1fa84";
+}
+.emoji_pinata:before {
+	content: "\1fa85";
+}
+.emoji_nesting_dolls:before {
+	content: "\1fa86";
+}
+.emoji_ringed_planet:before {
+	content: "\1fa90";
+}
+.emoji_chair:before {
+	content: "\1fa91";
+}
+.emoji_razor:before {
+	content: "\1fa92";
+}
+.emoji_axe:before {
+	content: "\1fa93";
+}
+.emoji_diya_lamp:before {
+	content: "\1fa94";
+}
+.emoji_banjo:before {
+	content: "\1fa95";
+}
+.emoji_military_helmet:before {
+	content: "\1fa96";
+}
+.emoji_accordion:before {
+	content: "\1fa97";
+}
+.emoji_long_drum:before {
+	content: "\1fa98";
+}
+.emoji_coin:before {
+	content: "\1fa99";
+}
+.emoji_carpentry_saw:before {
+	content: "\1fa9a";
+}
+.emoji_screwdriver:before {
+	content: "\1fa9b";
+}
+.emoji_ladder:before {
+	content: "\1fa9c";
+}
+.emoji_hook:before {
+	content: "\1fa9d";
+}
+.emoji_mirror:before {
+	content: "\1fa9e";
+}
+.emoji_window:before {
+	content: "\1fa9f";
+}
+.emoji_plunger:before {
+	content: "\1faa0";
+}
+.emoji_sewing_needle:before {
+	content: "\1faa1";
+}
+.emoji_knot:before {
+	content: "\1faa2";
+}
+.emoji_bucket:before {
+	content: "\1faa3";
+}
+.emoji_mouse_trap:before {
+	content: "\1faa4";
+}
+.emoji_toothbrush:before {
+	content: "\1faa5";
+}
+.emoji_headstone:before {
+	content: "\1faa6";
+}
+.emoji_placard:before {
+	content: "\1faa7";
+}
+.emoji_rock:before {
+	content: "\1faa8";
+}
+.emoji_mirror_ball:before {
+	content: "\1faa9";
+}
+.emoji_identification_card:before {
+	content: "\1faaa";
+}
+.emoji_low_battery:before {
+	content: "\1faab";
+}
+.emoji_hamsa:before {
+	content: "\1faac";
+}
+.emoji_fly:before {
+	content: "\1fab0";
+}
+.emoji_worm:before {
+	content: "\1fab1";
+}
+.emoji_beetle:before {
+	content: "\1fab2";
+}
+.emoji_cockroach:before {
+	content: "\1fab3";
+}
+.emoji_potted_plant:before {
+	content: "\1fab4";
+}
+.emoji_wood:before {
+	content: "\1fab5";
+}
+.emoji_feather:before {
+	content: "\1fab6";
+}
+.emoji_lotus:before {
+	content: "\1fab7";
+}
+.emoji_coral:before {
+	content: "\1fab8";
+}
+.emoji_empty_nest:before {
+	content: "\1fab9";
+}
+.emoji_nest_with_eggs:before {
+	content: "\1faba";
+}
+.emoji_anatomical_heart:before {
+	content: "\1fac0";
+}
+.emoji_lungs:before {
+	content: "\1fac1";
+}
+.emoji_people_hugging:before {
+	content: "\1fac2";
+}
+.emoji_pregnant_man:before {
+	content: "\1fac3";
+}
+.emoji_pregnant_person:before {
+	content: "\1fac4";
+}
+.emoji_person_with_crown:before {
+	content: "\1fac5";
+}
+.emoji_blueberries:before {
+	content: "\1fad0";
+}
+.emoji_bell_pepper:before {
+	content: "\1fad1";
+}
+.emoji_olive:before {
+	content: "\1fad2";
+}
+.emoji_flatbread:before {
+	content: "\1fad3";
+}
+.emoji_tamale:before {
+	content: "\1fad4";
+}
+.emoji_fondue:before {
+	content: "\1fad5";
+}
+.emoji_teapot:before {
+	content: "\1fad6";
+}
+.emoji_pouring_liquid:before {
+	content: "\1fad7";
+}
+.emoji_beans:before {
+	content: "\1fad8";
+}
+.emoji_jar:before {
+	content: "\1fad9";
+}
+.emoji_melting_face:before {
+	content: "\1fae0";
+}
+.emoji_saluting_face:before {
+	content: "\1fae1";
+}
+.emoji_face_with_open_eyes_and_hand_over_mouth:before {
+	content: "\1fae2";
+}
+.emoji_face_with_peeking_eye:before {
+	content: "\1fae3";
+}
+.emoji_face_with_diagonal_mouth:before {
+	content: "\1fae4";
+}
+.emoji_dotted_line_face:before {
+	content: "\1fae5";
+}
+.emoji_biting_lip:before {
+	content: "\1fae6";
+}
+.emoji_bubbles:before {
+	content: "\1fae7";
+}
+.emoji_hand_with_index_finger_and_thumb_crossed:before {
+	content: "\1faf0";
+}
+.emoji_rightwards_hand:before {
+	content: "\1faf1";
+}
+.emoji_leftwards_hand:before {
+	content: "\1faf2";
+}
+.emoji_palm_down_hand:before {
+	content: "\1faf3";
+}
+.emoji_palm_up_hand:before {
+	content: "\1faf4";
+}
+.emoji_index_pointing_at_the_viewer:before {
+	content: "\1faf5";
+}
+.emoji_heart_hands:before {
+	content: "\1faf6";
+}
+.emoji_bangbang:before {
+	content: "\203c\fe0f";
+}
+.emoji_interrobang:before {
+	content: "\2049\fe0f";
+}
+.emoji_tm:before {
+	content: "\2122\fe0f";
+}
+.emoji_information_source:before {
+	content: "\2139\fe0f";
+}
+.emoji_left_right_arrow:before {
+	content: "\2194\fe0f";
+}
+.emoji_arrow_up_down:before {
+	content: "\2195\fe0f";
+}
+.emoji_arrow_upper_left:before {
+	content: "\2196\fe0f";
+}
+.emoji_arrow_upper_right:before {
+	content: "\2197\fe0f";
+}
+.emoji_arrow_lower_right:before {
+	content: "\2198\fe0f";
+}
+.emoji_arrow_lower_left:before {
+	content: "\2199\fe0f";
+}
+.emoji_leftwards_arrow_with_hook:before {
+	content: "\21a9\fe0f";
+}
+.emoji_arrow_right_hook:before {
+	content: "\21aa\fe0f";
+}
+.emoji_watch:before {
+	content: "\231a";
+}
+.emoji_hourglass:before {
+	content: "\231b";
+}
+.emoji_keyboard:before {
+	content: "\2328\fe0f";
+}
+.emoji_eject:before {
+	content: "\23cf\fe0f";
+}
+.emoji_fast_forward:before {
+	content: "\23e9";
+}
+.emoji_rewind:before {
+	content: "\23ea";
+}
+.emoji_arrow_double_up:before {
+	content: "\23eb";
+}
+.emoji_arrow_double_down:before {
+	content: "\23ec";
+}
+.emoji_black_right_pointing_double_triangle_with_vertical_bar:before {
+	content: "\23ed\fe0f";
+}
+.emoji_black_left_pointing_double_triangle_with_vertical_bar:before {
+	content: "\23ee\fe0f";
+}
+.emoji_black_right_pointing_triangle_with_double_vertical_bar:before {
+	content: "\23ef\fe0f";
+}
+.emoji_alarm_clock:before {
+	content: "\23f0";
+}
+.emoji_stopwatch:before {
+	content: "\23f1\fe0f";
+}
+.emoji_timer_clock:before {
+	content: "\23f2\fe0f";
+}
+.emoji_hourglass_flowing_sand:before {
+	content: "\23f3";
+}
+.emoji_double_vertical_bar:before {
+	content: "\23f8\fe0f";
+}
+.emoji_black_square_for_stop:before {
+	content: "\23f9\fe0f";
+}
+.emoji_black_circle_for_record:before {
+	content: "\23fa\fe0f";
+}
+.emoji_m:before {
+	content: "\24c2\fe0f";
+}
+.emoji_black_small_square:before {
+	content: "\25aa\fe0f";
+}
+.emoji_white_small_square:before {
+	content: "\25ab\fe0f";
+}
+.emoji_arrow_forward:before {
+	content: "\25b6\fe0f";
+}
+.emoji_arrow_backward:before {
+	content: "\25c0\fe0f";
+}
+.emoji_white_medium_square:before {
+	content: "\25fb\fe0f";
+}
+.emoji_black_medium_square:before {
+	content: "\25fc\fe0f";
+}
+.emoji_white_medium_small_square:before {
+	content: "\25fd";
+}
+.emoji_black_medium_small_square:before {
+	content: "\25fe";
+}
+.emoji_sunny:before {
+	content: "\2600\fe0f";
+}
+.emoji_cloud:before {
+	content: "\2601\fe0f";
+}
+.emoji_umbrella:before {
+	content: "\2602\fe0f";
+}
+.emoji_snowman:before {
+	content: "\2603\fe0f";
+}
+.emoji_comet:before {
+	content: "\2604\fe0f";
+}
+.emoji_phone:before {
+	content: "\260e\fe0f";
+}
+.emoji_telephone:before {
+	content: "\260e\fe0f";
+}
+.emoji_ballot_box_with_check:before {
+	content: "\2611\fe0f";
+}
+.emoji_umbrella_with_rain_drops:before {
+	content: "\2614";
+}
+.emoji_coffee:before {
+	content: "\2615";
+}
+.emoji_shamrock:before {
+	content: "\2618\fe0f";
+}
+.emoji_point_up:before {
+	content: "\261d\fe0f";
+}
+.emoji_skull_and_crossbones:before {
+	content: "\2620\fe0f";
+}
+.emoji_radioactive_sign:before {
+	content: "\2622\fe0f";
+}
+.emoji_biohazard_sign:before {
+	content: "\2623\fe0f";
+}
+.emoji_orthodox_cross:before {
+	content: "\2626\fe0f";
+}
+.emoji_star_and_crescent:before {
+	content: "\262a\fe0f";
+}
+.emoji_peace_symbol:before {
+	content: "\262e\fe0f";
+}
+.emoji_yin_yang:before {
+	content: "\262f\fe0f";
+}
+.emoji_wheel_of_dharma:before {
+	content: "\2638\fe0f";
+}
+.emoji_white_frowning_face:before {
+	content: "\2639\fe0f";
+}
+.emoji_relaxed:before {
+	content: "\263a\fe0f";
+}
+.emoji_female_sign:before {
+	content: "\2640\fe0f";
+}
+.emoji_male_sign:before {
+	content: "\2642\fe0f";
+}
+.emoji_aries:before {
+	content: "\2648";
+}
+.emoji_taurus:before {
+	content: "\2649";
+}
+.emoji_gemini:before {
+	content: "\264a";
+}
+.emoji_cancer:before {
+	content: "\264b";
+}
+.emoji_leo:before {
+	content: "\264c";
+}
+.emoji_virgo:before {
+	content: "\264d";
+}
+.emoji_libra:before {
+	content: "\264e";
+}
+.emoji_scorpius:before {
+	content: "\264f";
+}
+.emoji_sagittarius:before {
+	content: "\2650";
+}
+.emoji_capricorn:before {
+	content: "\2651";
+}
+.emoji_aquarius:before {
+	content: "\2652";
+}
+.emoji_pisces:before {
+	content: "\2653";
+}
+.emoji_chess_pawn:before {
+	content: "\265f\fe0f";
+}
+.emoji_spades:before {
+	content: "\2660\fe0f";
+}
+.emoji_clubs:before {
+	content: "\2663\fe0f";
+}
+.emoji_hearts:before {
+	content: "\2665\fe0f";
+}
+.emoji_diamonds:before {
+	content: "\2666\fe0f";
+}
+.emoji_hotsprings:before {
+	content: "\2668\fe0f";
+}
+.emoji_recycle:before {
+	content: "\267b\fe0f";
+}
+.emoji_infinity:before {
+	content: "\267e\fe0f";
+}
+.emoji_wheelchair:before {
+	content: "\267f";
+}
+.emoji_hammer_and_pick:before {
+	content: "\2692\fe0f";
+}
+.emoji_anchor:before {
+	content: "\2693";
+}
+.emoji_crossed_swords:before {
+	content: "\2694\fe0f";
+}
+.emoji_medical_symbol:before {
+	content: "\2695\fe0f";
+}
+.emoji_staff_of_aesculapius:before {
+	content: "\2695\fe0f";
+}
+.emoji_scales:before {
+	content: "\2696\fe0f";
+}
+.emoji_alembic:before {
+	content: "\2697\fe0f";
+}
+.emoji_gear:before {
+	content: "\2699\fe0f";
+}
+.emoji_atom_symbol:before {
+	content: "\269b\fe0f";
+}
+.emoji_fleur_de_lis:before {
+	content: "\269c\fe0f";
+}
+.emoji_warning:before {
+	content: "\26a0\fe0f";
+}
+.emoji_zap:before {
+	content: "\26a1";
+}
+.emoji_transgender_symbol:before {
+	content: "\26a7\fe0f";
+}
+.emoji_white_circle:before {
+	content: "\26aa";
+}
+.emoji_black_circle:before {
+	content: "\26ab";
+}
+.emoji_coffin:before {
+	content: "\26b0\fe0f";
+}
+.emoji_funeral_urn:before {
+	content: "\26b1\fe0f";
+}
+.emoji_soccer:before {
+	content: "\26bd";
+}
+.emoji_baseball:before {
+	content: "\26be";
+}
+.emoji_snowman_without_snow:before {
+	content: "\26c4";
+}
+.emoji_partly_sunny:before {
+	content: "\26c5";
+}
+.emoji_thunder_cloud_and_rain:before {
+	content: "\26c8\fe0f";
+}
+.emoji_ophiuchus:before {
+	content: "\26ce";
+}
+.emoji_pick:before {
+	content: "\26cf\fe0f";
+}
+.emoji_helmet_with_white_cross:before {
+	content: "\26d1\fe0f";
+}
+.emoji_chains:before {
+	content: "\26d3\fe0f";
+}
+.emoji_no_entry:before {
+	content: "\26d4";
+}
+.emoji_shinto_shrine:before {
+	content: "\26e9\fe0f";
+}
+.emoji_church:before {
+	content: "\26ea";
+}
+.emoji_mountain:before {
+	content: "\26f0\fe0f";
+}
+.emoji_umbrella_on_ground:before {
+	content: "\26f1\fe0f";
+}
+.emoji_fountain:before {
+	content: "\26f2";
+}
+.emoji_golf:before {
+	content: "\26f3";
+}
+.emoji_ferry:before {
+	content: "\26f4\fe0f";
+}
+.emoji_boat:before {
+	content: "\26f5";
+}
+.emoji_sailboat:before {
+	content: "\26f5";
+}
+.emoji_skier:before {
+	content: "\26f7\fe0f";
+}
+.emoji_ice_skate:before {
+	content: "\26f8\fe0f";
+}
+.emoji_woman-bouncing-ball:before {
+	content: "\26f9\fe0f\200d\2640\fe0f";
+}
+.emoji_man-bouncing-ball:before {
+	content: "\26f9\fe0f\200d\2642\fe0f";
+}
+.emoji_person_with_ball:before {
+	content: "\26f9\fe0f";
+}
+.emoji_tent:before {
+	content: "\26fa";
+}
+.emoji_fuelpump:before {
+	content: "\26fd";
+}
+.emoji_scissors:before {
+	content: "\2702\fe0f";
+}
+.emoji_white_check_mark:before {
+	content: "\2705";
+}
+.emoji_airplane:before {
+	content: "\2708\fe0f";
+}
+.emoji_email:before {
+	content: "\2709\fe0f";
+}
+.emoji_envelope:before {
+	content: "\2709\fe0f";
+}
+.emoji_fist:before {
+	content: "\270a";
+}
+.emoji_hand:before {
+	content: "\270b";
+}
+.emoji_raised_hand:before {
+	content: "\270b";
+}
+.emoji_v:before {
+	content: "\270c\fe0f";
+}
+.emoji_writing_hand:before {
+	content: "\270d\fe0f";
+}
+.emoji_pencil2:before {
+	content: "\270f\fe0f";
+}
+.emoji_black_nib:before {
+	content: "\2712\fe0f";
+}
+.emoji_heavy_check_mark:before {
+	content: "\2714\fe0f";
+}
+.emoji_heavy_multiplication_x:before {
+	content: "\2716\fe0f";
+}
+.emoji_latin_cross:before {
+	content: "\271d\fe0f";
+}
+.emoji_star_of_david:before {
+	content: "\2721\fe0f";
+}
+.emoji_sparkles:before {
+	content: "\2728";
+}
+.emoji_eight_spoked_asterisk:before {
+	content: "\2733\fe0f";
+}
+.emoji_eight_pointed_black_star:before {
+	content: "\2734\fe0f";
+}
+.emoji_snowflake:before {
+	content: "\2744\fe0f";
+}
+.emoji_sparkle:before {
+	content: "\2747\fe0f";
+}
+.emoji_x:before {
+	content: "\274c";
+}
+.emoji_negative_squared_cross_mark:before {
+	content: "\274e";
+}
+.emoji_question:before {
+	content: "\2753";
+}
+.emoji_grey_question:before {
+	content: "\2754";
+}
+.emoji_grey_exclamation:before {
+	content: "\2755";
+}
+.emoji_exclamation:before {
+	content: "\2757";
+}
+.emoji_heavy_exclamation_mark:before {
+	content: "\2757";
+}
+.emoji_heavy_heart_exclamation_mark_ornament:before {
+	content: "\2763\fe0f";
+}
+.emoji_heart_on_fire:before {
+	content: "\2764\fe0f\200d\1f525";
+}
+.emoji_mending_heart:before {
+	content: "\2764\fe0f\200d\1fa79";
+}
+.emoji_heart:before {
+	content: "\2764\fe0f";
+}
+.emoji_heavy_plus_sign:before {
+	content: "\2795";
+}
+.emoji_heavy_minus_sign:before {
+	content: "\2796";
+}
+.emoji_heavy_division_sign:before {
+	content: "\2797";
+}
+.emoji_arrow_right:before {
+	content: "\27a1\fe0f";
+}
+.emoji_curly_loop:before {
+	content: "\27b0";
+}
+.emoji_loop:before {
+	content: "\27bf";
+}
+.emoji_arrow_heading_up:before {
+	content: "\2934\fe0f";
+}
+.emoji_arrow_heading_down:before {
+	content: "\2935\fe0f";
+}
+.emoji_arrow_left:before {
+	content: "\2b05\fe0f";
+}
+.emoji_arrow_up:before {
+	content: "\2b06\fe0f";
+}
+.emoji_arrow_down:before {
+	content: "\2b07\fe0f";
+}
+.emoji_black_large_square:before {
+	content: "\2b1b";
+}
+.emoji_white_large_square:before {
+	content: "\2b1c";
+}
+.emoji_star:before {
+	content: "\2b50";
+}
+.emoji_o:before {
+	content: "\2b55";
+}
+.emoji_wavy_dash:before {
+	content: "\3030\fe0f";
+}
+.emoji_part_alternation_mark:before {
+	content: "\303d\fe0f";
+}
+.emoji_congratulations:before {
+	content: "\3297\fe0f";
+}
+.emoji_secret:before {
+	content: "\3299\fe0f";
+}

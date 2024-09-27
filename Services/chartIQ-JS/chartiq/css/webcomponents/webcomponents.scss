@@ -1,0 +1,65 @@
+/*
+ Edit (and rename) this file to implement your own style.
+ Please avoid editing the imported _ciq...scss files so that you can receive upgrades without having to reimplement your changes.
+ Instead, override any styles from within this file, or substitute the includes with your own.
+
+ Contains styling specific to web components.
+
+ Run sass to generate a css file from this file and the included _ciq files.
+ Include that css in your html.
+ */
+
+/* include fonts */
+@import "../ciq-fonts";
+/* include variables */
+@import "../ciq-variables";
+/* include features */
+@import "../ciq-features";
+/* shadow DOM stuff (experimental) */
+@import "../ciq-nextgen-overrides";
+
+@mixin screen-reader-full() {
+	display: inline;
+	opacity: 0 !important;
+	border: 0px none !important;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 0;
+
+	button {
+		pointer-events: none;
+		height: 100%;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+}
+
+@import "comparison";
+@import "dropdown";
+@import "grid-size-picker";
+@import "heading";
+@import "help";
+@import "lookup";
+@import "menu";
+@import "share-button";
+@import "show-range";
+@import "studies";
+@import "study-legend";
+@import "themes";
+@import "toggle";
+@import "views";
+// Add an import for your overrides here and then recompile the SASS
+
+/* this is temporary */
+cq-help.hidden {
+	display: none !important;
+}
+.ciq-help-button .icon {
+	top: 5px;
+}

@@ -1,0 +1,99 @@
+### **Coppock Curve Overview**
+
+The **Coppock Curve** is a momentum-based technical analysis tool developed by economist Edwin Coppock. It is designed to identify long-term buying opportunities in the stock market by measuring the rate of change (RoC) of a security's price. The curve is primarily used for identifying bottoms in major markets and is applied to indices rather than individual stocks.
+
+### **Study Purpose and Calculation**
+
+The Coppock Curve combines two Rate of Change (RoC) periods (short-term and long-term) and then smooths the result using a weighted moving average. This smoothing helps identify longer-term trends, particularly in detecting buy signals after significant downtrends.
+
+#### Key Elements:
+- **Short RoC**: Measures the rate of change over a shorter time period.
+- **Long RoC**: Measures the rate of change over a longer time period.
+- **Weighted Moving Average**: The combined RoC values are smoothed using a weighted moving average to highlight long-term market trends.
+
+### **Inputs**:
+- **Period**: (Number) Defines the length of time over which the weighted moving average is calculated.
+- **Field**: (String) Specifies which price data field to use for the calculation (e.g., "Close").
+- **Short RoC**: (Number) The number of periods used to calculate the short-term rate of change (default: 11).
+- **Long RoC**: (Number) The number of periods used to calculate the long-term rate of change (default: 14).
+
+### **Outputs**:
+- **Result**: (Number) The smoothed Coppock Curve value, which can be plotted on a chart to identify potential buy signals.
+
+### **Study Calculation Process**:
+1. **Rate of Change Calculation**: The short-term and long-term RoC are computed based on the specified periods.
+2. **Smoothing**: A weighted moving average is applied to the sum of the two RoC values.
+3. **Result Interpretation**: A rising Coppock Curve is interpreted as a buy signal, especially after a prolonged market downturn.
+
+### **Study Libraries Required**:
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Essential for study calculations.
+
+### **Warnings and Best Practices**:
+- **Activation**: Ensure that the "studies" feature is activated before using the Coppock Curve.
+- **Warning**: Avoid modifying the core library files directly. If changes are needed, create a separate file to extend or override functionalities.
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_coppock_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("coppock feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateCoppock = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+
+		var longDays = parseInt(sd.inputs["Long RoC"], 10);
+		if (!longDays) longDays = 14;
+		var shortDays = parseInt(sd.inputs["Short RoC"], 10);
+		if (!shortDays) shortDays = 11;
+		var period = sd.days;
+		if (!period) period = 10;
+		if (longDays < shortDays) return;
+
+		if (quotes.length < Math.max(shortDays, longDays, period) + 1) {
+			sd.error = true;
+			return;
+		}
+		for (var i = Math.max(sd.startFrom, longDays); i < quotes.length; i++) {
+			var denom1 = CIQ.Studies.getQuoteFieldValue(quotes[i - shortDays], field);
+			var denom2 = CIQ.Studies.getQuoteFieldValue(quotes[i - longDays], field);
+			if (denom1 && denom2) {
+				// skip if denominator is 0 --
+				quotes[i]["_Sum " + sd.name] =
+					100 *
+					(CIQ.Studies.getQuoteFieldValue(quotes[i], field) / denom1 +
+						CIQ.Studies.getQuoteFieldValue(quotes[i], field) / denom2 -
+						2);
+			}
+		}
+
+		CIQ.Studies.MA("weighted", period, "_Sum " + sd.name, 0, "Result", stx, sd);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Coppock: {
+			name: "Coppock Curve",
+			calculateFN: CIQ.Studies.calculateCoppock,
+			inputs: { Period: 10, Field: "field", "Short RoC": 11, "Long RoC": 14 }
+		}
+	});
+}
+
+};
+__js_advanced_studies_coppock_(typeof window !== "undefined" ? window : global);
+
+
+This description provides an overview of the **Coppock Curve** study, highlighting its key features, inputs, and calculation process. It also includes placeholders for the implementation code.

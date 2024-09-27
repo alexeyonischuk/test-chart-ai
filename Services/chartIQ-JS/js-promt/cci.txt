@@ -1,0 +1,135 @@
+Here’s a detailed description of the **Commodity Channel Index (CCI) Study**:
+
+---
+
+### **Commodity Channel Index (CCI) Study Overview**
+
+The **Commodity Channel Index (CCI)** is a technical analysis indicator developed to identify cyclical trends in a security's price. Although originally designed for commodities trading, it has since been applied across various asset classes, such as stocks, forex, and cryptocurrencies. The CCI measures the deviation of the price from its statistical mean (average), helping traders determine whether the price is overbought or oversold.
+
+### **Purpose**
+
+The CCI serves several key functions in technical analysis:
+1. **Identify Overbought or Oversold Conditions**: The CCI can signal overbought conditions when the index rises above +100 and oversold conditions when it drops below -100.
+2. **Spot Trend Reversals**: As a momentum oscillator, the CCI helps spot potential reversals when the index crosses above or below certain thresholds.
+3. **Gauge Market Strength**: By analyzing the distance between the price and its moving average, the CCI assesses the strength of a trend, indicating whether a trend might continue or reverse.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateCCI`
+
+   **Functionality**:
+   - The **CCI** is calculated by determining the difference between the typical price (average of high, low, and close prices) and its simple moving average (SMA). The mean deviation from the moving average is also calculated and used to normalize the CCI.
+   - The CCI formula helps quantify how far the price has moved away from its moving average, which can signal potential overbought or oversold levels.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods used for the moving average and deviation calculation. A typical value is 20.
+   - **Field**: The price field used for the calculation (e.g., “hlc/3,” which stands for the average of high, low, and close prices).
+
+   **Outputs**:
+   - **Result**: (Number) The final CCI value for each quote, used to determine market conditions.
+
+2. **Parameters**:
+   - **Overbought Zone**: The CCI commonly uses +100 to indicate an overbought market.
+   - **Oversold Zone**: A value of -100 is typically used to indicate an oversold market.
+   - **Customizable Zones**: Traders can adjust the overbought and oversold zones based on market conditions or preferences.
+
+3. **Mean Deviation**:
+   - The **Mean Deviation** is an essential part of the CCI calculation, representing the average absolute difference between the typical price and the moving average. This value is used to normalize the CCI and helps make it a more accurate reflection of market volatility.
+
+### **Calculation Process**
+
+1. **Typical Price**: For each period, the typical price is calculated as:
+   \[
+   \text{Typical Price} = \frac{\text{High} + \text{Low} + \text{Close}}{3}
+   \]
+
+2. **Moving Average**: A simple moving average (SMA) is computed over the selected period (default is 20 periods).
+
+3. **Mean Deviation**: For each period, the mean deviation is calculated as the average of the absolute differences between the typical price and its SMA.
+
+4. **CCI Formula**:
+   \[
+   \text{CCI} = \frac{\text{Typical Price} - \text{SMA}}{0.015 \times \text{Mean Deviation}}
+   \]
+   Where the constant 0.015 is used to scale the CCI into a practical range, often resulting in values that fluctuate between +100 and -100.
+
+### **Libraries Required**
+
+- **chartiq.js**: Core library for rendering charts.
+- **standard/studies.js**: Provides functions necessary to compute and display the CCI and related studies.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Modifying core library files directly is not recommended. To extend or modify functionality, create a separate file and load it after the core library.
+- **Activation**: The CCI study requires the "studies" feature to be enabled in the ChartIQ library.
+
+### **Code Example**
+
+The following code snippet demonstrates the implementation of the **Commodity Channel Index (CCI)**:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_cci_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("cci feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateCCI = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+
+		CIQ.Studies.MA("simple", sd.days, "hlc/3", 0, "MA", stx, sd);
+
+		for (var i = Math.max(sd.startFrom, sd.days - 1); i < quotes.length; i++) {
+			var quote = quotes[i];
+			if (!quote) continue;
+			var md = 0;
+			for (var j = 0; j < sd.days; j++) {
+				md += Math.abs(quotes[i - j]["hlc/3"] - quote["MA " + sd.name]);
+			}
+			md /= sd.days;
+			if (Math.abs(md) < 0.00000001) quote["Result " + sd.name] = 0;
+			else
+				quote["Result " + sd.name] =
+					(quote["hlc/3"] - quote["MA " + sd.name]) / (0.015 * md);
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		CCI: {
+			name: "Commodity Channel Index",
+			calculateFN: CIQ.Studies.calculateCCI,
+			inputs: { Period: 20 },
+			parameters: {
+				init: {
+					studyOverZonesEnabled: true,
+					studyOverBoughtValue: 100,
+					studyOverBoughtColor: "auto",
+					studyOverSoldValue: -100,
+					studyOverSoldColor: "auto"
+				}
+			},
+			attributes: {
+				Period: { min: 2 }
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_cci_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This detailed description and code example explain how the **Commodity Channel Index (CCI)** study works, its inputs, outputs, calculation steps, and code implementation. This format is useful for training an LLM to generate similar studies based on descriptive text.

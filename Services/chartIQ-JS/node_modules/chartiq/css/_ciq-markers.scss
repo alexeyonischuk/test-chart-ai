@@ -1,0 +1,452 @@
+.stx-marker-templates {
+	position: absolute;
+	bottom: 20px;
+	width: 100%;
+	z-index: 4;
+}
+.stx-marker {
+	/* Basic Marker */
+	left: 0;
+	top: 0;
+	position: absolute;
+	display: inline-block;
+	cursor: pointer;
+	text-align: left;
+	color: $DEFAULT-text-strong;
+}
+
+.stx-marker p,
+.stx-marker h4 {
+	display: inline-block;
+	margin: 0;
+}
+
+.stx-marker h4 {
+	font-size: 14px;
+	width: 100%;
+}
+
+.stx-marker p {
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.stx-marker a {
+	color: inherit;
+}
+
+.stx-marker .stx-marker-expand {
+	width: 0;
+	max-height: 0;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.stx-stem {
+	/* Basic Stems */
+	display: block;
+	height: 60px;
+	width: 50%;
+	float: right;
+	margin-bottom: 3px;
+	border-left: 1px dotted rgba(0, 0, 0, 0.8);
+	.#{$DARK} & {
+		border-left: 1px dotted rgba(255, 255, 255, 0.6);
+	}
+}
+
+.stx-marker.square .stx-visual,
+.stx-marker.circle .stx-visual {
+	/* Simple Marker */
+	width: 25px;
+	height: 25px;
+	background-image: url(img/stx-sprite-markers.svg);
+}
+.stx-marker.square .stx-visual:after,
+.stx-marker.circle .stx-visual:after {
+	/* Basic Marker */
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	display: block;
+	height: 25px;
+	width: 25px;
+	opacity: 0;
+	transition:
+		opacity 0.2s 0s,
+		border 0.2s 0s,
+		width 0.2s 0s,
+		height 0.2s 0s,
+		top 0.2s 0s,
+		left 0.2s 0s;
+	@include box-sizing(border-box);
+}
+#{$hovering} .stx-marker.square .stx-visual:hover:after,
+#{$hovering} .stx-marker.circle .stx-visual:hover:after {
+	height: 35px;
+	width: 35px;
+	top: -5px;
+	left: -5px;
+	opacity: 0.2;
+	border: 1px solid $DEFAULT-text;
+}
+#{$hovering} .#{$DARK} .stx-marker.square:hover .stx-visual:after,
+#{$hovering} .#{$DARK} .stx-marker.circle:hover .stx-visual:after {
+	border-color: #fff;
+}
+.stx-marker.square.highlight .stx-visual:after,
+.stx-marker.circle.highlight .stx-visual:after {
+	height: 35px;
+	width: 35px;
+	top: -5px;
+	left: -5px;
+	opacity: 0.1;
+	border: 5px solid $DEFAULT-text;
+	.#{$DARK} & {
+		border-color: #fff;
+		opacity: 0.15;
+	}
+}
+.stx-marker.circle .stx-visual,
+.stx-marker.circle .stx-visual:after {
+	/* Basic Marker */
+	@include border-radius(50%);
+}
+.stx-marker.news .stx-visual {
+	background-color: #c600d8;
+	border-color: #c600d8;
+	background-position: -50px -50px;
+}
+.stx-marker.earningsUp .stx-visual {
+	background-color: #85c730;
+	border-color: #85c730;
+	background-position: -100px -50px;
+}
+.stx-marker.earningsDown .stx-visual {
+	background-color: #ff002a;
+	border-color: #ff002a;
+	background-position: -100px -50px;
+}
+.stx-marker.dividend .stx-visual {
+	background-color: #000;
+	border-color: #000;
+	background-position: -150px -50px;
+	.#{$DARK} & {
+		background-color: #fff;
+		background-position: -150px -25px;
+	}
+}
+.stx-marker.filing .stx-visual {
+	background-color: #999;
+	border-color: #999;
+	background-position: -200px -50px;
+}
+.stx-marker.split .stx-visual {
+	background-color: #16b0c2;
+	border-color: #16b0c2;
+	background-position: -250px -50px;
+}
+
+.stx-marker.group > .stx-visual {
+	/* Simple Marker */
+	background: #3366ff;
+	color: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+	line-height: 25px;
+	font-weight: bold;
+}
+
+.stx-marker.group.small > .stx-visual {
+	width: 10px;
+	height: 10px;
+	color: transparent !important;
+}
+
+.stx-marker.group.invert {
+	.stx-visual {
+		position: absolute;
+		bottom: 0;
+	}
+	.stx-stem {
+		margin-left: 25px;
+		margin-bottom: 25px;
+	}
+	&.small {
+		.stx-stem {
+			margin-left: 10px;
+			margin-bottom: 10px;
+		}
+	}
+}
+
+#{$hovering} .stx-marker.group.small > .stx-visual:hover:after,
+.stx-marker.group.small.highlight > .stx-visual:after {
+	height: 20px;
+	width: 20px;
+}
+
+.stx-marker.square .stx-marker-expand,
+.stx-marker.circle .stx-marker-expand {
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+	text-align: left;
+	background: rgba(255, 255, 255, 0.9);
+	opacity: 0;
+	transition: opacity 0.5s 0s;
+	.#{$DARK} & {
+		background-color: rgba(42, 81, 208, 0.75);
+		color: white;
+	}
+}
+.stx-marker.highlight.square,
+.stx-marker.highlight.circle,
+.stx-marker.group .ciq-expansion-holder,
+.stx-marker.group .ciq-pinned-holder {
+	.stx-marker-expand {
+		width: 210px;
+		max-height: 200px;
+		padding: 11px;
+		border: 2px solid #4ea1fe;
+		opacity: 1;
+	}
+}
+
+.stx-marker.highlight .stx-marker-expand {
+	min-height: 1px; // prevent it from becoming excluded for alignment after moved off screen
+}
+
+.stx-marker.square p,
+.stx-marker.circle p {
+	margin: 3px 0 10px 0;
+}
+
+.stx-marker.callout .stx-visual {
+	width: 200px;
+}
+.stx-marker.callout .stx-marker-content {
+	position: relative;
+	padding: 8px 10px;
+	background: rgba(255, 255, 255, 0.65);
+	z-index: 0;
+}
+.stx-marker.callout .stx-marker-content .pwrap {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 250ms ease-in-out;
+
+	p {
+		overflow: hidden;
+	}
+}
+.stx-marker.callout.highlight .stx-marker-content .pwrap {
+	grid-template-rows: 1fr;
+}
+
+#{$hovering} .stx-marker.callout .stx-marker-content:hover,
+.stx-marker.highlight.callout .stx-marker-content {
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.stx-marker.callout .stx-marker-content h4 {
+	padding-bottom: 4px;
+}
+
+.stx-marker.callout .stx-marker-expand {
+	max-height: 0;
+	transition: max-height 0s 0s;
+}
+.stx-marker.callout .stx-marker-expand {
+	position: relative;
+	width: 200px;
+	max-height: 200px;
+	@include box-sizing(border-box);
+	background-color: inherit;
+	border-bottom: solid 3px;
+	border-color: inherit;
+	outline: rgba(0, 0, 0, 0.15) solid 1px;
+	transition: outline 250ms ease-in-out;
+}
+
+.stx-marker.callout.highlight .stx-marker-expand {
+	outline-width: 5px;
+	.#{$DARK} & {
+		outline-color: rgba(255, 255, 255, 0.25);
+	}
+}
+
+.stx-performance-marker.stx-marker-expand {
+	background: rgba(255, 255, 255, 0.9);
+	max-width: 200px;
+	max-height: 200px;
+	padding: 11px;
+	opacity: 1;
+	color: #000;
+	display: block;
+	border: 2px solid #4ea1fe;
+	overflow: auto;
+	position: absolute;
+	box-sizing: border-box;
+	.#{$DARK} & {
+		background-color: rgba(42, 81, 208, 0.75);
+		color: white;
+	}
+}
+
+.stx-marker.group > .stx-marker-expand {
+	display: none;
+}
+
+.stx-marker.group.highlight > .stx-marker-expand {
+	display: block;
+	border: none;
+	border-radius: 20px;
+	padding: 0 5px;
+	background: $DEFAULT-menu-bg;
+	color: $DEFAULT-text-medium;
+	@include box-shadow(0px, 2px, 4px, rgba(0, 0, 0, 0.2));
+	z-index: 5;
+	.#{$DARK} &,
+	&.#{$DARK} {
+		background: $DARK-bg;
+		color: $DARK-text;
+		@include box-shadow(0px, 2px, 4px, rgba(255, 255, 255, 0.2));
+	}
+}
+
+.stx-marker.group .ciq-marker-list {
+	position: relative;
+	width: 210px;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+
+	li {
+		position: relative;
+		margin: 5px 0;
+		padding: 6px 7px 6px 30px;
+		border-radius: 15px;
+
+		#{$hovering} &:hover,
+		#{$touching} &:active,
+		&[cq-focused],
+		&active {
+			background: $DEFAULT-menu-highlight-bg;
+			color: $DEFAULT-text-strong;
+		}
+
+		.ciq-headline {
+			display: block;
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.stx-marker {
+			left: 7px;
+
+			.stx-visual {
+				width: 15px;
+				height: 15px;
+				margin-top: 12px;
+				background-image: none;
+				text-align: center;
+				line-height: 17px;
+				font-size: 13px;
+
+				img {
+					width: 100%;
+				}
+			}
+
+			.stx-visual:after {
+				content: none;
+			}
+
+			&.circle .stx-visual {
+				@include border-radius(50%);
+			}
+
+			&.square .stx-visual,
+			&.diamond .stx-visual,
+			&.text .stx-visual {
+				@include border-radius(0%);
+			}
+
+			&.diamond {
+				left: 7px;
+				margin-top: 2px;
+
+				.stx-visual {
+					transform: rotate(45deg);
+					width: 12px;
+					height: 12px;
+				}
+			}
+
+			&.text .stx-visual {
+				background: none;
+			}
+		}
+	}
+}
+.#{$DARK} .stx-marker.group .ciq-marker-list li {
+	#{$hovering} &:hover,
+	#{$touching} &:active,
+	&[cq-focused],
+	&.active {
+		color: $DARK-text;
+		background: $DARK-menu-highlight-bg;
+	}
+}
+.stx-marker.group .ciq-expansion-holder {
+	position: absolute;
+	width: auto;
+	height: auto;
+	padding: 2px 2px 2px 2px;
+	right: 15px;
+	bottom: 0;
+	max-height: 400px;
+	min-height: 1px;
+	visibility: hidden;
+
+	&.ps.ps--active-y {
+		padding-right: 15px;
+		& > .ps__rail-y {
+			background: rgba(128, 128, 128, 0.5);
+			border-radius: 10px;
+			opacity: 1;
+		}
+
+		.ps__thumb-y {
+			width: 11px;
+		}
+	}
+
+	.stx-marker,
+	.stx-marker-expand {
+		position: relative;
+		bottom: auto;
+		left: auto;
+	}
+}
+
+.stx-marker.group.small .ciq-expansion-holder {
+	margin: 0 -15px;
+}
+
+.stx-marker.group .ciq-pinned-holder {
+	position: absolute;
+	width: auto;
+	height: auto;
+	padding: 2px 2px 2px 2px;
+	right: 15px;
+	bottom: 0;
+	max-height: 400px;
+	min-height: 1px;
+	visibility: visible;
+}

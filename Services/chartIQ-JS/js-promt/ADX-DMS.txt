@@ -1,0 +1,225 @@
+Here’s a detailed text-based description of the **ADX/DMS Study**, formatted in a way that can be used to teach an LLM (Large Language Model) how to generate similar studies:
+
+---
+
+### **ADX/DMS Study Overview**
+
+The ADX (Average Directional Index) and DMS (Directional Movement System) study is an essential technical analysis tool used to measure the strength of a trend in the market. The ADX specifically evaluates the strength of the trend, while the Directional Movement System uses the +DI and -DI lines to indicate the direction of price movements, helping traders understand whether the market is trending upwards, downwards, or moving sideways. This study is particularly useful for identifying whether the market is in a strong trend or whether the trend is weakening.
+
+### **Purpose**
+
+The main purpose of this study is to calculate the ADX, +DI (Positive Directional Index), and -DI (Negative Directional Index) for each quote on a chart. The ADX helps traders determine the strength of a trend, while the +DI and -DI components indicate the direction of price movements. When combined, they form a powerful tool to determine whether the market is trending and how strong that trend is.
+
+### **Key Functions**
+
+1. **Function Name**: `calculateADX`
+   
+   **Functionality**: 
+   - This function calculates the ADX and DMS values for each quote in the chart. It computes the true range (the range between the high and low prices), the positive and negative directional movements (which represent upward and downward price changes), and then smoothes these values over the given period.
+   - The ADX is calculated by first deriving the directional movement indicators (+DI and -DI), then using these indicators to determine the Average Directional Index (ADX), which shows the strength of the trend.
+   
+   **Inputs**:
+   - **Period (Number)**: The number of periods over which the ADX calculation is performed. Typically, this value is set to 14 periods.
+   - **Smoothing Period (Number)**: The number of periods used to smooth the ADX calculation. This smoothing helps filter out noise from the market.
+   - **Series (Boolean)**: A flag indicating whether to display the directional indicators (+DI and -DI) as series on the chart.
+   - **Histogram (Boolean)**: A flag to indicate whether the difference between +DI and -DI should be displayed as a histogram.
+   
+   **Outputs**:
+   - **+DI (Number)**: The positive directional index, representing upward price movement.
+   - **-DI (Number)**: The negative directional index, representing downward price movement.
+   - **ADX (Number)**: The calculated ADX value, indicating the strength of the current trend.
+   - **Histogram (Number)**: The difference between +DI and -DI, which can be used to create a histogram if the "Histogram" input is enabled.
+
+2. **Function Name**: `displayADX`
+   
+   **Functionality**: 
+   - This function is responsible for rendering the ADX, +DI, and -DI values on the chart. Depending on the `Series` and `Shading` inputs, the +DI and -DI may be displayed as lines or shaded areas.
+   - If the "Histogram" input is enabled, a histogram showing the difference between the +DI and -DI values is displayed.
+   
+   **Inputs**:
+   - **Series (Boolean)**: A flag that determines whether the +DI and -DI values should be displayed as line series on the chart.
+   - **Shading (Boolean)**: A flag that enables or disables the shading between +DI and -DI on the chart. Shading is useful to visually represent the crossover between these two lines.
+   - **Histogram (Boolean)**: A flag to determine whether the ADX should be displayed as a histogram.
+
+### **Libraries Required**
+
+The ADX/DMS study requires the following libraries:
+   - **chartiq.js**: This core library is responsible for the charting functionality.
+   - **standard/studies.js**: This library provides the standard methods for technical studies, including ADX/DMS.
+
+### **Warnings and Best Practices**
+   - **Warning**: Avoid modifying the library file directly. If changes are necessary, create a separate file and load it after the main library. Direct modifications could hinder future upgrades and technical support.
+   - **Dependency**: The ADX/DMS feature depends on the studies feature being activated first. Ensure that the study functionality is enabled before running this study.
+
+### **Code Structure**
+
+Below is the code snippet demonstrating how the ADX/DMS study is implemented in JavaScript using the `CIQ` library from ChartIQ. This code extends the standard studies with ADX/DMS calculations.
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_adx_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("adx feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateADX = function (stx, sd) {
+		CIQ.Studies.calculateStudyATR(stx, sd);
+
+		var quotes = sd.chart.scrubbed;
+		var period = sd.days;
+		var smoothing = parseInt(sd.inputs["Smoothing Period"], 10);
+		if (!smoothing && smoothing !== 0) smoothing = period;
+
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+
+		var smoothTR = 0;
+		var smoothPlusDM = 0;
+		var smoothMinusDM = 0;
+		var runningDX = 0;
+		var quote;
+		for (var i = Math.max(1, sd.startFrom); i < quotes.length; i++) {
+			quote = quotes[i];
+			var plusDM = Math.max(0, quote.High - quotes[i - 1].High);
+			var minusDM = Math.max(0, quotes[i - 1].Low - quote.Low);
+			if (plusDM > minusDM) minusDM = 0;
+			else if (minusDM > plusDM) plusDM = 0;
+			else plusDM = minusDM = 0;
+
+			if (i <= period) {
+				smoothPlusDM += plusDM;
+				smoothMinusDM += minusDM;
+				smoothTR += quote["True Range " + sd.name];
+			} else {
+				smoothPlusDM =
+					(quotes[i - 1]["_sm+DM " + sd.name] * (period - 1)) / period + plusDM;
+				smoothMinusDM =
+					(quotes[i - 1]["_sm-DM " + sd.name] * (period - 1)) / period +
+					minusDM;
+				smoothTR =
+					(quotes[i - 1]["_smTR " + sd.name] * (period - 1)) / period +
+					quote["True Range " + sd.name];
+			}
+			quote["_sm+DM " + sd.name] = smoothPlusDM;
+			quote["_sm-DM " + sd.name] = smoothMinusDM;
+			quote["_smTR " + sd.name] = smoothTR;
+
+			if (i < period) continue;
+
+			var plusDI = (100 * smoothPlusDM) / smoothTR;
+			var minusDI = (100 * smoothMinusDM) / smoothTR;
+			var DX = (100 * Math.abs(plusDI - minusDI)) / (plusDI + minusDI);
+
+			quote["+DI " + sd.name] = plusDI;
+			quote["-DI " + sd.name] = minusDI;
+			if (sd.inputs.Series !== false && smoothing) {
+				if (i < period + smoothing - 1) {
+					if (i == sd.startFrom) {
+						for (var j = period; j < sd.startFrom; j++) {
+							runningDX +=
+								(100 *
+									Math.abs(
+										quotes[j]["+DI " + sd.name] - quotes[j]["-DI " + sd.name]
+									)) /
+								(quotes[j]["+DI " + sd.name] + quotes[j]["-DI " + sd.name]);
+						}
+					}
+					runningDX += DX;
+				} else if (i == period + smoothing - 1) {
+					quote["ADX " + sd.name] = runningDX / smoothing;
+				} else {
+					quote["ADX " + sd.name] =
+						(quotes[i - 1]["ADX " + sd.name] * (smoothing - 1) + DX) /
+						smoothing;
+				}
+			}
+			if (sd.inputs.Histogram) {
+				var histogram = sd.name + "_hist";
+				if (!quote["+DI " + sd.name] && quote["+DI " + sd.name] !== 0) continue;
+				if (!quote["-DI " + sd.name] && quote["-DI " + sd.name] !== 0) continue;
+				quote[histogram] = quote["+DI " + sd.name] - quote["-DI " + sd.name];
+				if (sd.inputs.Series === false) {
+					//delete these so yAxis computes max/min correctly
+					quote["+DI " + sd.name] = null;
+					quote["-DI " + sd.name] = null;
+				}
+				sd.outputMap[histogram] = "";
+			}
+		}
+	};
+
+	CIQ.Studies.displayADX = function (stx, sd, quotes) {
+		var opacity = sd.underlay ? 0.3 : sd.inputs.Series ? 0.4 : 1;
+		if (sd.inputs.Series && sd.inputs.Shading) {
+			var topBand = "+DI " + sd.name,
+				bottomBand = "-DI " + sd.name;
+			var topColor = CIQ.Studies.determineColor(
+					sd.outputs[sd.outputMap[topBand]]
+				),
+				bottomColor = CIQ.Studies.determineColor(
+					sd.outputs[sd.outputMap[bottomBand]]
+				);
+			var yAxis = sd.getYAxis(stx);
+			var parameters = {
+				topBand: topBand,
+				bottomBand: bottomBand,
+				topColor: topColor,
+				bottomColor: bottomColor,
+				skipTransform: stx.panels[sd.panel].name != sd.chart.name,
+				topAxis: yAxis,
+				bottomAxis: yAxis,
+				opacity: 0.3
+			};
+			if (!sd.highlight && stx.highlightedDraggable) parameters.opacity *= 0.3;
+			CIQ.fillIntersecting(stx, sd.panel, parameters);
+		}
+		if (sd.inputs.Histogram)
+			CIQ.Studies.createHistogram(stx, sd, quotes, false, opacity);
+		if (sd.inputs.Series !== false)
+			CIQ.Studies.displaySeriesAsLine(stx, sd, quotes);
+		else if (!sd.inputs.Series && !sd.inputs.Histogram)
+			stx.displayErrorAsWatermark(
+				sd.panel,
+				stx.translateIf(sd.name) + ": " + stx.translateIf("Nothing to display")
+			);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		ADX: {
+			name: "ADX/DMS",
+			calculateFN: CIQ.Studies.calculateADX,
+			seriesFN: CIQ.Studies.displayADX,
+			inputs: {
+				Period: 14,
+				"Smoothing Period": 14,
+				Series: true,
+				Shading: false,
+				Histogram: false
+			},
+			outputs: {
+				"+DI": "#00FF00",
+				"-DI": "#FF0000",
+				ADX: "auto",
+				"Positive Bar": "#00DD00",
+				"Negative Bar": "#FF0000"
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_adx_(typeof window !== "undefined" ? window : global);
+
+
+Here’s a detailed text-based description of the **ADX/DMS Study**, designed to train a model to generate similar studies:
+
+---

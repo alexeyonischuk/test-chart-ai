@@ -1,0 +1,214 @@
+.markers-ui {
+	display: inherit;
+}
+
+.stx-marker.abstract {
+	width: 0;
+	transition: all 0.2s;
+}
+
+.stx-marker-content .sample {
+	position: absolute;
+	bottom: 0;
+	margin-left: -67px;
+	width: 135px;
+	height: 135px;
+	background: rgba(255, 255, 255, 0.1);
+	text-align: left;
+	border-radius: 50%;
+	-webkit-transition:
+		width 0.2s 0s,
+		height 0.2s 0s,
+		border-radius 0.2s 0s,
+		margin 0.2s 0s,
+		background 0.5s;
+	transition:
+		width 0.2s 0s,
+		height 0.2s 0s,
+		border-radius 0.2s 0s,
+		margin 0.2s 0s,
+		background 0.5s;
+}
+
+.stx-marker-content .sample:hover {
+	width: 250px;
+	margin-left: -125px;
+	border-radius: 5px;
+	background: #fff;
+	-webkit-transition:
+		width 0.2s 0.5s,
+		height 0.2s 0.5s,
+		border-radius 0.2s 0.5s,
+		margin 0.2s 0.5s,
+		background 1s;
+	transition:
+		width 0.2s 0.5s,
+		height 0.2s 0.5s,
+		border-radius 0.2s 0.5s,
+		margin 0.2s 0.5s,
+		background 1s;
+}
+
+.stx-marker-content .sample .text {
+	position: absolute;
+	font-size: 11px;
+	left: 160px;
+	width: 80px;
+	bottom: 13px;
+	opacity: 0;
+	line-height: 13px;
+	-webkit-transition: opacity 0s 0s;
+	-moz-transition: opacity 0s 0s;
+	transition: opacity 0s 0s;
+}
+
+.stx-marker-content .sample:hover .text {
+	opacity: 1;
+	-webkit-transition: opacity 0.4s 0.7s;
+	-moz-transition: opacity 0.4s 0.7s;
+	transition: opacity 0.4s 0.7s;
+}
+
+.stx-marker-content [stage] {
+	position: absolute;
+	left: 10px;
+	bottom: 10px;
+	width: 115px;
+	height: 115px;
+	background: #e8e8e8;
+	border-radius: 50%;
+	-webkit-transition:
+		width 0.2s 0s,
+		height 0.2s 0s,
+		border-radius 0.2s 0s,
+		margin 0.2s 0s,
+		background 0.2s;
+	transition:
+		width 0.2s 0s,
+		height 0.2s 0s,
+		border-radius 0.2s 0s,
+		margin 0.2s 0s,
+		background 0.2s;
+}
+
+.stx-marker-content .sample:hover [stage] {
+	width: 135px;
+	border-radius: 5px;
+	background: #e8e8e8;
+	-webkit-transition:
+		width 0.2s 0.5s,
+		height 0.2s 0.5s,
+		border-radius 0.2s 0.5s,
+		margin 0.2s 0.5s,
+		background 0.2s;
+	transition:
+		width 0.2s 0.5s,
+		height 0.2s 0.5s,
+		border-radius 0.2s 0.5s,
+		margin 0.2s 0.5s,
+		background 0.2s;
+}
+
+@-webkit-keyframes heli-hover {
+	0% {
+		-webkit-transform: rotate(0deg) translateY(0px);
+	}
+	35% {
+		-webkit-transform: rotate(6deg) translateY(-70px);
+	}
+	80% {
+		-webkit-transform: rotate(-4deg) translateY(0px);
+	}
+	100% {
+		-webkit-transform: translateY(0px);
+	}
+}
+
+@keyframes heli-hover {
+	0% {
+		transform: rotate(0deg) translateY(0px);
+	}
+	35% {
+		transform: rotate(6deg) translateY(-70px);
+	}
+	80% {
+		transform: rotate(-4deg) translateY(0px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+.stx-marker-content [helicopter] {
+	position: absolute;
+	margin-left: -5px;
+	margin-bottom: 5px;
+	left: -10px;
+	bottom: 15px;
+	width: 145px;
+	height: 55px;
+	-webkit-transition: margin 0.75s;
+	transition: margin 0.75s;
+}
+
+.stx-marker-content .sample:hover [helicopter] {
+	margin-left: 0px;
+	margin-bottom: 0;
+	-webkit-animation: heli-hover 6s ease-in-out infinite;
+	/* Chrome, Safari, Opera */
+	animation: heli-hover 6s ease-in-out infinite;
+	/* Standard syntax */
+}
+
+.stx-marker-content [propeller] {
+	position: absolute;
+	top: 2px;
+	left: 30px;
+	width: 0px;
+	perspective: 500px;
+	-webkit-perspective: 500px;
+	z-index: 1;
+}
+
+@keyframes spinner {
+	from {
+		transform: rotateY(0deg);
+	}
+	to {
+		transform: rotateY(-360deg);
+	}
+}
+
+@-webkit-keyframes spinner {
+	from {
+		-webkit-transform: rotateY(0deg);
+	}
+	to {
+		-webkit-transform: rotateY(-360deg);
+	}
+}
+
+.stx-marker-content [spinner] {
+	-webkit-animation: spinner 1s linear infinite;
+	/* Chrome, Safari, Opera */
+	animation: spinner 1s linear infinite;
+	/* Standard syntax */
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+
+.stx-marker-content [spinner] div {
+	position: absolute;
+	background: #999;
+	width: 80px;
+	height: 4px;
+}
+
+.stx-marker-content [heli-body] {
+	position: absolute;
+	left: 0;
+	width: 145px;
+	height: 55px;
+	background: url(img/helicopter.png) no-repeat center;
+	z-index: 2;
+}

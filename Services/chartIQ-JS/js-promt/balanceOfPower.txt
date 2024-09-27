@@ -1,0 +1,104 @@
+Here is a detailed text-based description of the **Balance of Power (BoP) Study**, which can be used to train an LLM to generate similar studies:
+
+---
+
+### **Balance of Power Study Overview**
+
+The **Balance of Power (BoP)** indicator is a momentum-based technical analysis tool used to measure the strength of buyers versus sellers in the market. By examining the relationship between the open and close prices relative to the high and low, the BoP provides insight into whether bulls or bears are in control over a given period. This indicator helps traders gauge shifts in momentum and identify potential trend reversals.
+
+### **Purpose**
+
+The Balance of Power study is designed to:
+1. **Measure Market Control**: It calculates whether buyers or sellers have more influence over price movements during a specific period.
+2. **Identify Momentum Shifts**: By tracking changes in the BoP, traders can spot shifts in momentum that may indicate the beginning or end of a trend.
+3. **Determine Trend Strength**: The value of BoP ranges from -1 to 1, where extreme values suggest stronger control by either buyers or sellers.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateBalanceOfPower`
+
+   **Functionality**:
+   - This function computes the Balance of Power for each quote in the chart data by comparing the difference between the close and open prices relative to the high and low prices for the period.
+   - If the high and low prices are equal, the calculation avoids division by zero.
+   - A moving average is applied to smooth out the results, helping to reduce noise and provide a clearer trend indication.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods over which to perform the BoP calculation.
+   - **Moving Average Type**: (String) The type of moving average to apply for smoothing the BoP results (e.g., "ma" for a simple moving average).
+
+   **Outputs**:
+   - **BoP Result**: (Number) The smoothed Balance of Power value for the period, ranging from -1 to 1, where values near 1 indicate bullish control, and values near -1 indicate bearish control.
+
+### **Libraries Required**
+
+The Balance of Power study requires the following libraries:
+- **chartiq.js**: The main charting library that handles graphical rendering.
+- **standard/studies.js**: Provides the calculation functions and display methods for various technical indicators.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Avoid modifying the core library files directly. If changes are needed, create a separate file and load it after the library. This ensures compatibility with future updates and technical support.
+- **Dependency**: The "studies" feature must be activated before using this functionality, as it relies on the studies calculation and rendering framework.
+
+### **Code Example**
+
+Below is a code snippet demonstrating how to calculate and display the Balance of Power on a chart:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_balanceOfPower_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"balanceOfPower feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateBalanceOfPower = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+		for (var i = sd.startFrom; i < quotes.length; i++) {
+			var quote = quotes[i];
+			quote["_Ratio " + sd.name] = quote.Close - quote.Open;
+			if (quote.High - quote.Low !== 0)
+				// avoid division by zero
+				quote["_Ratio " + sd.name] /= quote.High - quote.Low;
+		}
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			"_Ratio " + sd.name,
+			0,
+			"Result",
+			stx,
+			sd
+		);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Bal Pwr": {
+			name: "Balance of Power",
+			range: "-1 to 1",
+			centerline: 0,
+			calculateFN: CIQ.Studies.calculateBalanceOfPower,
+			inputs: { Period: 14, "Moving Average Type": "ma" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_balanceOfPower_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This detailed description explains the **Balance of Power** indicator, including its purpose, inputs, outputs, and a brief code example. It serves as a template for teaching an LLM how to generate similar technical analysis studies based on user input.

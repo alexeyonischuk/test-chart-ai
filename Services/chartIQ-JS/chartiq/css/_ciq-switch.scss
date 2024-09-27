@@ -1,0 +1,46 @@
+.ciq-switch {
+	appearance: none;
+	/* necessary to apply this style to checkbox elements */
+	position: relative;
+	display: inline-block;
+	margin: 8px 0 8px 4px;
+	width: 22px;
+	height: 12px !important;
+	top: 0 !important;
+	text-align: center;
+	cursor: pointer;
+	background-color: #999999;
+	border: none;
+	border-radius: 50px;
+
+	&:before {
+		content: unset;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		top: 2px;
+		left: 2px;
+		width: 8px;
+		height: 8px;
+		background-color: #ffffff;
+		border-radius: 50%;
+		box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+		transition-property: left;
+		transition-duration: 200ms;
+	}
+	&:hover {
+		background-color: #666666;
+	}
+	&:checked,
+	.ciq-active > & {
+		background-color: #398dff;
+		&:hover {
+			background-color: #2a51d0;
+		}
+		&:after {
+			left: 12px;
+			box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
+		}
+	}
+}

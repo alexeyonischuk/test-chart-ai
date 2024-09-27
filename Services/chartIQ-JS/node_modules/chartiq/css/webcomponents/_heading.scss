@@ -1,0 +1,72 @@
+cq-heading {
+	&.dropdown {
+		:host(&),
+		& {
+			display: flex;
+			line-height: 18px;
+			white-space: nowrap;
+			margin: 0;
+			padding: 0;
+
+			.searchFilter {
+				flex-grow: 1;
+				margin: 0 4px;
+				position: relative;
+				cursor: auto;
+				display: none;
+
+				&.active {
+					display: initial;
+				}
+			}
+			input {
+				border: none;
+				border-bottom: solid 1px #aaa;
+				border-radius: 0;
+				margin: 0 24px 0 11px;
+				padding: 0 2px;
+				width: 90%;
+				outline: none;
+				font-weight: 300;
+
+				/* clears the ‘X’ from Chrome, Safari */
+				&::-webkit-search-decoration,
+				&::-webkit-search-cancel-button,
+				&::-webkit-search-results-button,
+				&::-webkit-search-results-decoration {
+					display: none;
+				}
+
+				&.hover {
+					background-color: #efefef;
+				}
+				&:focus {
+					border-bottom-color: #398dff;
+				}
+			}
+		}
+		:host(&.#{$DARK}) input,
+		.#{$DARK} & input {
+			background-color: var(--DARK-bg);
+			color: var(--DARK-text);
+			border-color: var(--DARK-blue);
+
+			&:hover {
+				background-color: var(--DARK-menu-highlight-bg);
+			}
+		}
+		:host(&:not([text]):not([icon])),
+		&:not([text]):not([icon]) {
+			input {
+				width: 100%;
+				margin-left: -6px;
+			}
+		}
+	}
+}
+
+.item-hidden {
+	max-height: 0 !important;
+	opacity: 0 !important;
+	overflow: hidden !important;
+}

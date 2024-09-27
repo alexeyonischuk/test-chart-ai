@@ -1,0 +1,255 @@
+Here is a detailed text-based description of the **ATR (Average True Range) Study**, which can be used to train an LLM to generate similar studies:
+
+---
+
+### **ATR (Average True Range) Study Overview**
+
+The **Average True Range (ATR)** is a popular volatility indicator in technical analysis, used to measure market volatility by decomposing an entire range of an asset’s price for that period. The ATR is crucial for traders who want to assess how much the price of an asset can potentially fluctuate over a specific period, enabling better risk management and position sizing.
+
+The ATR Study includes variations like **ATR Bands**, **STARC Bands**, and the **ATR Trailing Stop**, each offering a different perspective on volatility and trend analysis.
+
+### **Purpose**
+
+The ATR indicator is designed to help traders:
+1. **Assess Market Volatility**: ATR provides insights into the volatility of an asset over a specified time frame.
+2. **Set Stop-Loss Orders**: The ATR Trailing Stop can be used to set dynamic stop-loss levels based on the asset's price volatility.
+3. **Analyze Price Channels**: ATR Bands and STARC Bands create price channels around the asset’s moving average, which can be used to identify potential buy and sell points.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateATRBands`
+
+   **Functionality**:
+   - Calculates the **ATR Bands**, which are price channels based on ATR values. These bands help define overbought and oversold conditions.
+   - It computes an envelope around the price chart using the ATR value as the basis, shifting the bands upward or downward based on the defined shift value.
+   
+   **Inputs**:
+   - **Field**: The data field (e.g., "Close") used for calculating the ATR Bands.
+   - **Shift**: The shift applied to the ATR to determine the channel range.
+   
+   **Outputs**:
+   - **ATR Bands Top**: (Number) The upper ATR band, indicating the overbought region.
+   - **ATR Bands Bottom**: (Number) The lower ATR band, indicating the oversold region.
+   - **ATR Bands Channel**: (Number) The entire channel of ATR, giving a volatility envelope around the price action.
+
+2. **Function Name**: `calculateSTARCBands`
+
+   **Functionality**:
+   - Computes **STARC (Stoller Average Range Channel) Bands**, which are created using a simple moving average and an ATR-based multiplier. These bands help traders identify extreme price levels based on volatility and average prices.
+   - STARC Bands use a moving average to create a median line with two outer bands determined by multiplying the ATR value by a factor (Multiplier).
+   
+   **Inputs**:
+   - **MA Period**: The period for calculating the moving average (median line).
+   - **Multiplier**: A multiplier used to adjust the ATR value for the upper and lower bands.
+   
+   **Outputs**:
+   - **STARC Bands Top**: (Number) The upper STARC band, providing a resistance level.
+   - **STARC Bands Median**: (Number) The median moving average line, which helps assess the trend.
+   - **STARC Bands Bottom**: (Number) The lower STARC band, providing a support level.
+
+3. **Function Name**: `calculateATRStops`
+
+   **Functionality**:
+   - This function computes the **ATR Trailing Stops**, which are dynamic stop-loss levels based on volatility. It adjusts stop-loss levels based on market volatility, allowing traders to set stop-loss orders that are adaptive to changing market conditions.
+   - The trailing stops move in response to price movements, helping traders capture gains while limiting risk.
+   
+   **Inputs**:
+   - **HighLow**: (Boolean) A flag indicating whether to use the asset’s high and low prices when calculating the trailing stops.
+   - **Multiplier**: The ATR multiplier to adjust the distance of the stop from the current price.
+
+   **Outputs**:
+   - **Buy Stops**: (Number) The dynamic stop-loss level for long positions.
+   - **Sell Stops**: (Number) The dynamic stop-loss level for short positions.
+   - **All Stops**: (Number) The overall stop-loss value for both long and short positions.
+
+### **Libraries Required**
+
+The ATR study requires the following libraries:
+- **chartiq.js**: The primary library for charting and graphical representation.
+- **standard/studies.js**: Provides the core functionality for calculating and displaying technical studies like ATR.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Avoid modifying the core library files directly. If modifications are required, create a separate file and load it after the library. Modifying the library can lead to issues with future upgrades or support.
+- **Dependency**: Ensure that the "studies" feature is enabled, as this functionality depends on the availability of the studies library.
+
+### **Code Example**
+
+The following code snippet demonstrates the logic used to calculate the ATR Bands, STARC Bands, and ATR Trailing Stops:
+
+/**!
+ *	9.4.0
+ *	Generation date: 2024-08-28T15:51:29.272Z
+ *	Client name: codeit
+ *	Package Type: Core alacarte
+ *	License type: annual
+ *	Build descriptor: a9931b733
+ */
+
+/***********************************************************!
+ * Copyright © 2024 S&P Global All rights reserved
+*************************************************************/
+/*************************************! DO NOT MAKE CHANGES TO THIS LIBRARY FILE!! !*************************************
+* If you wish to overwrite default functionality, create a separate file with a copy of the methods you are overwriting *
+* and load that file right after the library has been loaded, but before the chart engine is instantiated.              *
+* Directly modifying library files will prevent upgrades and the ability for ChartIQ to support your solution.          *
+*************************************************************************************************************************/
+/* eslint-disable no-extra-parens */
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_atr_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("atr feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateATRBands = function (stx, sd) {
+		CIQ.Studies.calculateStudyATR(stx, sd);
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+		CIQ.Studies.calculateGenericEnvelope(
+			stx,
+			sd,
+			sd.inputs.Shift,
+			field,
+			"ATR " + sd.name
+		);
+	};
+
+	CIQ.Studies.calculateSTARCBands = function (stx, sd) {
+		CIQ.Studies.calculateStudyATR(stx, sd);
+		CIQ.Studies.MA(
+			"simple",
+			sd.inputs["MA Period"],
+			"Close",
+			0,
+			"_MA",
+			stx,
+			sd
+		);
+		CIQ.Studies.calculateGenericEnvelope(
+			stx,
+			sd,
+			sd.inputs.Multiplier,
+			"_MA " + sd.name,
+			"ATR " + sd.name
+		);
+	};
+
+	CIQ.Studies.calculateATRStops = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (!quotes) return;
+		CIQ.Studies.calculateStudyATR(stx, sd);
+		var useHighLow = sd.inputs.HighLow;
+		for (var i = Math.max(sd.startFrom - 1, 1); i < quotes.length - 1; i++) {
+			var prices = quotes[i];
+			var pd = quotes[i - 1];
+			var prev = prices["Buy Stops " + sd.name];
+			if (!prev) prev = prices["Sell Stops " + sd.name];
+			if (!prev) prev = 0;
+			if (!prices || !pd) continue;
+			var base = prices.Close;
+			var result = base;
+			var offset = prices["ATR " + sd.name] * sd.inputs.Multiplier;
+			if (prices.Close > prev && pd.Close > prev) {
+				if (useHighLow) base = prices.High;
+				result = Math.max(prev, base - offset);
+			} else if (prices.Close <= prev && pd.Close <= prev) {
+				if (useHighLow) base = prices.Low;
+				result = Math.min(prev, base + offset);
+			} else if (prices.Close > prev) {
+				if (useHighLow) base = prices.High;
+				result = base - offset;
+			} else if (prices.Close <= prev) {
+				if (useHighLow) base = prices.Low;
+				result = base + offset;
+			}
+			if (base <= result) {
+				quotes[i + 1]["Buy Stops " + sd.name] = result;
+				delete quotes[i + 1]["Sell Stops " + sd.name];
+			} else if (base > result) {
+				quotes[i + 1]["Sell Stops " + sd.name] = result;
+				delete quotes[i + 1]["Buy Stops " + sd.name];
+			}
+			quotes[i + 1]["All Stops " + sd.name] = result;
+		}
+		sd.referenceOutput = "All Stops"; //so PSAR2 can draw a square wave
+		sd.outputMap = {};
+		sd.outputMap["All Stops " + sd.name] = "";
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		ATR: {
+			name: "Average True Range",
+			calculateFN: CIQ.Studies.calculateStudyATR,
+			outputs: { ATR: "auto" }
+		},
+		"ATR Bands": {
+			name: "ATR Bands",
+			overlay: true,
+			seriesFN: CIQ.Studies.displayChannel,
+			calculateFN: CIQ.Studies.calculateATRBands,
+			inputs: { Period: 5, Field: "field", Shift: 3, "Channel Fill": true },
+			outputs: {
+				"ATR Bands Top": "auto",
+				"ATR Bands Bottom": "auto",
+				"ATR Bands Channel": "auto"
+			},
+			attributes: {
+				Shift: { min: 0.1, step: 0.1 }
+			}
+		},
+		"STARC Bands": {
+			name: "STARC Bands",
+			overlay: true,
+			seriesFN: CIQ.Studies.displayChannel,
+			calculateFN: CIQ.Studies.calculateSTARCBands,
+			inputs: {
+				Period: 15,
+				"MA Period": 5,
+				Multiplier: 1.3,
+				"Channel Fill": true
+			},
+			outputs: {
+				"STARC Bands Top": "auto",
+				"STARC Bands Median": "auto",
+				"STARC Bands Bottom": "auto"
+			},
+			attributes: {
+				Multiplier: { min: 0.1, step: 0.1 }
+			}
+		},
+		"ATR Trailing Stop": {
+			name: "ATR Trailing Stops",
+			overlay: true,
+			seriesFN: CIQ.Studies.displayPSAR2,
+			calculateFN: CIQ.Studies.calculateATRStops,
+			inputs: {
+				Period: 21,
+				Multiplier: 3,
+				"Plot Type": ["points", "squarewave"],
+				HighLow: false
+			},
+			outputs: { "Buy Stops": "#FF0000", "Sell Stops": "#00FF00" },
+			attributes: {
+				Multiplier: { min: 0.1, step: 0.1 }
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_atr_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This detailed description explains how the ATR study and its variations (ATR Bands, STARC Bands, and ATR Trailing Stops) work, including their key functions, inputs, outputs, and intended use. This provides a foundation for teaching an LLM to generate similar studies.

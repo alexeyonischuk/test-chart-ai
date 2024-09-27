@@ -1,0 +1,37 @@
+@mixin feature-disabled($features) {
+	@each $f in $features {
+		@at-root :host([feature="#{$f}"]:not([#{$f}-feature])),
+			:host(*:not([#{$f}-feature])) [feature="#{$f}"],
+			cq-context:not([#{$f}-feature]) [feature="#{$f}"] {
+			display: none;
+		}
+	}
+}
+
+advanced,
+extendedhours,
+animation,
+shortcuts,
+outliers,
+rangeslider,
+tableview,
+dataloader,
+tooltip,
+help,
+marketdepth,
+scriptiq,
+signaliq,
+ptv,
+tfc,
+tcanalystviews,
+tctechnicalinsights,
+visualearnings,
+crosssection,
+pinnedmarkers {
+	@include feature-disabled(&);
+}
+
+[feature="ta_markers"],
+[feature="video_markers"] {
+	display: none;
+}

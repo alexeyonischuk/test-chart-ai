@@ -1,0 +1,60 @@
+/*
+Variables for use in all scss files.  Import this file when necessary.
+*/
+
+$base-font: "Roboto", sans-serif !default;
+$heading-font: "Roboto Condensed", sans-serif !default;
+
+$font-size-base: 12px !default;
+$font-size-button: 11px !default;
+$font-size-toolbar: 14px !default;
+
+$soft-corners: 1px !default; // Set to zero to eliminate soft corners
+
+$nav-height: 45px !default;
+$footer-height: 45px !default;
+
+/* Hovering selectors */
+
+$INTERACTION-ATTR: ciq-last-interaction;
+$mouse: mouse;
+$touch: touch;
+$hovering: "html:not([#{$INTERACTION-ATTR}='#{$touch}'])";
+$touching: "html[#{$INTERACTION-ATTR}='#{$touch}']";
+
+/* Default (Light) Theme */
+
+$DEFAULT-main: #fff !default;
+$DEFAULT-accent: #398dff !default;
+$DEFAULT-bg: #f8f8f8 !default;
+$DEFAULT-menu-bg: #fff !default;
+$DEFAULT-submenu-bg: #f3f3f3 !default;
+$DEFAULT-menu-highlight-bg: #efefef !default;
+$DEFAULT-sub-menu-highlight-bg: #e6e6e6 !default;
+$DEFAULT-hu-bg: #ffffff !default;
+$DEFAULT-text: #000 !default;
+$DEFAULT-text-subtle: #999 !default;
+$DEFAULT-text-medium: #666 !default;
+$DEFAULT-text-strong: #000 !default;
+$DEFAULT-border-subtle: #ddd !default;
+$DEFAULT-border-medium: #ccc !default;
+$DEFAULT-border-strong: #999 !default;
+$DEFAULT-help: #398dff !default;
+$DEFAULT-warning: #ee5c5c;
+
+$DARK: ciq-night !default;
+$DARK-bg: #151f28 !default;
+$DARK-main: #1c2a35 !default;
+$DARK-hu-bg: #1c2a35 !default;
+$DARK-submenu-bg: scale-color($DARK-bg, $lightness: 7%);
+$DARK-menu-highlight-bg: scale-color($DARK-bg, $lightness: 15%);
+$DARK-hu-bg-dynamic: #2a51d0 !default;
+$DARK-text: #fff !default;
+$DARK-blue: #398dff;
+$DARK-help: $DEFAULT-help;
+
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

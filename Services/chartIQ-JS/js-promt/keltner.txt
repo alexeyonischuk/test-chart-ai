@@ -1,0 +1,89 @@
+The **Keltner Channel** is a popular technical analysis tool that helps traders identify volatility, overbought, and oversold conditions by placing channels around a moving average of the asset's price. The channel consists of three lines: the **Keltner Top**, **Keltner Median**, and **Keltner Bottom**.
+
+### **How It Works**:
+The Keltner Channel uses a moving average as the **median line** and adds an **envelope** that represents the Average True Range (ATR) to determine the upper and lower bounds of the channel:
+- **Keltner Top** = Moving Average + (ATR * Shift)
+- **Keltner Bottom** = Moving Average - (ATR * Shift)
+- **Keltner Median** = Moving Average of the selected period (often an **EMA**)
+
+### **Key Components**:
+1. **Moving Average Type**: The type of moving average applied (default is EMA).
+2. **ATR (Average True Range)**: A measure of volatility used to calculate the width of the channel.
+3. **Shift**: A multiplier applied to the ATR to adjust the width of the Keltner Channel.
+
+### **Inputs and Outputs**:
+- **Period**: Number of periods for calculating the moving average (default: 10).
+- **Shift**: A multiplier applied to the ATR to set the channel width (default: 5).
+- **Moving Average Type**: The type of moving average used (default: "ema").
+- **Outputs**: 
+   - **Keltner Top**: Upper boundary of the channel.
+   - **Keltner Median**: Middle moving average line.
+   - **Keltner Bottom**: Lower boundary of the channel.
+
+### **Code Example**:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_keltner_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("keltner feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateKeltner = function (stx, sd) {
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			"Close",
+			0,
+			"MA",
+			stx,
+			sd
+		);
+		CIQ.Studies.calculateStudyATR(stx, sd);
+		CIQ.Studies.calculateGenericEnvelope(
+			stx,
+			sd,
+			sd.inputs.Shift,
+			"MA " + sd.name,
+			"ATR " + sd.name
+		);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Keltner: {
+			name: "Keltner Channel",
+			overlay: true,
+			seriesFN: CIQ.Studies.displayChannel,
+			calculateFN: CIQ.Studies.calculateKeltner,
+			inputs: {
+				Period: 10,
+				Shift: 5,
+				"Moving Average Type": "ema",
+				"Channel Fill": true
+			},
+			outputs: {
+				"Keltner Top": "auto",
+				"Keltner Median": "auto",
+				"Keltner Bottom": "auto"
+			},
+			attributes: {
+				Shift: { min: 0.1, step: 0.1 }
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_keltner_(typeof window !== "undefined" ? window : global);
+
+
+This function calculates the Keltner Channel using a moving average and ATR to generate the upper and lower bands around the median. The `Shift` value determines the distance of the bands from the moving average.
+
+The Keltner Channel helps traders identify price breakouts and trends by analyzing whether the price moves beyond the upper or lower boundaries.

@@ -1,0 +1,34 @@
+version: '3'
+services:
+  python-app:
+    build:
+      context: ./Services/chartIQ-python
+      dockerfile: Dockerfile
+    ports:
+      - "39110:8001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ASSISTANT_ID=${ASSISTANT_ID}
+    volumes:
+      - .:/chartiq-project
+    networks:
+      - chartiq-network
+
+  js-app:
+    build:
+      context: ./Services/chartIQ-JS
+      dockerfile: Dockerfile
+    ports:
+      - "39111:3000"
+    volumes:
+      - .:/chartiq-project
+    networks:
+      - chartiq-network
+
+networks:
+  chartiq-network:
+    driver: bridge
+
+volumes:
+  chartiq-project:
+    external: true

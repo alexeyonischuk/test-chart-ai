@@ -1,0 +1,112 @@
+### **Ehler Fisher Transform Overview**
+
+The **Ehler Fisher Transform** is a technical indicator developed by John Ehler, designed to convert prices into a Gaussian normal distribution. This transformation makes turning points in price data more apparent, helping traders identify market reversals with greater clarity. The indicator is known for its responsiveness and its ability to smooth out price data while still capturing trend changes quickly.
+
+### **Study Purpose and Calculation**
+
+The Ehler Fisher Transform computes the relative position of the current price within its recent high-low range, transforming this value into an oscillating output that resembles a Gaussian distribution. The indicator uses a logarithmic transformation to amplify price fluctuations, generating an output that helps detect sharp reversals in market trends.
+
+#### Key Elements:
+- **Ehler Fisher (EF)**: The main output of the transform, representing the normalized price changes.
+- **EF Trigger**: A secondary signal line derived from the Ehler Fisher output, used to identify potential trend reversals when it crosses the EF line.
+
+### **Inputs**:
+- **Period**: (Number) Defines the number of periods used to calculate the high-low range for the transformation. Typically, a period of 10 days is used.
+
+### **Outputs**:
+- **EF**: The main Ehler Fisher value, representing the transformed price.
+- **EF Trigger**: A smoothed version of the EF line, which helps identify potential crossovers for buy or sell signals.
+
+### **Study Calculation Process**:
+1. **High-Low Range Calculation**: For each period, the study computes the high and low prices, adjusted for the average of the high and low (denoted as `lh`).
+2. **Normalization**: The current price is normalized based on its position within the high-low range.
+3. **Transformation**: A Fisher transformation is applied to the normalized values to produce the EF value. The logarithmic function used in this step amplifies the price changes, enhancing the visibility of turning points.
+4. **Smoothing**: The EF Trigger line is calculated by applying a smoothing function to the EF values, producing a line that can be used to identify trend shifts when crossovers occur between the EF and EF Trigger.
+
+### **Study Libraries Required**:
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides essential functionalities for study calculations.
+
+### **Warnings and Best Practices**:
+- **Activation**: Ensure the "studies" feature is activated before using the Ehler Fisher Transform.
+- **Caution**: The Ehler Fisher Transform is highly sensitive to short-term price movements, which can lead to false signals in choppy markets. It is recommended to use it alongside other indicators for confirmation.
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_ehlerFisher_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"ehlerFisher feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateEhlerFisher = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+
+		function getLLVHHV(p, x) {
+			var l = Number.MAX_VALUE,
+				h = Number.MAX_VALUE * -1;
+			for (var j = x - p + 1; j <= x; j++) {
+				var d = (quotes[j].High + quotes[j].Low) / 2;
+				l = Math.min(l, d);
+				h = Math.max(h, d);
+			}
+			return [l, h];
+		}
+
+		var n = 0;
+		if (sd.startFrom > 1) n = quotes[sd.startFrom - 1]["_n " + sd.name];
+		for (var i = sd.startFrom; i < quotes.length; i++) {
+			var quote = quotes[i];
+			if (quote.futureTick) break;
+			if (i < sd.days - 1) {
+				quote["EF " + sd.name] = quote["EF Trigger " + sd.name] = n;
+				continue;
+			}
+			var lh = getLLVHHV(sd.days, i);
+			n =
+				0.33 *
+					2 *
+					(((quotes[i].High + quotes[i].Low) / 2 - lh[0]) /
+						Math.max(0.000001, lh[1] - lh[0]) -
+						0.5) +
+				0.67 * n;
+			if (n > 0) n = Math.min(n, 0.9999);
+			else if (n < 0) n = Math.max(n, -0.9999);
+			var previous = i ? quotes[i - 1]["EF " + sd.name] : 0;
+			quote["EF " + sd.name] =
+				0.5 * Math.log((1 + n) / (1 - n)) + 0.5 * previous;
+			quote["EF Trigger " + sd.name] = previous;
+			quote["_n " + sd.name] = n;
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Ehler Fisher": {
+			name: "Ehler Fisher Transform",
+			calculateFN: CIQ.Studies.calculateEhlerFisher,
+			inputs: { Period: 10 },
+			outputs: { EF: "auto", "EF Trigger": "#FF0000" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_ehlerFisher_(typeof window !== "undefined" ? window : global);
+
+
+This description provides an overview of the **Ehler Fisher Transform** study, explaining its purpose, inputs, outputs, and calculation process with a placeholder for the actual code implementation.

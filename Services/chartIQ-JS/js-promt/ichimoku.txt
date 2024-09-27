@@ -1,0 +1,169 @@
+### **Ichimoku Clouds Overview**
+
+The **Ichimoku Cloud** is a comprehensive indicator developed in Japan, combining various moving averages to form a "cloud" structure that can help traders identify trends, support/resistance levels, and potential reversal points. It incorporates five lines, each calculated using high and low prices over specific time periods, and is widely used in technical analysis.
+
+### **Key Components**:
+1. **Conversion Line (Tenkan-sen)**:
+   - Calculated as the average of the highest high and lowest low over the last 9 periods.
+   - Often used to identify short-term trend direction.
+
+2. **Base Line (Kijun-sen)**:
+   - Represents the average of the highest high and lowest low over the past 26 periods.
+   - Serves as a reference for medium-term trend identification and can also indicate support or resistance levels.
+
+3. **Leading Span A (Senkou Span A)**:
+   - Calculated as the average of the Conversion Line and Base Line.
+   - Plotted 26 periods ahead of the current price, forming one boundary of the cloud.
+
+4. **Leading Span B (Senkou Span B)**:
+   - Calculated as the average of the highest high and lowest low over the past 52 periods.
+   - Plotted 26 periods ahead, forming the other boundary of the cloud.
+
+5. **Lagging Span (Chikou Span)**:
+   - The current closing price shifted 26 periods into the past.
+   - Used to compare current price action to historical levels.
+
+### **How the Cloud Works**:
+- The **cloud (Kumo)** is the space between **Leading Span A** and **Leading Span B**, visually representing support and resistance zones. 
+  - **Bullish**: Price above the cloud indicates an uptrend.
+  - **Bearish**: Price below the cloud signals a downtrend.
+  - **Neutral/Weak**: Price inside the cloud suggests potential consolidation or weakness in trend.
+
+### **Inputs and Outputs**:
+- **Inputs**:
+  - Conversion Line Period: 9
+  - Base Line Period: 26
+  - Leading Span B Period: 52
+  - Lagging Span Period: 26
+- **Outputs**:
+  - Conversion Line: Blue (#0000FF)
+  - Base Line: Red (#FF0000)
+  - Leading Span A: Green (#00FF00)
+  - Leading Span B: Red (#FF0000)
+  - Lagging Span: Olive (#808000)
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_ichimoku_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("ichimoku feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateIchimoku = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		var periods = {
+			Base: Number(sd.inputs["Base Line Period"]),
+			Conv: Number(sd.inputs["Conversion Line Period"]),
+			LeadB: Number(sd.inputs["Leading Span B Period"]),
+			Lag: Number(sd.inputs["Lagging Span Period"])
+		};
+
+		function getLLVHHV(p, x) {
+			var l = Number.MAX_VALUE,
+				h = Number.MAX_VALUE * -1;
+			for (var j = x - p + 1; j <= x; j++) {
+				if (j < 0) continue;
+				l = Math.min(l, quotes[j].Low);
+				h = Math.max(h, quotes[j].High);
+			}
+			return [l, h];
+		}
+
+		var i, hl;
+		for (i = sd.startFrom; i < quotes.length; i++) {
+			if (!quotes[i]) continue;
+
+			hl = getLLVHHV(periods.Conv, i);
+			quotes[i]["Conversion Line " + sd.name] = (hl[1] + hl[0]) / 2;
+
+			hl = getLLVHHV(periods.Base, i);
+			quotes[i]["Base Line " + sd.name] = (hl[1] + hl[0]) / 2;
+
+			if (i < periods.Lag) continue;
+			quotes[i - periods.Lag]["Lagging Span " + sd.name] = quotes[i].Close;
+		}
+		var futureTicks = [];
+		for (i = Math.max(0, sd.startFrom - periods.Base); i < quotes.length; i++) {
+			hl = getLLVHHV(periods.LeadB, i);
+			var lsa =
+				(quotes[i]["Conversion Line " + sd.name] +
+					quotes[i]["Base Line " + sd.name]) /
+				2;
+			var lsb = (hl[1] + hl[0]) / 2;
+			if (quotes[i + periods.Base]) {
+				quotes[i + periods.Base]["Leading Span A " + sd.name] = lsa;
+				quotes[i + periods.Base]["Leading Span B " + sd.name] = lsb;
+			} else {
+				var ft = {};
+				ft["Leading Span A " + sd.name] = lsa;
+				ft["Leading Span B " + sd.name] = lsb;
+				futureTicks.push(ft);
+			}
+		}
+		sd.appendFutureTicks(stx, futureTicks);
+	};
+
+	CIQ.Studies.displayIchimoku = function (stx, sd, quotes) {
+		var topBand = "Leading Span A " + sd.name,
+			bottomBand = "Leading Span B " + sd.name;
+		var topColor = CIQ.Studies.determineColor(
+			sd.outputs[sd.outputMap[topBand]]
+		);
+		var bottomColor = CIQ.Studies.determineColor(
+			sd.outputs[sd.outputMap[bottomBand]]
+		);
+		var panel = stx.panels[sd.panel];
+		var yAxis = sd.getYAxis(stx);
+		var parameters = {
+			topBand: topBand,
+			bottomBand: bottomBand,
+			topColor: topColor,
+			bottomColor: bottomColor,
+			skipTransform: panel.name != sd.chart.name,
+			topAxis: yAxis,
+			bottomAxis: yAxis,
+			opacity: 0.3
+		};
+		if (!sd.highlight && stx.highlightedDraggable) parameters.opacity *= 0.3;
+		CIQ.fillIntersecting(stx, sd.panel, parameters);
+		CIQ.Studies.displaySeriesAsLine(stx, sd, quotes);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Ichimoku Clouds": {
+			name: "Ichimoku Clouds",
+			overlay: true,
+			calculateFN: CIQ.Studies.calculateIchimoku,
+			seriesFN: CIQ.Studies.displayIchimoku,
+			inputs: {
+				"Conversion Line Period": 9,
+				"Base Line Period": 26,
+				"Leading Span B Period": 52,
+				"Lagging Span Period": 26
+			},
+			outputs: {
+				"Conversion Line": "#0000FF",
+				"Base Line": "#FF0000",
+				"Leading Span A": "#00FF00",
+				"Leading Span B": "#FF0000",
+				"Lagging Span": "#808000"
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_ichimoku_(typeof window !== "undefined" ? window : global);
+
+
+The Ichimoku Cloud is a versatile indicator that combines several aspects of price action analysis into one tool. It is particularly useful for traders who are looking for clear visual cues to make informed trading decisions.

@@ -1,0 +1,66 @@
+cq-views {
+	:host(&),
+	& {
+		display: block;
+		overflow: hidden;
+		padding: 0;
+		width: 200px;
+
+		& .item {
+			display: flex;
+			margin: 0 8px;
+			padding: 0 10px;
+			border-radius: 15px;
+			position: relative;
+			cursor: pointer;
+			text-overflow: clip;
+			white-space: nowrap;
+			clear: both;
+			line-height: 28px;
+			height: 28px;
+			outline: none; /* turns off focus outline */
+
+			& [label] {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			& .icon {
+				margin: 0 0 1px -4px;
+				vertical-align: middle;
+			}
+		}
+
+		& .ciq-screen-reader {
+			opacity: 0;
+			overflow: hidden;
+		}
+	}
+
+	:host(&:not([last-interaction="touch"])) .icon:hover,
+	#{$hovering} & .icon:hover {
+		opacity: 1;
+	}
+
+	:host(&:not([last-interaction="touch"])) .item:hover,
+	:host(&) .item:active,
+	:host(&) .item[cq-focused],
+	#{$hovering} & .item:hover,
+	& .item:active,
+	& .item[cq-focused] {
+		background-color: #efefef;
+		color: #000;
+	}
+
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+	:host(&.#{$DARK}) .item:active,
+	:host(&.#{$DARK}) .item[cq-focused],
+	#{$hovering} .#{$DARK} & .item:hover,
+	.#{$DARK} & .item:active,
+	.#{$DARK} & .item[cq-focused] {
+		background-color: var(--DARK-menu-highlight-bg);
+		color: var(--DARK-text);
+	}
+}

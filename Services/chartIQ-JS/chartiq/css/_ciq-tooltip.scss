@@ -1,0 +1,60 @@
+[cq-tooltip] {
+	:host(*) &,
+	* > & {
+		bottom: auto;
+		top: 27px;
+		position: relative;
+		display: block;
+		background: #398dff;
+		opacity: 0;
+		z-index: 7;
+		width: fit-content;
+		min-width: 32px;
+		height: auto;
+		line-height: normal;
+		text-align: center;
+		font-weight: 400;
+		font-size: 10px;
+		color: #f8f8f8;
+		border-radius: 1px;
+		pointer-events: none;
+		padding: 3px;
+		left: -25%;
+	}
+	:host(*.bottom) &,
+	.bottom & {
+		top: auto;
+		bottom: 21px;
+	}
+	:host(cq-toggle:not([last-interaction="touch"]):hover) &,
+	:host(cq-share-button:not([last-interaction="touch"]):hover) &,
+	:host(cq-menu[icon]:not(.stxMenuActive):not([last-interaction="touch"]):hover)
+		&,
+	#{$hovering} cq-toggle:hover &,
+	#{$hovering} cq-share-button:hover &,
+	#{$hovering} cq-menu[icon]:not(.stxMenuActive):hover & {
+		opacity: 1;
+		transition:
+			opacity 0.5s 0.2s,
+			top 0.5s 0.2s;
+		top: 40px;
+		border: solid 1px #e4e4e4;
+	}
+	:host(cq-toggle.bottom:not([last-interaction="touch"]):hover) &,
+	:host(cq-share-button.bottom:not([last-interaction="touch"]):hover) &,
+	:host(
+			cq-menu.bottom[icon]:not(.stxMenuActive):not(
+					[last-interaction="touch"]
+				):hover
+		)
+		&,
+	#{$hovering} cq-toggle.bottom:hover &,
+	#{$hovering} cq-share-button.bottom:hover &,
+	#{$hovering} cq-menu[icon]:not(.stxMenuActive).bottom:hover & {
+		transition:
+			opacity 0.5s 0.2s,
+			bottom 0.5s 0.2s;
+		bottom: 34px;
+		top: auto;
+	}
+}

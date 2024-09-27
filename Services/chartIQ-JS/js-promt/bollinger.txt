@@ -1,0 +1,196 @@
+Here’s a detailed text-based description of the **Bollinger Bands Study** that can be used to train an LLM to generate similar studies:
+
+---
+
+### **Bollinger Bands Study Overview**
+
+The **Bollinger Bands** indicator is a widely-used technical analysis tool that measures volatility and provides upper and lower bounds based on the standard deviation of price movements. It is often used to identify periods of high or low volatility, determine overbought or oversold conditions, and predict potential price breakouts or reversals.
+
+### **Purpose**
+
+Bollinger Bands serve several key purposes for traders:
+1. **Measure Market Volatility**: The width of the bands expands and contracts with volatility, indicating periods of high or low market activity.
+2. **Identify Overbought/Oversold Conditions**: When prices reach or breach the upper or lower bands, this can indicate that the market is either overbought (upper band) or oversold (lower band).
+3. **Spot Potential Reversals**: When prices move outside of the bands, it can suggest an impending reversal or continuation of the current trend.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateBollinger`
+
+   **Functionality**:
+   - The **Bollinger Bands** are created by first calculating a moving average (MA) of the price over a given period. The upper and lower bands are placed a specified number of standard deviations away from the moving average.
+   - The width of the bands changes with the standard deviation, expanding during volatile periods and contracting during stable periods.
+   - An optional **%b** and **Bandwidth** calculation can be applied to further analyze price behavior in relation to the bands.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods over which the moving average is calculated.
+   - **Field**: (String) The price field to be used for the calculation (e.g., "Close").
+   - **Standard Deviations**: (Number) The number of standard deviations for setting the width of the upper and lower bands.
+   - **Moving Average Type**: (String) The type of moving average to be used (e.g., "simple", "exponential").
+   - **Channel Fill**: (Boolean) Whether or not to fill the area between the bands for visualization.
+
+   **Outputs**:
+   - **Bollinger Bands Top**: (Number) The upper band value, calculated as the moving average plus the specified standard deviations.
+   - **Bollinger Bands Median**: (Number) The value of the moving average.
+   - **Bollinger Bands Bottom**: (Number) The lower band value, calculated as the moving average minus the specified standard deviations.
+
+2. **Function Name**: `calculateBoll %b`
+
+   **Functionality**:
+   - This function calculates the **%b** value, which indicates where the current price sits relative to the upper and lower Bollinger Bands. This helps in identifying overbought and oversold conditions.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods over which the moving average is calculated.
+   - **Standard Deviations**: (Number) The number of standard deviations for setting the width of the upper and lower bands.
+   - **Field**: (String) The price field to be used for the calculation (e.g., "Close").
+
+   **Outputs**:
+   - **%b**: (Number) The percentage distance of the price from the lower to the upper band.
+
+3. **Function Name**: `calculateBoll BW`
+
+   **Functionality**:
+   - The **Bandwidth** measures the relative width of the Bollinger Bands and can be used to identify periods of low or high volatility. It is calculated as the difference between the upper and lower bands, divided by the middle band.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods over which the moving average is calculated.
+   - **Standard Deviations**: (Number) The number of standard deviations for setting the width of the upper and lower bands.
+   - **Field**: (String) The price field to be used for the calculation (e.g., "Close").
+
+   **Outputs**:
+   - **Bandwidth**: (Number) The relative width of the Bollinger Bands.
+
+### **Libraries Required**
+
+The **Bollinger Bands** study relies on the following libraries:
+- **chartiq.js**: The core library for rendering charts and studies.
+- **standard/studies.js**: Provides the necessary functions for calculating technical studies, including Bollinger Bands.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Modifying the core library files directly is not recommended. If changes are necessary, create a separate file to extend or override the functionality, ensuring that your setup remains compatible with future updates.
+- **Feature Dependency**: The Bollinger Bands study requires the "studies" feature to be enabled, as it uses core calculation and visualization methods from the studies library.
+
+### **Code Example**
+
+The following is a code snippet for implementing Bollinger Bands on a chart:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_bollinger_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("bollinger feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateBollinger = function (stx, sd) {
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			field,
+			0,
+			"_MA",
+			stx,
+			sd
+		);
+
+		sd.std = new CIQ.Studies.StudyDescriptor(sd.name, "STD Dev", sd.panel);
+		sd.std.chart = sd.chart;
+		sd.std.startFrom = sd.startFrom;
+		sd.std.days = sd.days;
+		sd.std.inputs = {
+			Field: field,
+			"Standard Deviations": 1,
+			Type: sd.inputs["Moving Average Type"]
+		};
+		sd.std.outputs = { "_STD Dev": null };
+		CIQ.Studies.calculateStandardDeviation(stx, sd.std);
+
+		CIQ.Studies.calculateGenericEnvelope(
+			stx,
+			sd,
+			sd.inputs["Standard Deviations"],
+			"_MA " + sd.name,
+			"_STD Dev " + sd.name
+		);
+		if (sd.type == "Boll %b") sd.zoneOutput = "%b";
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Bollinger Bands": {
+			name: "Bollinger Bands",
+			overlay: true,
+			calculateFN: CIQ.Studies.calculateBollinger,
+			seriesFN: CIQ.Studies.displayChannel,
+			inputs: {
+				Period: 20,
+				Field: "field",
+				"Standard Deviations": 2,
+				"Moving Average Type": "ma",
+				"Channel Fill": true
+			},
+			outputs: {
+				"Bollinger Bands Top": "auto",
+				"Bollinger Bands Median": "auto",
+				"Bollinger Bands Bottom": "auto"
+			},
+			attributes: {
+				"Standard Deviations": { min: 0.1, step: 0.1 }
+			}
+		},
+		"Boll %b": {
+			name: "Bollinger %b",
+			calculateFN: CIQ.Studies.calculateBollinger,
+			inputs: {
+				Period: 20,
+				Field: "field",
+				"Standard Deviations": 2,
+				"Moving Average Type": "ma"
+			},
+			outputs: { "%b": "auto" },
+			parameters: {
+				init: {
+					studyOverZonesEnabled: true,
+					studyOverBoughtValue: 100,
+					studyOverBoughtColor: "auto",
+					studyOverSoldValue: 0,
+					studyOverSoldColor: "auto"
+				}
+			},
+			attributes: {
+				"Standard Deviations": { min: 0.1, step: 0.1 }
+			}
+		},
+		"Boll BW": {
+			name: "Bollinger Bandwidth",
+			calculateFN: CIQ.Studies.calculateBollinger,
+			inputs: {
+				Period: 20,
+				Field: "field",
+				"Standard Deviations": 2,
+				"Moving Average Type": "ma"
+			},
+			outputs: { Bandwidth: "auto" },
+			attributes: {
+				"Standard Deviations": { min: 0.1, step: 0.1 }
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_bollinger_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This detailed description explains the **Bollinger Bands** study, including its purpose, inputs, outputs, and an example of its code implementation. This format can be used to teach an LLM how to generate similar studies from text descriptions.

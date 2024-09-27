@@ -1,0 +1,326 @@
+$hoverlegend: "cq-study-legend.hovershow";
+
+cq-comparison {
+	:host(&),
+	& {
+		background-color: unset !important;
+	}
+	&[cq-marker] {
+		:host(&),
+		& {
+			padding: 5px 10px 5px 0;
+			margin: 5px 0 0 10px;
+			display: table;
+			height: 15px;
+			z-index: 2;
+		}
+	}
+	&[chart-legend] {
+		:host(&),
+		& {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+
+			cq-loader {
+				margin: 0;
+				height: 15px;
+				width: 15px;
+				top: 6px;
+				&.stx-show {
+					display: inline-block;
+				}
+			}
+			cq-swatch {
+				width: 12px;
+				height: 12px;
+				position: relative;
+				float: left;
+				vertical-align: top;
+				margin: 8px 4px 6px 8px;
+				display: flex;
+			}
+			.price {
+				color: #8d949a;
+				font-weight: 500;
+				padding-right: 10px;
+
+				+ .price {
+					margin-left: 5px;
+				}
+			}
+			.cq-down {
+				color: #ff002a;
+			}
+			.cq-up {
+				color: #85c730;
+			}
+			.ciq-screen-reader {
+				opacity: 0;
+				overflow: hidden;
+			}
+			/*.close { // moved to nextgen for now
+				opacity: 0.5;
+				transition: opacity 0.2s;
+			}*/
+			.hidden {
+				&.close,
+				&.ciq-switch {
+					display: none;
+				}
+			}
+			.item {
+				margin: 0 8px;
+				padding: 0 10px 0 15px;
+				position: relative;
+				cursor: pointer;
+				text-overflow: clip;
+				white-space: nowrap;
+				clear: both;
+				line-height: 28px;
+				height: 28px;
+				min-width: 175px;
+				outline: none; /* turns off focus outline */
+				border-radius: 1px;
+				display: flex;
+				transition:
+					opacity 0.2s 0.5s,
+					background-color 0.25s ease-in-out;
+
+				[label],
+				[description] {
+					flex: 1;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					font-weight: normal;
+					margin-left: 5px;
+					margin-right: 5px;
+				}
+				.icon {
+					margin: 1px 0 1px -4px;
+					vertical-align: middle;
+					cursor: pointer;
+					float: right;
+				}
+			}
+			.ciq-active {
+				& .ciq-switch {
+					background-color: #398dff;
+				}
+				&:hover .ciq-switch {
+					background-color: #2a51d0;
+				}
+				& .ciq-switch:after {
+					left: 12px;
+					box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
+				}
+			}
+		}
+		:host(#{$hoverlegend}) &,
+		#{$hoverlegend} & {
+			display: none;
+		}
+		:host(#{$hoverlegend}.ciq-active) &,
+		:host(#{$hoverlegend}:not([last-interaction="touch"]):hover) &,
+		:host(#{$hoverlegend}.sharing) &,
+		#{$hoverlegend}.ciq-active &,
+		#{$hovering} #{$hoverlegend} &,
+		.sharing #{$hoverlegend} & {
+			display: block;
+		}
+		:host(&.sharing) .item:not(.ciq-active),
+		:host(&.sharing) [current-price],
+		:host(&.sharing) [crosshair-price],
+		:host(&.sharing) .ciq-switch,
+		:host(&.sharing) .icon,
+		.sharing & .item:not(.ciq-active),
+		.sharing & [current-price],
+		.sharing & [crosshair-price],
+		.sharing & .ciq-switch,
+		.sharing & .icon {
+			display: none;
+		}
+		:host(&:not([last-interaction="touch"])) .item:hover,
+		#{$hovering} & .item:hover {
+			background-color: #fafafa;
+			border-radius: 1px;
+			box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+		}
+		:host(&:not([last-interaction="touch"]):hover),
+		:host(&.ciq-active),
+		#{$hovering} &:hover,
+		&.ciq-active {
+			height: auto;
+		}
+		:host(&:not([last-interaction="touch"])) .icon:hover,
+		#{$hovering} & .icon:hover {
+			opacity: 1;
+		}
+		:host(&:not([last-interaction="touch"])) .item:hover,
+		:host(&) .item:active,
+		:host(&) .item[cq-focused],
+		#{$hovering} & .item:hover,
+		& .item:active,
+		& .item[cq-focused] {
+			background-color: #efefef;
+			color: #000;
+		}
+		:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+		:host(&.#{$DARK}) .item:active,
+		:host(&.#{$DARK}) .item[cq-focused],
+		#{$hovering} .#{$DARK} & .item:hover,
+		.#{$DARK} & .item:active,
+		.#{$DARK} & .item[cq-focused] {
+			background-color: var(--DARK-menu-highlight-bg);
+			color: var(--DARK-text);
+		}
+		:host(&.#{$DARK}) .item,
+		.#{$DARK} & .item {
+			color: #a2a8ad;
+		}
+		:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+		#{$hovering} .#{$DARK} & .item:hover {
+			background: #21323f;
+		}
+	}
+}
+
+/* comparison results menu */
+.comparison {
+	:host(&),
+	& {
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		color: #666666;
+		transition:
+			color 0.2s 0s,
+			opacity 0.2s 0s;
+		z-index: 3;
+		min-height: 1px;
+		/* hack so that jquery doesn't think it's 0px */
+		min-width: 1px;
+		line-height: normal;
+		margin: 0;
+		padding: 0;
+		float: none;
+		text-align: left;
+
+		&:after {
+			content: none;
+		}
+		.icon.plus {
+			width: 13px;
+			height: 12px;
+			background-image: url(img/stx-sprite-ui.svg);
+			background-position: -531px -32px;
+			margin: 0;
+			opacity: 1;
+		}
+		[add-label] {
+			padding-left: 10px;
+			display: inline-block;
+
+			> * {
+				display: inline-block;
+				vertical-align: top;
+			}
+		}
+		[add-comparison] {
+			display: block;
+			position: absolute;
+			top: -15px;
+			min-width: 210px;
+			height: 27px;
+			opacity: 0;
+			border-radius: 1px;
+			transition: opacity 0.5s;
+			white-space: nowrap;
+
+			cq-swatch {
+				margin-top: 5px;
+				margin-left: 5px;
+				width: 15px;
+				height: 15px;
+				position: relative;
+			}
+			.stx-btn {
+				padding: 0 10px;
+				transition: color 0.2s 0.2s !important;
+				height: 27px !important;
+				line-height: 27px !important;
+				border: none !important;
+				color: #666666;
+				text-transform: uppercase;
+			}
+			> * {
+				display: none;
+				vertical-align: top;
+			}
+		}
+	}
+	:host(&.break-sm),
+	.break-sm & {
+		display: none;
+	}
+	&.stxMenuActive {
+		:host(&),
+		& {
+			[add-label] {
+				height: 0px;
+				display: none;
+			}
+			[add-comparison] {
+				background: #fafafa;
+				opacity: 1;
+				box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+
+				> * {
+					display: inline-block;
+				}
+			}
+		}
+		:host(&.#{$DARK}),
+		.#{$DARK} & {
+			[add-comparison] {
+				background: #253746;
+			}
+		}
+	}
+	:host(&:not([ciq-last-interaction="touch"]):hover) [add-label],
+	:host(&:active) [add-label],
+	#{$hovering} &:hover [add-label],
+	&:active [add-label] {
+		/* Darker text on hover */
+		color: #000;
+	}
+	:host(&:not([ciq-last-interaction="touch"])) [add-comparison] .stx-btn:hover,
+	:host(&) [add-comparison] .stx-btn:active,
+	#{$hovering} & [add-comparison] .stx-btn:hover,
+	& [add-comparison] .stx-btn:active {
+		color: #000;
+	}
+	:host(&.#{$DARK}) [add-label],
+	:host(&.#{$DARK}) [add-comparison] .stx-btn,
+	.#{$DARK} & [add-label],
+	.#{$DARK} & [add-comparison] .stx-btn {
+		color: #a4aaae;
+	}
+	:host(&.#{$DARK}:not([ciq-last-interaction="touch"]):hover) [add-label],
+	:host(&.#{$DARK}:active) [add-label],
+	#{$hovering} .#{$DARK} &:hover [add-label],
+	.#{$DARK} &:active [add-label] {
+		/* Brighter text on hover */
+		color: #fff;
+	}
+	:host(&.#{$DARK}:not([ciq-last-interaction="touch"]))
+		[add-comparison]
+		.stx-btn:hover,
+	:host(&.#{$DARK}) [add-comparison] .stx-btn:active,
+	#{$hovering} .#{$DARK} & [add-comparison] .stx-btn:hover,
+	.#{$DARK} & [add-comparison] .stx-btn:active {
+		color: #fff;
+	}
+}

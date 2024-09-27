@@ -1,0 +1,6 @@
+# node_modules
+# chartiq
+# .DS_Store
+# *.log
+
+# chartiq/js/advanced/studies/*.js

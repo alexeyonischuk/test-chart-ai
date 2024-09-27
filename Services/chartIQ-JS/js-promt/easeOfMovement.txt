@@ -1,0 +1,98 @@
+### **Ease of Movement Study Overview**
+
+The **Ease of Movement (EOM)** indicator is a volume-based oscillator used in technical analysis to assess the relationship between price changes and trading volume. It reflects how easily prices move in a specific direction, indicating the strength of a price move relative to the volume involved.
+
+### **Study Purpose and Calculation**
+
+The **Ease of Movement** indicator evaluates the efficiency of price movements by comparing the rate of price change with volume. A high EOM value suggests that price is advancing easily with minimal volume, indicating strength, while a low or negative value may indicate weakness or difficulty in price movement.
+
+#### Key Elements:
+- **Ease of Movement**: Measures how easily prices move relative to volume.
+- **Moving Average**: The EOM is typically smoothed using a moving average to reduce noise and provide a clearer trend.
+- **Price Field**: Typically, the high and low prices are used in calculating the average price for EOM.
+
+### **Inputs**:
+- **Period**: (Number) Defines the number of periods used to calculate the moving average for smoothing the Ease of Movement indicator.
+- **Moving Average Type**: (String) Specifies the type of moving average used (e.g., simple moving average).
+
+### **Outputs**:
+- **Result**: The calculated Ease of Movement value for each period, smoothed by the moving average.
+
+### **Study Calculation Process**:
+1. **Price Range Calculation**: The midpoint of the high and low prices is calculated for both the current and previous period. The difference between these two values gives the price movement (denoted as `dm`).
+2. **Volume Adjustment**: The price movement is divided by the volume adjusted for a normalization factor (usually 100,000,000) and the range between the high and low prices (denoted as `br`).
+3. **Ease of Movement Formula**:
+   \[
+   \text{Ease of Movement} = \frac{\text{Price Movement}}{\text{Volume Normalization Factor}}
+   \]
+4. **Smoothing**: The result is smoothed using the selected moving average type and period to create the final Ease of Movement values.
+
+### **Study Libraries Required**:
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides essential functionalities for study calculations.
+
+### **Warnings and Best Practices**:
+- **Activation**: Ensure the "studies" feature is activated before using the Ease of Movement indicator.
+- **Note**: Avoid modifying the core library files directly. Create separate files for any necessary customizations.
+
+### **Code Example**:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_easeOfMovement_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"easeOfMovement feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateEaseOfMovement = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days) {
+			sd.error = true;
+			return;
+		}
+		for (var i = Math.max(1, sd.startFrom); i < quotes.length; i++) {
+			var avgCurrent = (quotes[i].High + quotes[i].Low) / 2;
+			var avgPrior = (quotes[i - 1].High + quotes[i - 1].Low) / 2;
+			var dm = avgCurrent - avgPrior;
+			var br = quotes[i].Volume / 100000000 / (quotes[i].High - quotes[i].Low);
+			var result = dm / br;
+			if (!isFinite(result)) quotes[i]["_EOM1 " + sd.name] = NaN;
+			//With NaN, the study plotter will plot from the previous point
+			//directly to the next point after the current tick. Infinity was making the
+			//study not plot in the panel at all while the data point was in dataSegement.
+			else quotes[i]["_EOM1 " + sd.name] = result;
+		}
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			"_EOM1 " + sd.name,
+			0,
+			"Result",
+			stx,
+			sd
+		);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		EOM: {
+			name: "Ease of Movement",
+			calculateFN: CIQ.Studies.calculateEaseOfMovement,
+			inputs: { Period: 14, "Moving Average Type": "ma" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_easeOfMovement_(typeof window !== "undefined" ? window : global);
+
+
+This description outlines the **Ease of Movement Study**, providing an overview of its inputs, outputs, and calculation steps with a placeholder for the implementation code.

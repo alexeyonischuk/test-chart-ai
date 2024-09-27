@@ -1,0 +1,75 @@
+.ciq-chart-area {
+	padding: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.ciq-night cq-dialog#simulation-warning {
+	background: #151f28;
+	color: white;
+}
+
+cq-dialog#simulation-warning {
+	font-size: 18px;
+	text-align: center;
+	margin: 0;
+	left: 50%;
+	top: 33%;
+	transform: translate(-50%, -50%);
+}
+
+cq-dialog#simulation-warning strong {
+	font-size: 20px;
+}
+
+cq-dialog#simulation-warning .ciq-btn {
+	height: auto;
+	margin-top: 1.5em;
+	padding: 15px 50px;
+	font-size: 20px;
+	line-height: 1;
+}
+
+.break-sm cq-comparison[cq-show],
+.break-sm .ciq-comparison[cq-show],
+cq-comparison[cq-show],
+.ciq-comparison[cq-show] {
+	display: block;
+}
+
+.break-sm cq-study-legend[cq-hovershow] {
+	display: block;
+}
+
+:host(cq-study-legend[chart-legend]).break-sm,
+.break-sm :host(cq-study-legend[chart-legend]),
+cq-study-legend[chart-legend].break-sm,
+.break-sm cq-study-legend[chart-legend] {
+	display: block;
+}
+
+.break-sm cq-study-legend cq-label.click-to-edit {
+	width: auto;
+}
+
+.break-sm .stx-panel-control .stx-panel-legend {
+	width: 256px;
+}
+
+.break-sm .stx-panel-control .stx-btn-panel.stx-show {
+	margin-left: 0 !important;
+}
+
+.ciq-edit,
+.rightclick_study .overlayEdit {
+	display: none !important; /* override inline style */
+}
+
+.rightclick_drawing .overlayTrashCan,
+.rightclick_study .overlayTrashCan {
+	margin-left: 18px;
+}
+
+div.clear {
+	clear: both;
+}

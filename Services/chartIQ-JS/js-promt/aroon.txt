@@ -1,0 +1,166 @@
+Here’s a detailed text-based description of the **Aroon Study**, which can be used to teach an LLM how to generate similar studies:
+
+---
+
+### **Aroon Study Overview**
+
+The Aroon indicator is a technical analysis tool used to identify the strength and direction of a trend. It helps traders detect the beginning of a new trend, determine the likelihood of continuation, and assess whether a current trend is weakening. The Aroon study consists of two main components: the **Aroon Up** and **Aroon Down**, which track how long it has been since the highest and lowest prices were observed during a given period. 
+
+Additionally, the **Aroon Oscillator** combines these two components to further assess trend strength and momentum. This oscillator represents the difference between the Aroon Up and Aroon Down values and provides a simplified indicator of overall market conditions.
+
+### **Purpose**
+
+The Aroon study is designed to help traders:
+1. **Identify New Trends**: By analyzing how many days have passed since a high or low occurred, traders can determine whether a trend is forming.
+2. **Assess Trend Strength**: The values of Aroon Up and Aroon Down, ranging from 0 to 100, provide insight into the strength of upward or downward trends.
+3. **Spot Reversals**: The Aroon Oscillator helps identify when a trend is losing momentum and may be reversing.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateAroon`
+
+   **Functionality**:
+   - This function calculates the Aroon Up and Aroon Down values for each data point in the chart based on the highest and lowest prices within a given look-back period (specified by `sd.days`).
+   - It calculates how many periods have passed since the last high and low prices, updating the Aroon Up and Down values accordingly.
+   - The function also calculates the **Aroon Oscillator**, which represents the difference between the Aroon Up and Aroon Down values. This helps traders see whether the market is more likely to trend upward or downward.
+   
+   **Inputs**:
+   - **Period (days)**: The number of periods over which the Aroon calculation is performed. Typically, this is set to 14 days.
+   
+   **Outputs**:
+   - **Aroon Up**: (Number) Represents how recently the highest price was observed. A value close to 100 suggests a strong upward trend.
+   - **Aroon Down**: (Number) Represents how recently the lowest price was observed. A value close to 100 suggests a strong downward trend.
+   - **Aroon Oscillator**: (Number) The difference between the Aroon Up and Aroon Down values, which indicates the overall strength of the trend. Positive values suggest an upward trend, while negative values suggest a downward trend.
+
+2. **Function Name**: `studyLibrary`
+
+   **Functionality**:
+   - This function defines how the Aroon and Aroon Oscillator studies should be displayed on the chart. It specifies the color coding for the Aroon Up and Aroon Down lines as well as the range of values for the study (0 to 100).
+   - The Aroon Oscillator is calculated and displayed as a separate indicator, combining both the Aroon Up and Down values into a single line.
+
+### **Libraries Required**
+
+The Aroon study requires the following libraries:
+- **chartiq.js**: The main library for charting functionality.
+- **standard/studies.js**: Provides the necessary methods and functionalities for calculating technical studies like Aroon.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Direct modifications to the core library file should be avoided. If modifications are necessary, create a separate file and load it after the library. Modifying the library file can result in issues during future upgrades or when seeking technical support.
+- **Dependency**: Ensure the "studies" feature is activated before attempting to use the Aroon study, as it relies on the studies framework.
+
+### **Code Example**
+
+To calculate and display the Aroon study on the chart, the following code snippet would be implemented. This snippet demonstrates the logic for calculating the Aroon Up, Aroon Down, and Aroon Oscillator values:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_aroon_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("aroon feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateAroon = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+		var daysSinceHigh = 0,
+			daysSinceLow = 0;
+		var xDayHigh = null,
+			xDayLow = null;
+		if (sd.startFrom > 0) {
+			var state = quotes[sd.startFrom - 1]["_state " + sd.name];
+			if (state) {
+				daysSinceHigh = state[0];
+				daysSinceLow = state[1];
+				xDayHigh = state[2];
+				xDayLow = state[3];
+			}
+		}
+		var j;
+		for (var i = sd.startFrom; i < quotes.length; i++) {
+			var quote = quotes[i];
+			if (quote.futureTick) break;
+			if (xDayHigh === null) xDayHigh = quote.High;
+			if (xDayLow === null) xDayLow = quote.Low;
+			xDayHigh = Math.max(xDayHigh, quote.High);
+			if (xDayHigh == quote.High) {
+				daysSinceHigh = 0;
+			} else {
+				daysSinceHigh++;
+				if (daysSinceHigh > sd.days) {
+					xDayHigh = quote.High;
+					daysSinceHigh = 0;
+					for (j = 1; j <= sd.days; j++) {
+						xDayHigh = Math.max(xDayHigh, quotes[i - j].High);
+						if (xDayHigh == quotes[i - j].High) {
+							daysSinceHigh = j;
+						}
+					}
+				}
+			}
+			xDayLow = Math.min(xDayLow, quote.Low);
+			if (xDayLow == quote.Low) {
+				daysSinceLow = 0;
+			} else {
+				daysSinceLow++;
+				if (daysSinceLow > sd.days) {
+					xDayLow = quote.Low;
+					daysSinceLow = 0;
+					for (j = 1; j <= sd.days; j++) {
+						xDayLow = Math.min(xDayLow, quotes[i - j].Low);
+						if (xDayLow == quotes[i - j].Low) {
+							daysSinceLow = j;
+						}
+					}
+				}
+			}
+			var nHi = !isNaN(quote.High),
+				nLo = !isNaN(quote.Low);
+			var up = 100 * (1 - daysSinceHigh / sd.days);
+			if (nHi) quote["Aroon Up " + sd.name] = up;
+			var down = 100 * (1 - daysSinceLow / sd.days);
+			if (nLo) quote["Aroon Down " + sd.name] = down;
+			if (nHi && nLo)
+				quote["Aroon Oscillator " + sd.name] =
+					quote["Aroon Up " + sd.name] - quote["Aroon Down " + sd.name];
+			quote["_state " + sd.name] = [
+				daysSinceHigh,
+				daysSinceLow,
+				xDayHigh,
+				xDayLow
+			];
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Aroon: {
+			name: "Aroon",
+			range: "0 to 100",
+			calculateFN: CIQ.Studies.calculateAroon,
+			outputs: { "Aroon Up": "#00DD00", "Aroon Down": "#FF0000" }
+		},
+		"Aroon Osc": {
+			name: "Aroon Oscillator",
+			calculateFN: CIQ.Studies.calculateAroon,
+			outputs: { "Aroon Oscillator": "auto" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_aroon_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This description explains the logic behind the Aroon study and outlines the key functions, inputs, and outputs, providing all necessary information to generate and understand the implementation of this technical analysis tool.

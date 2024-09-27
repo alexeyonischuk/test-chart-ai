@@ -1,0 +1,166 @@
+Here is a detailed text-based description of the **Awesome Oscillator Study**, which can be used to train an LLM to generate similar studies:
+
+---
+
+### **Awesome Oscillator Study Overview**
+
+The **Awesome Oscillator (AO)** is a momentum indicator developed to measure the market’s driving force and direction. It compares a short-term moving average with a longer-term one, providing insight into price trends, potential reversals, and changes in market momentum. AO helps traders assess when bullish or bearish conditions are gaining or losing strength, making it a popular tool for determining entry or exit points in trades.
+
+### **Purpose**
+
+The Awesome Oscillator is designed to:
+1. **Identify Market Momentum**: It measures the difference between a short-term and long-term moving average, helping identify bullish or bearish momentum shifts.
+2. **Spot Trend Reversals**: The histogram visualization makes it easy to spot when market momentum is turning.
+3. **Visualize Market Trends**: AO helps traders by providing a simple visual display of momentum through color-coded bars that indicate momentum changes.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateAwesomeOscillator`
+
+   **Functionality**:
+   - This function calculates the **Awesome Oscillator** by subtracting a 34-period simple moving average of the median price (high+low)/2 from a 5-period simple moving average of the same price.
+   - The result is plotted as a histogram, with bars colored to indicate whether the oscillator is increasing or decreasing.
+   
+   **Inputs**:
+   - No specific inputs are needed as AO is based on fixed periods of 5 and 34.
+
+   **Outputs**:
+   - **AO Histogram**: (Number) The difference between the 5-period and 34-period moving averages, visualized as bars on the chart.
+
+2. **Function Name**: `displayAwesomeOscillator`
+
+   **Functionality**:
+   - This function visualizes the AO as a histogram on the chart. Green bars indicate increasing momentum, while red bars indicate decreasing momentum.
+   - It adjusts the bar width based on the chart’s candle width and ensures the bars are properly aligned with price data.
+
+   **Outputs**:
+   - **Increasing Bar**: (Color) Green bars indicate that the oscillator is increasing, signaling stronger momentum.
+   - **Decreasing Bar**: (Color) Red bars indicate that the oscillator is decreasing, signaling weakening momentum.
+
+### **Libraries Required**
+
+The Awesome Oscillator study requires the following libraries:
+- **chartiq.js**: The main charting library that handles graphical rendering.
+- **standard/studies.js**: Provides the calculation functions and display methods for various technical indicators.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Avoid modifying the core library files directly. If customization is required, create a separate file and load it after the original library has been loaded. This ensures compatibility with future updates and technical support.
+- **Dependency**: The "studies" feature must be activated before using this functionality, as it relies on the studies calculation and rendering framework.
+
+### **Code Example**
+
+Below is a code snippet demonstrating how to calculate and display the Awesome Oscillator on a chart:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_awesomeOscillator_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"awesomeOscillator feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateAwesomeOscillator = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < 33) {
+			sd.error = true;
+			return;
+		}
+
+		CIQ.Studies.MA("simple", 5, "hl/2", 0, "_MA5", stx, sd);
+		CIQ.Studies.MA("simple", 34, "hl/2", 0, "_MA34", stx, sd);
+
+		for (var i = Math.max(sd.startFrom, 33); i < quotes.length; i++) {
+			if (!quotes[i]) continue;
+			quotes[i][sd.name + "_hist"] =
+				quotes[i]["_MA5 " + sd.name] - quotes[i]["_MA34 " + sd.name];
+		}
+		sd.outputMap = {};
+		sd.outputMap[sd.name + "_hist"] = "";
+	};
+
+	CIQ.Studies.displayAwesomeOscillator = function (stx, sd, quotes) {
+		var panel = stx.panels[sd.panel],
+			context = sd.getContext(stx);
+		var yAxis = sd.getYAxis(stx);
+
+		var y = stx.pixelFromPrice(0, panel, yAxis);
+
+		var myWidth = stx.layout.candleWidth - 2;
+		if (myWidth < 2) myWidth = 1;
+
+		var upColor = CIQ.Studies.determineColor(sd.outputs["Increasing Bar"]);
+		var downColor = CIQ.Studies.determineColor(sd.outputs["Decreasing Bar"]);
+		stx.canvasColor("stx_histogram");
+		if (!sd.underlay) context.globalAlpha = 1;
+		context.fillStyle = "#CCCCCC";
+		stx.startClip(sd.panel);
+		if (!sd.highlight && stx.highlightedDraggable) context.globalAlpha *= 0.3;
+		for (var i = 0; i < quotes.length; i++) {
+			var skippedBars = 0;
+			var quote = quotes[i],
+				quote_1 = quotes[i - 1];
+			if (!quote_1)
+				quote_1 = stx.getPreviousBar(stx.chart, sd.name + "_hist", i);
+			if (!quote) continue;
+			if (stx.cleanupGaps === "stretch") {
+				while (quotes[i + 1]) {
+					var nextQuote = quotes[i + 1][sd.name + "_hist"];
+					if (nextQuote || nextQuote === 0 || quotes[i + 1].futureTick) break;
+					skippedBars++;
+					i++;
+				}
+			}
+			if (!quote_1 || quote_1[sd.name + "_hist"] === undefined)
+				quote_1 = stx.getPreviousBar(
+					stx.chart,
+					sd.name + "_hist",
+					i - skippedBars
+				);
+			if (!quote_1);
+			else if (quote_1[sd.name + "_hist"] < quote[sd.name + "_hist"])
+				context.fillStyle = upColor;
+			else if (quote_1[sd.name + "_hist"] > quote[sd.name + "_hist"])
+				context.fillStyle = downColor;
+			if (quote.candleWidth)
+				myWidth = Math.floor(Math.max(1, quote.candleWidth - 2));
+			context.fillRect(
+				Math.floor(
+					stx.pixelFromBar(i - skippedBars, panel.chart) - myWidth / 2
+				),
+				Math.floor(y),
+				Math.floor(myWidth + skippedBars * stx.layout.candleWidth),
+				Math.floor(
+					stx.pixelFromPrice(quote[sd.name + "_hist"], panel, yAxis) - y
+				)
+			);
+		}
+		stx.endClip();
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Awesome: {
+			name: "Awesome Oscillator",
+			seriesFN: CIQ.Studies.displayAwesomeOscillator,
+			calculateFN: CIQ.Studies.calculateAwesomeOscillator,
+			inputs: {},
+			outputs: { "Increasing Bar": "#00DD00", "Decreasing Bar": "#FF0000" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_awesomeOscillator_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This description provides the necessary information to understand the functionality of the Awesome Oscillator, including its core functions, inputs, outputs, and purpose. It serves as a basis for teaching an LLM to generate similar technical analysis studies.

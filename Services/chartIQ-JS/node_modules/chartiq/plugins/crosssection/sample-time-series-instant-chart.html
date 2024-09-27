@@ -1,0 +1,89 @@
+<!doctype html>
+<!--
+This is a fully functional example showing how to load a chart as a single web component based on a
+local template.
+
+Template is designed to be used with the cross section plugin. When time series charts are launched from a cross section chart, by default they will load with this template.
+-->
+<html lang="en-US">
+<head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<base href="../../" />
+<link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/page-defaults.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/stx-chart.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/chartiq.css" media="screen" />
+<title>Time Series Chart</title>
+</head>
+
+<body>
+<cq-instant-chart tmpl-src="plugins/crosssection/partials/sample-template-time-series-context.html" no-save symbol=""></cq-instant-chart>
+
+<script type="module" crossorigin="use-credentials">
+// This inline script acts as the entry point, without creating a separate external file.
+
+import "./js/standard.js";
+import "./js/addOns.js";
+import { CIQ } from "./js/components.js";
+import "./js/components-legacy.js";
+
+import getLicenseKey from "./key.js";
+getLicenseKey(CIQ);
+
+/* Template-specific imports */
+import getDefaultConfig from "./js/defaultConfiguration.js";
+
+import PerfectScrollbar from "./js/thirdparty/perfect-scrollbar.esm.js";
+import EmojiPopover from "./js/thirdparty/emoji-popover.es.js";
+
+import quotefeed from "./examples/feeds/quoteFeedSimulator.js";
+import "./examples/feeds/symbolLookupChartIQ.js";
+
+import "./examples/markets/marketDefinitionsSample.js";
+import "./examples/markets/marketSymbologySample.js";
+import "./examples/markets/timezones.js";
+
+import marker from "./examples/markers/markersSample.js";
+import "./examples/markers/videoSample.js";
+
+import "./examples/translations/translationSample.js";
+
+function chartReadyHandler(e) {
+	const { node, params, callbacks } = e.detail;
+	const { initialSymbol, restore } = params;
+	// Avoid object spread for MS Edge Legacy
+	const enabledAddOns = CIQ.clone(params);
+	delete enabledAddOns.initialSymbol;
+	delete enabledAddOns.restore;
+
+	// Create and customize default configuration
+	const config = getDefaultConfig({
+		markerFeed: marker.MarkersSample,
+		scrollStyle: PerfectScrollbar,
+		emojiPicker: EmojiPopover,
+		quoteFeed: quotefeed,
+		deprecatedSettings: true
+	});
+
+	// Set callbacks, initial symbol, storage flag, enabled addOns
+	CIQ.extend(config, {
+		callbacks,
+		initialSymbol,
+		restore,
+		enabledAddOns
+	});
+
+	// Create chart
+	node.stx = config.createChart(node);
+}
+
+// Handler will receive signal from instant-chart component before continuing
+document.body.addEventListener("signal-chart-ready", chartReadyHandler);
+document.querySelectorAll("[cq-event-flag]").forEach(function (el) {
+	chartReadyHandler(el.signalEvent);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+Here’s a detailed textual description of the **Accumulation/Distribution (A/D) Study** for use in training a language model to generate such studies based on text descriptions:
+
+---
+
+### **Accumulation/Distribution (A/D) Study Overview**
+
+The Accumulation/Distribution (A/D) study is a widely used technical indicator that evaluates the flow of money into and out of a security. It is particularly helpful for understanding whether a stock is being accumulated (bought) or distributed (sold) by investors, based on both price and volume. This indicator does not rely on closing price alone but also factors in the relationship between the close and the high/low prices over a period, providing a more comprehensive view of the market sentiment.
+
+### **Purpose**
+
+The primary goal of this study is to calculate the A/D values for each quote in a chart. This calculation helps traders gauge whether there is buying or selling pressure in the market. The A/D indicator adjusts for volume when required, making it more sensitive to price movements with high volume.
+
+### **Key Functions**
+
+1. **Function Name**: `calculateAccumulationDistribution`
+   
+   **Functionality**: 
+   - This function calculates the A/D values for each quote within the chart. The calculation starts from a specified `startFrom` index and iterates through the chart's price data.
+   - For each quote, the function compares the current close price with the previous close price.
+     - If the current close is higher than the previous close, a positive value is added (indicating buying pressure).
+     - If the current close is lower, a negative value is added (indicating selling pressure).
+   - Volume is optionally factored into the calculation if the "Use Volume" input is set to `true`. This means that price changes with higher volumes have a greater influence on the A/D value.
+   
+   **Inputs**:
+   - **Use Volume (Boolean)**: A flag that specifies whether volume should be considered in the A/D calculation.
+   
+   **Outputs**:
+   - **Result (Number)**: The accumulated A/D value for each quote in the chart. This is used to track the cumulative buying or selling pressure over time.
+
+### **Libraries Required**
+
+To perform the A/D study, the following libraries must be included:
+   - **chartiq.js**: This library provides the core charting functionality.
+   - **standard/studies.js**: This library contains the standard study methods, including the functions necessary to calculate technical indicators like the A/D study.
+
+### **Warnings and Best Practices**
+   - **Warning**: Do not directly modify the library files. Any modifications should be made in separate files, which are loaded after the main library. Direct changes can cause problems with future upgrades and may impact technical support.
+   - **Dependency**: Ensure that the studies feature is enabled before attempting to calculate the A/D values. The study will not work without activating the necessary features.
+
+### **Code Structure**
+
+The following code demonstrates how the Accumulation/Distribution study is implemented in JavaScript. It utilizes the `CIQ` library from ChartIQ and extends the standard studies to include A/D calculations.
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_accumulationDistribution_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"accumulationDistribution feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateAccumulationDistribution = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		for (var i = sd.startFrom; i < quotes.length; i++) {
+			if (!i) continue;
+			var quote = quotes[i];
+			if (quote.futureTick) break;
+			var quote1 = quotes[i - 1];
+			var todayAD = 0;
+			if (quote.Close > quote1.Close) {
+				todayAD = quote.Close - Math.min(quote.Low, quote1.Close);
+			} else if (quote.Close < quote1.Close) {
+				todayAD = quote.Close - Math.max(quote.High, quote1.Close);
+			}
+			if (sd.inputs["Use Volume"]) todayAD *= quote.Volume;
+
+			var total = quote1["Result " + sd.name];
+			if (!total) total = 0;
+			total += todayAD;
+			if (!isNaN(quote.Close)) quote["Result " + sd.name] = total;
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"W Acc Dist": {
+			name: "Accumulation/Distribution",
+			calculateFN: CIQ.Studies.calculateAccumulationDistribution,
+			inputs: { "Use Volume": false }
+		}
+	});
+}
+
+};
+__js_advanced_studies_accumulationDistribution_(typeof window !== "undefined" ? window : global);
+
+
+### **Explanation of Code**
+
+- The code first imports the necessary `chartiq.js` and `studies.js` libraries.
+- It defines the function `calculateAccumulationDistribution`, which computes the Accumulation/Distribution values for each data point in the chart.
+- The function processes the price and volume data and stores the accumulated A/D values in the chart object.
+- The logic also includes optional volume-based adjustments if the "Use Volume" option is set to `true`.
+- Finally, the A/D study is added to the `CIQ.Studies.studyLibrary`, allowing it to be used within the ChartIQ charting library.

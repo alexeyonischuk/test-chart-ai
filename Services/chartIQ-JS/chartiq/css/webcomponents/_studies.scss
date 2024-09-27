@@ -1,0 +1,41 @@
+cq-studies {
+	:host(&),
+	& {
+		.item {
+			transition:
+				max-height 250ms ease-out,
+				opacity 100ms 300ms ease-out;
+			max-height: 30px;
+			margin: 0 8px;
+			padding: 0 10px;
+			border-radius: 15px;
+			outline: none;
+			position: relative;
+
+			.ciq-screen-reader {
+				opacity: 0;
+				overflow: hidden;
+				width: auto;
+				height: auto;
+			}
+		}
+	}
+	:host(&:not([last-interaction="touch"])) .item:hover,
+	:host(&) .item:active,
+	:host(&) .item[cq-focused],
+	#{$hovering} & .item:hover,
+	& .item:active,
+	& .item[cq-focused] {
+		background-color: #efefef;
+		color: #000;
+	}
+	:host(&.#{$DARK}:not([last-interaction="touch"])) .item:hover,
+	:host(&.#{$DARK}) .item:active,
+	:host(&.#{$DARK}) .item[cq-focused],
+	#{$hovering} .#{$DARK} & .item:hover,
+	.#{$DARK} & .item:active,
+	.#{$DARK} & .item[cq-focused] {
+		background-color: var(--DARK-menu-highlight-bg);
+		color: var(--DARK-text);
+	}
+}

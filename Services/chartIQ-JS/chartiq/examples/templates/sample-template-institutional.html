@@ -1,0 +1,213 @@
+<!DOCTYPE html><!--
+This is a fully functional example showing how to load a chart for clients who have purchased the
+ChartIQ Core Charts package. This template is a simplified version of sample-template-advanced.html.
+
+Customize this sample template as needed to meet your use case and to fit the screen size of your
+supported devices.
+--><html lang="en-US"><head>
+<title>Institutional Chart - Powered by ChartIQ</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" href="css/normalize.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/page-defaults.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/stx-chart.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/chartiq.css" media="screen">
+<link rel="stylesheet" type="text/css" href="css/webcomponents.css" media="screen">
+
+</head>
+<body>
+
+<cq-context><cq-chart-instructions></cq-chart-instructions>
+
+<!--  Begin Navbar -->
+<div class="ciq-nav full-screen-hide" role="navigation">
+	<!-- enables the more button when in break-sm mode -->
+	<div class="sidenav-toggle ciq-toggles">
+		<cq-toggle class="ciq-sidenav" member="sidenav" toggles="sidenavOn,sidenavOff" toggle-classes="active," reader="More Options" tooltip="More" icon="morenav"></cq-toggle>
+	</div>
+
+	<cq-toggle class="ciq-lookup-icon" config="symbolsearch" reader="Symbol Search" tooltip="Symbol Search" icon="search" help-id="search_symbol_lookup"></cq-toggle>
+	<cq-toggle class="ciq-comparison-icon" config="symbolsearch" reader="Add Comparison" tooltip="Add Comparison" icon="compare" help-id="add_comparison" comparison="true"></cq-toggle>
+
+	<!-- any entry in this div will be shown in the side navigation bar in break-sm mode -->
+	<cq-side-nav cq-on="sidenavOn">
+		<div class="icon-toggles ciq-toggles">
+			<cq-toggle class="ciq-draw" member="drawing" reader="Draw" tooltip="Draw" icon="draw" help-id="drawing_tools_toggle"></cq-toggle>
+			<cq-toggle class="ciq-CH" config="crosshair" reader="Crosshair" tooltip="Crosshair (Alt + \)" icon="crosshair"></cq-toggle>
+			<cq-menu class="nav-dropdown toggle-options" reader="Crosshair Options" config="crosshair"></cq-menu>
+			<cq-toggle class="ciq-HU" feature="tooltip" config="info" reader="Info" tooltip="Info" icon="info"></cq-toggle>
+			<cq-menu feature="tooltip" class="nav-dropdown toggle-options" reader="Info Options" config="info"></cq-menu>
+			<cq-toggle class="ciq-DT" feature="tableview" member="tableView" reader="Table View" tooltip="Table View" icon="tableview"></cq-toggle>
+		</div>
+	</cq-side-nav>
+
+	<div class="ciq-menu-section">
+		<div class="ciq-dropdowns">
+			<cq-menu class="nav-dropdown ciq-display" reader="Display" config="display" binding="Layout.chartType" icon="" help-id="display_dropdown" tooltip=""></cq-menu>
+			<cq-menu class="nav-dropdown ciq-period" reader="Periodicity" config="period" text="" binding="Layout.periodicity"></cq-menu>
+			<cq-menu class="nav-dropdown ciq-views alignright-md alignright-sm" config="views" text="Views" icon="views" responsive="" tooltip="Views"></cq-menu>
+			<cq-menu class="nav-dropdown ciq-studies alignright" cq-focus="input" config="studies" text="Studies" icon="studies" responsive="" tooltip="Studies"></cq-menu>
+			<cq-menu class="nav-dropdown ciq-markers alignright" config="markers" text="Events" icon="events" responsive="" tooltip="Events"></cq-menu>
+			<cq-menu class="nav-dropdown ciq-preferences alignright" reader="Preferences" config="preferences" icon="preferences" tooltip="Preferences"></cq-menu>
+		</div>
+		<div class="ciq-toggles"></div>
+	</div>
+
+</div>
+<!-- End Navbar -->
+
+<div class="ciq-chart-area" role="main">
+	<div class="ciq-chart">
+
+		<cq-message-toaster default-display-time="10" default-transition="slide" default-position="top"></cq-message-toaster>
+
+		<cq-palette-dock>
+			<div class="palette-dock-container">
+				<cq-drawing-palette class="palette-drawing grid palette-hide" docked="true" orientation="vertical" min-height="300" cq-drawing-edit="none" cq-keystroke-claim=""></cq-drawing-palette>
+				<cq-drawing-settings class="palette-settings" docked="true" hide="true" orientation="horizontal" min-height="40" cq-drawing-edit="none"></cq-drawing-settings>
+			</div>
+		</cq-palette-dock>
+
+		<div class="chartContainer">
+
+			<!-- tooltip markup is required only if addon tooltip is used and customization is required -->
+			<table class="hu-tooltip">
+				<caption>Tooltip</caption>
+				<tbody>
+				<tr hu-tooltip-field="" class="hu-tooltip-sr-only"> <th>Field</th>                             <th>Value</th>                     </tr>
+				<tr hu-tooltip-field="DT">                          <td class="hu-tooltip-name">Date/Time</td> <td class="hu-tooltip-value"></td> </tr>
+				<tr hu-tooltip-field="Close">                       <td class="hu-tooltip-name"></td>          <td class="hu-tooltip-value"></td> </tr>
+				</tbody>
+			</table>
+
+			<cq-chart-title cq-marker="" cq-browser-tab="" cq-activate-symbol-search-on-click=""></cq-chart-title>
+
+			<!-- Full-screen icons -->
+			<cq-marker class="chart-control-group full-screen-show">
+				<cq-toggle class="ciq-lookup-icon" config="symbolsearch" reader="Symbol Search" tooltip="Symbol Search" icon="search" help-id="search_symbol_lookup"></cq-toggle>
+				<cq-toggle class="ciq-comparison-icon" config="symbolsearch" reader="Add Comparison" tooltip="Add Comparison" icon="compare" help-id="add_comparison" comparison="true"></cq-toggle>
+				<cq-toggle class="ciq-draw" member="drawing" reader="Draw" icon="draw" tooltip="Draw" help-id="drawing_tools_toggle"></cq-toggle>
+				<cq-toggle class="ciq-CH" config="crosshair" reader="Crosshair" icon="crosshair" tooltip="Crosshair (Alt + \)"></cq-toggle>
+				<cq-toggle class="ciq-DT" feature="tableview" member="tableView" reader="Table View" icon="tableview" tooltip="Table View"></cq-toggle>
+				<cq-menu class="nav-dropdown ciq-period full-screen" config="period" text="" binding="Layout.periodicity"></cq-menu>
+			</cq-marker>
+			
+			<cq-study-legend class="hovershow" marker-label="Signals" filter="signal" cq-marker=""></cq-study-legend>
+			<cq-study-legend class="hovershow" marker-label="Plots" clone-to-panel="" filter="panel" button-remove="true" series="true" cq-marker=""></cq-study-legend>
+ 
+ 			<cq-loader></cq-loader>
+		</div>
+	</div>
+</div>
+
+
+<!-- Markers/Events -->
+<cq-abstract-marker cq-type="helicopter"></cq-abstract-marker>
+
+<!-- Attribution component -->
+<cq-attribution></cq-attribution>
+
+<!-- Begin Footer -->
+<div role="complementary" class="ciq-footer full-screen-hide">
+	<cq-share-button class="ciq-share-button bottom" reader="Share Chart" icon="share" tooltip="Share"></cq-share-button>
+	<cq-toggle feature="shortcuts" class="ciq-shortcut-button bottom" stxtap="Layout.showShortcuts()" reader="Toggle Shortcut Legend" icon="shortcuts" tooltip="Shortcuts"></cq-toggle>
+	<cq-toggle feature="help" class="ciq-help-button bottom" stxtap="Layout.toggleHelp()" reader="Toggle Interactive Help" icon="help" tooltip="Interactive Help"></cq-toggle>
+	<cq-show-range config="range" role="group" aria-labelledby="label_showRange"></cq-show-range>
+</div>
+<!-- End Footer -->
+
+<cq-dialogs>
+	<cq-dialog>
+		<cq-drawing-context></cq-drawing-context>
+	</cq-dialog>
+
+	<cq-dialog>
+		<cq-study-context></cq-study-context>
+	</cq-dialog>
+</cq-dialogs>
+
+<cq-side-panel></cq-side-panel>
+ </cq-context>
+
+<script type="module" crossorigin="use-credentials">
+// This inline script acts as the entry point, without creating a separate external file.
+
+import "./js/standard.js";
+import "./js/addOns.js";
+import { CIQ } from "./js/components.js";
+
+import getLicenseKey from "./key.js";
+getLicenseKey(CIQ);
+
+/* Uncomment the following to access deprecated functions and namespaces. */
+//import "./js/deprecated.js";
+
+/* Uncomment the following lines if you are using these plug-ins. */
+//import "./plugins/analystviews/components.js";
+//import "./plugins/scriptiq/scriptiq.js";
+//import "./plugins/signaliq/signaliqDialog.js";
+//import "./plugins/signaliq/signaliq-marker.js";
+//import "./plugins/signaliq/signaliq-paintbar.js";
+//import "./plugins/technicalinsights/components.js";
+import "./plugins/timespanevent/timespanevent.js";
+//import "./plugins/visualearnings/visualearnings.js";
+
+/* Template-specific imports */
+import getDefaultConfig from "./js/defaultConfiguration.js";
+
+//import "./examples/help/helpContent.js";
+
+import PerfectScrollbar from "./js/thirdparty/perfect-scrollbar.esm.js";
+
+import quotefeed from "./examples/feeds/quoteFeedSimulator.js";
+import "./examples/feeds/symbolLookupChartIQ.js";
+
+import "./examples/markets/marketDefinitionsSample.js";
+import "./examples/markets/marketSymbologySample.js";
+import "./examples/markets/timezones.js";
+
+import marker from "./examples/markers/markersSample.js";
+import "./examples/markers/tradeAnalyticsSample.js";
+import "./examples/markers/videoSample.js";
+
+import "./examples/translations/translationSample.js";
+
+// Create and customize default configuration
+
+const config = getDefaultConfig({
+	markerFeed: marker.MarkersSample,
+	scrollStyle: PerfectScrollbar,
+	quoteFeed: quotefeed
+});
+
+// Create the chart...
+		let stxx = config.createChart();
+
+		const enableEvents = (obj) => {
+			stxx.removeEventListener("newChart", enableEvents);
+			const { advertised, topNode } = obj.stx.uiContext;
+			CIQ.UI.observeProperty("TimeSpanEvent", advertised, (obj) => {
+				const { TimeSpanEvent, Markers } = advertised;
+				if (!TimeSpanEvent || !Markers) return;
+				const eventsMenu = topNode.querySelector("cq-menu.ciq-markers");
+				TimeSpanEvent.showMarkers(
+					{ node: eventsMenu.querySelector("[stxtap*='Order']") },
+					"Order"
+				);
+				TimeSpanEvent.showMarkers(
+					{ node: eventsMenu.querySelector("[stxtap*='CEO']") },
+					"CEO"
+				);
+				Markers.showMarkers(
+					{ node: eventsMenu.querySelector("[stxtap*='trade']") },
+					"trade"
+				);
+			});
+		};
+		stxx.addEventListener("newChart", enableEvents);
+
+		//...then add whatever code you wish!</script>
+
+
+</body></html>

@@ -1,0 +1,130 @@
+Here is a detailed description of the **Center of Gravity (COG) Study**:
+
+---
+
+### **Center of Gravity (COG) Study Overview**
+
+The **Center of Gravity (COG)** is a technical analysis indicator designed to identify turning points in the price of an asset. Unlike many traditional oscillators, the COG has no inherent lag because it is based on the current price action rather than historical data smoothing. This allows traders to detect potential price reversals more promptly, making it a valuable tool in momentum trading strategies.
+
+### **Purpose**
+
+The COG indicator serves the following primary purposes:
+1. **Identify Overbought and Oversold Conditions**: By measuring the "center" of price movement, the COG oscillates around a mean level, signaling potential overbought or oversold conditions when deviating from this center.
+2. **Predict Reversals**: The COG’s movement can provide early warnings of price reversals by reacting sharply to changes in the price trend.
+3. **Track Momentum**: Traders can use the COG to gauge price momentum and determine whether a market is gaining or losing strength.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateCenterOfGravity`
+
+   **Functionality**:
+   - The **Center of Gravity** is calculated by evaluating the price changes over a given period, then computing the weighted mean of those prices. This "center" oscillates around the zero line, and the closer it approaches to an extreme, the stronger the likelihood of a market reversal.
+   - A smoothing moving average is also applied to reduce noise and make the indicator more reliable for decision-making.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods used for the COG calculation. Typically, 10 periods are used.
+   - **Field**: (String) The data field used for the calculation (e.g., Close, Open). By default, this is set to "Close".
+
+   **Outputs**:
+   - **Center of Gravity**: (Number) The computed COG value for each quote, representing the balance point of the price action.
+   - **Signal**: (Number) A simple moving average (SMA) applied to the COG to create a signal line for trade confirmation.
+
+2. **Parameters**:
+   - The COG oscillator oscillates around the zero line. When the indicator rises or falls too far from zero, it indicates potential overbought or oversold conditions.
+   - Traders can customize the input field and the period to suit their trading style.
+
+3. **Smoothing with Signal Line**:
+   - A 3-period SMA (Simple Moving Average) is applied to the COG to generate the **Signal** line. This helps confirm trading signals, reducing false entries by smoothing out price fluctuations.
+
+### **Calculation Process**
+
+1. **Field Selection**: The COG uses a selected price field, such as the closing price, for calculation. If no field is specified, it defaults to the "Close" price.
+  
+2. **Weighted Mean Calculation**: For each period, the weighted mean of the price action is computed:
+   \[
+   \text{COG} = \frac{- \sum_{j=1}^{n} (j \times \text{Price}[i-j])}{\sum_{j=1}^{n} \text{Price}[i-j]}
+   \]
+   Where `i` represents the current period and `n` is the number of periods selected (e.g., 10). This calculation places more weight on recent price changes.
+
+3. **Signal Line**: Once the COG is calculated, a 3-period SMA is applied to generate the **Signal Line**, smoothing out noise and providing better trade signals.
+
+### **Libraries Required**
+
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides the study functions necessary for the COG calculation and display.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Do not modify the library files directly. To extend functionality, create a separate file and load it after the core library.
+- **Activation**: The COG study requires the "studies" feature to be activated in the ChartIQ library.
+  
+### **Code Example**
+
+The following code demonstrates how the **Center of Gravity (COG)** study is implemented:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_centerOfGravity_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"centerOfGravity feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateCenterOfGravity = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days) {
+			sd.error = true;
+			return;
+		}
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+		for (var i = Math.max(sd.startFrom, sd.days - 1); i < quotes.length; i++) {
+			var num = 0,
+				den = 0;
+			for (var j = 0; j < sd.days; j++) {
+				var val = CIQ.Studies.getQuoteFieldValue(quotes[i - j], field);
+				num -= (j + 1) * val;
+				den += val;
+			}
+			if (den) quotes[i]["Center of Gravity " + sd.name] = num / den;
+		}
+		CIQ.Studies.MA(
+			"sma",
+			3,
+			"Center of Gravity " + sd.name,
+			0,
+			"Signal",
+			stx,
+			sd
+		);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		COG: {
+			name: "Center Of Gravity",
+			calculateFN: CIQ.Studies.calculateCenterOfGravity,
+			inputs: { Period: 10, Field: "field" },
+			outputs: {
+				"Center of Gravity": "auto",
+				Signal: "red"
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_centerOfGravity_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This explanation provides a detailed breakdown of how the **Center of Gravity (COG)** study is calculated, its inputs and outputs, and how it can be applied in technical analysis. The associated code snippet showcases the implementation and how the study is configured for ChartIQ's technical analysis framework.

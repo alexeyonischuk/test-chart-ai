@@ -1,0 +1,453 @@
+$DEFAULT-submenu-bg: #f3f3f3 !default;
+$DEFAULT-sub-menu-highlight-bg: #e6e6e6 !default;
+$DEFAULT-menu-highlight-bg: #efefef !default;
+$DEFAULT-text: #000 !default;
+$DEFAULT-text-strong: #000 !default;
+
+$DARK: ciq-night !default;
+$DARK-bg: #151f28 !default;
+$DARK-menu-highlight-bg: scale-color($DARK-bg, $lightness: 15%);
+$DARK-text: #fff !default;
+
+/* Hovering selectors */
+
+$INTERACTION-ATTR: ciq-last-interaction;
+$mouse: mouse;
+$touch: touch;
+$hovering: "html:not([#{$INTERACTION-ATTR}='#{$touch}'])";
+$touching: "html[#{$INTERACTION-ATTR}='#{$touch}']";
+
+/* main style overrides */
+cq-study-browser {
+	[ciq-sb-panel-all] cq-heading {
+		line-height: 22px;
+
+		.searchFilter input[type="search"] {
+			padding: 4px 2px;
+			width: 80%;
+			margin-left: 4px;
+		}
+
+		.icon {
+			position: relative;
+			left: 8px;
+			margin-left: -8px !important;
+			margin-top: 4px !important;
+			width: 27px;
+			height: 27px;
+			display: inline-block;
+			background-image: url(../../css/img/stx-sprite-ui.svg);
+			vertical-align: middle;
+		}
+	}
+
+	cq-heading[cq-filter] cq-lookup-icon {
+		margin-left: -18px;
+		margin-top: 4px;
+	}
+
+	cq-section-dynamic .ciq-icon {
+		/* Delete button placement for custom item */
+		/*float: right;*/ /* Not working properly for firefox */
+		margin: 1px -3px 0 0;
+	}
+
+	cq-item[cq-active-category] {
+		background: $DEFAULT-menu-highlight-bg;
+		color: $DEFAULT-text-strong;
+	}
+}
+
+/* end of main style overrides */
+
+cq-menu[config="studybrowser"] cq-study-legend,
+cq-menu.ciq-study-browser cq-study-legend {
+	margin: 0;
+}
+
+cq-menu.ciq-study-browser cq-menu-dropdown,
+cq-menu[config="studybrowser"] cq-dropdown .content {
+	width: 500px;
+	left: auto;
+	right: 0;
+	padding: 0;
+}
+
+.ciq-sb-container {
+	display: flex;
+
+	cq-item {
+		margin-left: 0;
+		padding-left: 10px;
+		border-radius: 15px;
+		transition: 500ms all;
+		opacity: 1;
+		margin-top: 0;
+		outline: none;
+
+		&.ciq-move-up {
+			margin-top: -22px;
+			opacity: 0.1;
+			transition: 500ms all;
+		}
+
+		&.ciq-move-down {
+			transform: translateY(22px);
+			opacity: 0.1;
+			transition: 500ms all;
+		}
+	}
+
+	[ciq-sb-panel-scriptiq] cq-clickable {
+		padding-left: 28px;
+		padding-right: 12px;
+	}
+}
+
+.ciq-sb-categories {
+	min-width: 180px;
+	padding: 2px 4px 12px 12px;
+	background-color: #f3f3f3;
+
+	cq-heading {
+		margin: 12px 0 0;
+		line-height: 28px;
+	}
+
+	cq-scroll {
+		overflow: hidden;
+	}
+
+	#{$hovering} cq-context:not(.#{$DARK}) & cq-item:hover,
+	cq-context:not(.#{$DARK}) & cq-item[cq-active-category] {
+		background-color: $DEFAULT-sub-menu-highlight-bg;
+	}
+
+	.ciq-active-studies,
+	.ciq-favorite-studies,
+	.ciq-popular-studies,
+	.ciq-study-library {
+		display: inline-block;
+		// border: solid 1px blue;
+		width: 20px;
+		height: 20px;
+		vertical-align: middle;
+		margin: -2px 4px 0 -4px;
+		background-image: url(img/stx-sprite-study-browser.svg);
+		background-position: -1px -1px;
+		background-size: 50px auto;
+	}
+
+	.ciq-favorite-studies {
+		background-position-y: -28px;
+	}
+
+	.ciq-popular-studies {
+		background-position-y: -52px;
+	}
+
+	.ciq-study-library {
+		background-position-y: -76px;
+	}
+}
+
+.ciq-sb-studies {
+	padding: 14px 2px 14px 12px;
+	position: relative;
+	flex-grow: 1;
+	background-color: white;
+
+	cq-study-legend {
+		cq-section-dynamic {
+			background-color: transparent !important;
+			border: none !important;
+		}
+
+		cq-placeholder {
+			text-align: center;
+			height: 32px;
+		}
+
+		cq-label {
+			width: calc(100% - 70px);
+			position: absolute;
+		}
+
+		.ciq-switch {
+			right: 2px;
+		}
+
+		.ciq-icon {
+			position: absolute;
+			right: 36px;
+		}
+	}
+
+	div[ciq-favorite-studies] {
+		cq-label {
+			width: calc(100% - 40px);
+			position: absolute;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+	}
+}
+
+cq-studies .fav-marker {
+	display: none;
+}
+
+cq-studies[ciq-favorites] span {
+	margin: 24px;
+}
+
+:host(cq-studies[favorites]),
+cq-studies[favorites] {
+	.item {
+		[label] {
+			left: 15px;
+			position: relative;
+		}
+	}
+}
+
+cq-studies[favorites],
+cq-studies[ciq-favorites],
+div[ciq-favorite-studies],
+.ciq-sb-categories,
+.ciq-info-panel {
+	.fav-marker {
+		display: inline-block;
+		background-image: url(../../css/img/stx-sprite-drawing-tools-blue.svg);
+		background-position: 0 -958px;
+		background-size: 100%;
+		width: 20px;
+		height: 20px;
+		vertical-align: middle;
+		top: 2px;
+		left: 4px;
+		position: absolute;
+		opacity: 0;
+	}
+
+	.ciq-favorite .fav-marker {
+		opacity: 1;
+	}
+
+	#{$hovering} & cq-item:hover:not(.ciq-favorite) > .fav-marker,
+	[ciq-mobile] & cq-item:not(.ciq-favorite) > .fav-marker,
+	#{$hovering} & li.item:hover:not(.ciq-favorite) > .fav-marker,
+	[ciq-mobile] & li.item:not(.ciq-favorite) > .fav-marker,
+	cq-item:focus:not(.ciq-favorite) > .fav-marker,
+	cq-item[cq-focused]:not(.ciq-favorite) > .fav-marker,
+	li.item:focus:not(.ciq-favorite) > .fav-marker,
+	li.item[cq-focused]:not(.ciq-favorite) > .fav-marker {
+		background-position: 0 -558px;
+		opacity: 1;
+	}
+}
+
+div[ciq-favorite-studies] cq-item cq-label {
+	margin-left: 24px;
+}
+
+.ciq-active-study-count {
+	float: right;
+	background-color: #398dff;
+	color: white;
+	width: auto;
+	height: 16px;
+	padding: 0 5px;
+	line-height: 16px;
+	border-radius: 8px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: 400;
+	margin-top: 5px;
+}
+
+.ciq-info-btn {
+	background-image: url(img/stx-sprite-study-browser.svg);
+	background-position: -3px -88px;
+	background-size: 44px auto;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 6px;
+	right: 8px;
+	opacity: 0;
+	transition: opacity 550ms;
+
+	cq-item:focus &,
+	#{$hovering} cq-item:hover & {
+		opacity: 0.8;
+	}
+
+	.ciq-info-panel a & {
+		opacity: 1;
+		right: auto;
+		left: 10px;
+		top: 6px;
+	}
+}
+
+.ciq-info-panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: white;
+	display: none;
+	cursor: default;
+
+	.fav-marker {
+		opacity: 0.75;
+		transition: opacity 350ms;
+		position: absolute;
+		top: 16px;
+		right: 12px;
+		left: auto;
+		cursor: pointer;
+
+		#{$hovering} &:hover {
+			opacity: 1;
+		}
+		&:not(.ciq-favorite) {
+			background-position: 0 -558px;
+		}
+	}
+
+	.ciq-info-panel-indent {
+		margin-left: 7px;
+	}
+}
+
+.ciq-info-panel-active {
+	display: block;
+}
+
+.ciq-info-panel-back-btn {
+	background-image: url(img/stx-sprite-study-browser.svg);
+	background-position: -5px -151px;
+	background-size: 60px auto;
+	width: 20px;
+	height: 20px;
+	font-size: 24px;
+	color: #808b95;
+	display: inline-block;
+	margin: 12px 6px 0 10px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.ciq-info-panel-title {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 16px;
+	line-height: 16px;
+	margin-top: 12px;
+}
+
+.ciq-info-panel-description {
+	line-height: 16px;
+	margin: 4px 16px 24px;
+	white-space: normal;
+}
+
+.ciq-info-panel-indent {
+	margin-left: 18px;
+}
+
+.ciq-info-panel-description-indent-two {
+	margin-left: 20px;
+}
+
+.ciq-info-panel-controls {
+	text-align: center;
+}
+
+.ciq-info-panel a {
+	text-align: center;
+	display: inline-block;
+	width: 80%;
+	background-color: $DEFAULT-submenu-bg;
+	border-radius: 20px;
+	margin-top: 32px;
+	line-height: 28px;
+	color: $DEFAULT-text;
+	text-decoration: none;
+	position: relative;
+	padding-left: 10px;
+	opacity: 0.8;
+
+	#{$hovering} &:hover {
+		opacity: 1;
+	}
+}
+
+/* responsive mode */
+.ciq-chart-area {
+	> cq-study-browser {
+		top: 0px;
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		display: none;
+
+		.ciq-sb-active & {
+			display: block;
+		}
+	}
+}
+
+[ciq-mobile] {
+	.ciq-info-btn {
+		opacity: 0.8;
+	}
+
+	.ciq-info-panel cq-item:not(.ciq-favorite) > .fav-marker {
+		background-position: 0 -557px;
+		opacity: 1;
+	}
+}
+
+/* end responsive mode */
+
+.#{$DARK} {
+	cq-item[cq-active-category] {
+		background-color: $DARK-menu-highlight-bg;
+		color: $DARK-text;
+	}
+
+	.ciq-sb-categories {
+		background-color: #21313f;
+
+		cq-item > div {
+			background-position-x: -26px;
+		}
+	}
+
+	.ciq-sb-studies {
+		background-color: #171f27;
+	}
+
+	.ciq-info-btn {
+		background-position-x: -25px;
+	}
+
+	.ciq-info-panel {
+		background-color: #171f27;
+
+		.ciq-info-panel-back-btn {
+			background-position-x: -32px;
+		}
+
+		a {
+			background-color: #304152;
+			color: white;
+		}
+	}
+}

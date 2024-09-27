@@ -1,0 +1,634 @@
+*[signaliq-feature] .signaliq-ui {
+	display: inherit;
+}
+
+cq-menu.stx-markers cq-menu-dropdown {
+	width: 250px;
+}
+
+cq-study-legend[cq-signal-studies-only] cq-section-dynamic {
+	background: inherit;
+	padding-bottom: 0;
+	border: none;
+}
+
+cq-study-legend[cq-signal-studies-only] cq-item {
+	display: flex;
+}
+
+cq-study-legend[cq-signal-studies-only] cq-item cq-label {
+	width: auto;
+	flex: 1;
+}
+
+cq-study-legend[cq-signal-studies-only] cq-item .ciq-switch {
+	display: block;
+	position: relative;
+	right: auto;
+	margin-right: 6px;
+}
+
+cq-menu-dropdown cq-study-legend[cq-signal-studies-only] cq-item .ciq-switch {
+	margin-left: 10px;
+}
+
+cq-dialog:not([cq-signaliq-dialog]) {
+	z-index: 4;
+}
+
+/* BEGIN SIGNALIQ DIALOG */
+cq-signaliq-dialog {
+	--ciq-marker-preview-size: 25px;
+	display: inline-block;
+	margin: 0 0 0 20px;
+	width: 80vw;
+	min-width: 240px;
+	max-width: 640px;
+}
+
+cq-signaliq-dialog cq-close {
+	top: 10px;
+	right: 10px;
+}
+
+cq-signaliq-dialog cq-scroll {
+	padding-right: 20px;
+}
+
+cq-signaliq-dialog h2,
+cq-signaliq-dialog label {
+	clear: both;
+	font-size: 1em;
+	font-weight: 400;
+	margin: 15px 0 5px 0;
+	white-space: nowrap;
+	outline: none;
+}
+
+cq-signaliq-dialog hr {
+	float: left;
+	clear: both;
+	width: calc(100% - 60px);
+	margin: 15px 30px;
+}
+
+cq-signaliq-dialog input,
+cq-signaliq-dialog select,
+cq-signaliq-dialog button {
+	height: 27px;
+	line-height: 27px;
+	outline: none;
+}
+
+cq-signaliq-dialog textarea {
+	width: calc(100% - 20px);
+	height: 4rem;
+	line-height: 1.5em;
+	padding: 5px 10px;
+	border: #ddd solid 1px;
+	resize: none;
+	outline: none;
+}
+
+.ciq-night cq-signaliq-dialog textarea {
+	border-color: #495764;
+	background-color: #151f28;
+	color: #fff;
+}
+
+cq-signaliq-dialog .study-select-container {
+	float: left;
+	width: auto;
+	height: 29px;
+	vertical-align: middle;
+	line-height: 29px;
+	font-size: 1em;
+}
+
+cq-menu-dropdown.ciq-signaliq-study-select {
+	height: auto !important;
+	padding-bottom: 1em;
+}
+
+.study-select-container cq-menu cq-menu-dropdown.ciq-signaliq-study-select {
+	height: 0 !important;
+}
+
+cq-study-filter,
+cq-study-items {
+	display: block;
+}
+
+cq-study-filter input {
+	border: none;
+	border-bottom: solid 1px #aaa;
+	border-radius: 0;
+	margin: 5px 10px;
+	padding: 0 2px;
+	width: calc(100% - 24px);
+	outline: none;
+	line-height: 27px;
+}
+
+cq-study-filter input:focus {
+	border-color: #398dff;
+}
+
+cq-study-items .item-hidden {
+	display: none;
+}
+
+cq-signaliq-dialog .ciq-btn.ciq-edit-study {
+	display: inline-block;
+	z-index: 1;
+	width: 27px;
+	height: 27px;
+	line-height: 27px;
+	margin-left: 1em;
+	border: solid 1px transparent;
+	background-color: transparent;
+	background-image: url(../../css/img/stx-sprite-panels.svg);
+	background-position: -300px -25px;
+	opacity: 0.85;
+	transition: opacity 0.2s 0s;
+	cursor: pointer;
+	box-shadow: none;
+}
+
+cq-signaliq-dialog .ciq-btn.ciq-edit-study:hover {
+	border: solid 1px #e4e4e4;
+	box-shadow: none;
+}
+
+.ciq-night cq-signaliq-dialog .ciq-btn.ciq-edit-study {
+	background-position: -300px -50px;
+	background-color: transparent;
+}
+
+.ciq-night cq-signaliq-dialog .ciq-btn.ciq-edit-study:hover {
+	border: solid 1px #273949;
+	box-shadow: none;
+}
+
+cq-signaliq-dialog .ciq-btn.ciq-edit-study.hidden {
+	display: none;
+}
+
+cq-signaliq-dialog .ciq-edit-study cq-tooltip {
+	left: -11px;
+	text-transform: capitalize;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+cq-signaliq-dialog .cq-study-signal-condition {
+	display: flex;
+	flex-direction: row-reverse;
+	width: 100%;
+	margin: 0 auto 15px auto;
+	outline: none;
+}
+
+cq-signaliq-dialog .cq-study-signal-condition:last-child {
+	margin-bottom: 0;
+}
+
+cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-study-signal-condition-head-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-right: solid 3px #666;
+	margin-right: 10px;
+}
+
+.ciq-night
+	cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-study-signal-condition-head-container {
+	border-right-color: #fff;
+}
+
+cq-signaliq-dialog .cq-study-signal-condition .cq-study-signal-condition-head {
+	text-align: center;
+	padding-right: 10px;
+}
+
+cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-study-signal-condition-head
+	h2 {
+	margin: 0;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-select,
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-color,
+cq-signaliq-dialog .cq-study-signal-conditions input {
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions input.comparison {
+	margin-left: 5px;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions input {
+	box-sizing: border-box;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-add,
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-remove {
+	height: 1em;
+	padding: 0 7px;
+	margin: 5px 0 0 0;
+	font-size: 2em;
+	line-height: 0;
+	background-color: transparent;
+	box-shadow: none;
+	border: solid 1px transparent;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-add:hover,
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-remove:hover {
+	border: solid 1px #e4e4e4;
+	box-shadow: none;
+}
+
+.ciq-night
+	cq-signaliq-dialog
+	.cq-study-signal-conditions
+	.ciq-condition-add:hover,
+.ciq-night
+	cq-signaliq-dialog
+	.cq-study-signal-conditions
+	.ciq-condition-remove:hover {
+	border: solid 1px #273949;
+}
+
+cq-signaliq-dialog .cq-study-signal-condition .cq-study-signal-condition-body {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+
+cq-signaliq-dialog .ciq-condition-options,
+cq-signaliq-dialog .ciq-signal-options {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+cq-signaliq-dialog .ciq-condition-options {
+	margin-bottom: 5px;
+}
+
+cq-signaliq-dialog .ciq-select cq-selected {
+	overflow: hidden;
+	height: 27px;
+}
+
+cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-study-signal-condition-body
+	cq-menu {
+	flex: 1;
+	max-width: 170px;
+}
+
+cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-study-signal-condition-body
+	cq-menu:last-child,
+cq-signaliq-dialog
+	.cq-study-signal-condition
+	.cq-comparison-container:last-child
+	cq-menu {
+	margin-right: 0;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .cq-comparison-container {
+	display: flex;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions input.comparison {
+	display: none;
+	width: 5.5em;
+	padding: 0 0.5em;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions input.comparison[type="number"] {
+	display: inline;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-color {
+	display: inline-block;
+	width: 27px;
+	height: 27px;
+}
+
+cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-color cq-swatch {
+	width: 27px;
+	height: 27px;
+}
+
+cq-signaliq-dialog .joiner-group {
+	clear: both;
+	margin: 0 auto 10px auto;
+	text-align: center;
+	float: left;
+	width: 100%;
+}
+
+cq-signaliq-dialog .joiner-group input[type="radio"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+
+cq-signaliq-dialog .joiner-group label {
+	display: inline-block;
+	border: solid 1px #ddd;
+	padding: 0.5em 1em;
+	margin: 0 10px;
+	border-radius: 30px;
+	transition: color 0.2s 0s;
+}
+
+cq-signaliq-dialog .joiner-group label:hover {
+	color: #000;
+}
+
+.ciq-night cq-signaliq-dialog .joiner-group label {
+	color: #fff;
+	background-color: #243645;
+	border-color: #243645;
+}
+
+.ciq-night cq-signaliq-dialog .joiner-group label:hover {
+	color: rgba(255, 255, 255, 0.8);
+}
+
+cq-signaliq-dialog .joiner-group input[type="radio"]:checked + label {
+	border-color: #398dff;
+}
+
+cq-signaliq-dialog .ciq-marker-settings {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	flex-wrap: wrap;
+}
+
+cq-signaliq-dialog .ciq-marker-container.hide {
+	display: none;
+}
+
+cq-signaliq-dialog .ciq-marker-preview {
+	position: relative;
+	width: var(--ciq-marker-preview-size);
+	height: var(--ciq-marker-preview-size);
+	margin-right: 10px;
+	border: solid 1px #ddd;
+}
+
+.ciq-night cq-signaliq-dialog .ciq-marker-preview {
+	border: solid 1px #495764;
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker.small {
+	font-size: var(--stx-marker-signal-small);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker.medium {
+	font-size: var(--stx-marker-signal-medium);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker.large {
+	font-size: var(--stx-marker-signal-large);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-visual,
+cq-signaliq-dialog .ciq-marker-preview .stx-marker-content {
+	position: absolute;
+	cursor: default;
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-visual {
+	background-color: #000;
+}
+
+.ciq-night cq-signaliq-dialog .ciq-marker-preview .stx-visual {
+	background-color: #fff;
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker-content {
+	width: var(--ciq-marker-preview-size);
+	height: 1em;
+	line-height: 1em;
+	vertical-align: middle;
+	font-weight: bold;
+	text-align: center;
+	margin-top: calc((var(--ciq-marker-preview-size) - 1em) / 2);
+	color: #fff;
+}
+
+.ciq-night cq-signaliq-dialog .ciq-marker-preview .stx-marker-content {
+	color: #000;
+}
+
+/* Adjust for an odd number margin */
+/*cq-signaliq-dialog .ciq-marker-preview .stx-marker.medium .stx-marker-content{
+	margin-top: calc(((var(--ciq-marker-preview-size) - 1em) / 2) + 1px);
+}*/
+
+cq-signaliq-dialog .ciq-marker-preview .small .stx-visual {
+	margin-top: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-small)) / 2
+	);
+	margin-left: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-small)) / 2
+	);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .medium .stx-visual {
+	margin-top: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-medium)) / 2
+	);
+	margin-left: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-medium)) / 2
+	);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .large .stx-visual {
+	margin-top: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-large)) / 2
+	);
+	margin-left: calc(
+		(var(--ciq-marker-preview-size) - var(--stx-marker-signal-large)) / 2
+	);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker .stx-visual:after {
+	display: none;
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker.diamond .stx-visual {
+	transform: rotate(45deg);
+}
+
+cq-signaliq-dialog .ciq-marker-preview .stx-marker.noshape .stx-visual {
+	background-color: transparent;
+}
+
+cq-signaliq-dialog .ciq-marker-size,
+.ciq-marker-shape {
+	float: left;
+	width: 100px;
+}
+
+cq-signaliq-dialog .ciq-signal-options input.marker-label {
+	width: 3em;
+	padding: 0 0.75em;
+	text-align: center;
+}
+cq-signaliq-dialog .ciq-signal-options .marker-emoji-picker {
+	width: 0;
+	padding: 0;
+	border: none;
+	visibility: hidden;
+}
+
+cq-signaliq-dialog .info-message {
+	height: 25px;
+	line-height: 25px;
+}
+
+cq-signaliq-dialog .ciq-misc-settings {
+	text-align: center;
+	width: 100%;
+}
+
+cq-signaliq-dialog .ciq-misc-settings .notification-type-container {
+	float: left;
+}
+
+cq-signaliq-dialog .info-message {
+	width: 100%;
+	text-align: center;
+}
+
+cq-signaliq-dialog .info-message.warning::before {
+	display: inline-block;
+	content: "";
+	height: 25px;
+	width: 25px;
+	margin-right: 15px;
+	background: transparent url(./ciq-notification-warning.svg) center no-repeat;
+	background-size: contain;
+	vertical-align: middle;
+}
+
+cq-signaliq-dialog .ciq-btn-save.ciq-btn-disabled {
+	opacity: 0.25;
+}
+
+cq-signaliq-dialog .notification-type-container {
+	display: inline-block;
+}
+
+cq-signaliq-dialog cq-menu.notificationtype {
+	margin-top: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+	cq-dialog[cq-signaliq-dialog] {
+		padding: 30px 15px 10px 15px;
+	}
+
+	cq-signaliq-dialog {
+		margin: 0;
+		width: calc(95vw - 30px);
+	}
+
+	cq-signaliq-dialog cq-scroll {
+		padding-right: 15px;
+		padding-bottom: 20px;
+		margin-right: -10px;
+	}
+
+	cq-signaliq-dialog .cq-study-signal-condition {
+		flex-direction: column-reverse;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-head-container {
+		display: flex;
+		justify-content: left;
+		border-right: none;
+		margin-right: 0;
+		margin-bottom: 10px;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-head {
+		display: flex;
+		flex-direction: row-reverse;
+		padding: 0;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-head
+		h2 {
+		margin: 0 0 0 15px;
+		line-height: 2em;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-head
+		button {
+		margin: 0;
+	}
+
+	cq-signaliq-dialog .cq-study-signal-conditions .ciq-select,
+	cq-signaliq-dialog .cq-study-signal-conditions .ciq-condition-color,
+	cq-signaliq-dialog .cq-study-signal-conditions input {
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+
+	cq-signaliq-dialog .cq-study-signal-conditions input.comparison {
+		margin-left: 10px;
+	}
+
+	cq-signaliq-dialog .ciq-misc-settings .ciq-btn-save {
+		display: block;
+		width: 70px;
+		margin: 10px auto;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-body
+		cq-menu {
+		max-width: 110px;
+	}
+
+	cq-signaliq-dialog
+		.cq-study-signal-condition
+		.cq-study-signal-condition-body
+		cq-menu.ciq-condition-signal-shape {
+		min-width: 80px;
+	}
+}

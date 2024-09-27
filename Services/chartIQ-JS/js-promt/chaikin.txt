@@ -1,0 +1,179 @@
+Here is a detailed description of the **Chaikin Study**:
+
+---
+
+### **Chaikin Study Overview**
+
+The **Chaikin Study** consists of two main indicators: **Chaikin Money Flow (CMF)** and **Chaikin Volatility (CV)**. Both indicators are designed to help traders measure market strength, price trends, and volatility, providing insights into potential market movements. These indicators are widely used in technical analysis to gauge the relationship between price movements and trading volume.
+
+### **Purpose**
+
+- **Chaikin Money Flow (CMF)**: Measures the accumulation and distribution of money in an asset over a specified period, analyzing the relationship between price and volume. CMF helps determine whether there is buying pressure (accumulation) or selling pressure (distribution) based on how far the closing price is relative to the high-low range.
+- **Chaikin Volatility (CV)**: Measures the rate of change in the trading range (high minus low) of a security over a period. This indicator is used to analyze volatility and identify market trends or periods of consolidation.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateChaikinMoneyFlow`
+
+   **Functionality**:
+   - The **Chaikin Money Flow (CMF)** is calculated by evaluating the relationship between price and volume over a specified number of periods. CMF tracks buying and selling pressure by comparing the closing price relative to the high-low range and multiplying it by the volume. The result shows whether money is flowing into or out of the asset.
+   - CMF is typically plotted as an oscillator, ranging from +1 to -1. Positive values indicate buying pressure (accumulation), while negative values indicate selling pressure (distribution).
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods over which the CMF calculation is performed. A typical default value is 20 periods.
+
+   **Outputs**:
+   - **Result**: (Number) The CMF value for each quote, representing the net flow of money into or out of the security.
+
+2. **Function Name**: `calculateChaikinVolatility`
+
+   **Functionality**:
+   - The **Chaikin Volatility (CV)** measures the rate of change in the trading range (the difference between high and low prices) over a specified period. It indicates whether volatility is increasing or decreasing.
+   - This indicator helps traders identify when a market is entering a trending or consolidating phase. Rising volatility often signals the start of a new trend, while declining volatility can indicate consolidation or trend exhaustion.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods used for the moving average calculation. Typically, 14 periods are used.
+   - **Rate Of Change**: (Number) The rate of change period over which the volatility is measured. Default is 2 periods.
+   - **Moving Average Type**: (String) The type of moving average to be applied, such as "simple" or "exponential".
+
+   **Outputs**:
+   - **Result**: (Number) The CV value for each quote, showing the percentage change in volatility over the selected period.
+
+### **Calculation Process**
+
+1. **Chaikin Money Flow (CMF) Calculation**:
+   - The CMF formula is as follows:
+   \[
+   CMF = \frac{ \sum_{i=1}^{n} \left( \frac{(2 \times Close - High - Low)}{(High - Low)} \times Volume \right) }{\sum_{i=1}^{n} Volume }
+   \]
+   Where:
+   - **Close** is the closing price of the asset.
+   - **High** and **Low** are the high and low prices for the period.
+   - **Volume** is the trading volume for the period.
+   - The sum is calculated over a rolling window of `n` periods.
+
+2. **Chaikin Volatility (CV) Calculation**:
+   - The CV formula measures the change in the high-low trading range over a period:
+   \[
+   CV = 100 \times \left( \frac{ \text{MA of (High - Low)} }{ \text{MA of (High - Low)} \text{ from n periods ago}} - 1 \right)
+   \]
+   Where:
+   - **MA** is the moving average of the trading range.
+   - The result shows the percentage change in the trading range, indicating whether volatility is increasing or decreasing.
+
+### **Libraries Required**
+
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides the study functions necessary for CMF and CV calculations and display.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Do not modify the library files directly. If changes are needed, create a separate file and load it after the core library is loaded.
+- **Activation**: Both the CMF and CV studies require the "studies" feature to be activated in the ChartIQ library.
+
+### **Code Example**
+
+The following code demonstrates how the **Chaikin Money Flow (CMF)** and **Chaikin Volatility (CV)** studies are implemented:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_chaikin_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("chaikin feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateChaikinMoneyFlow = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days) {
+			sd.error = true;
+			return;
+		}
+		var sumMoneyFlow = 0,
+			sumVolume = 0;
+		var startQuote = quotes[sd.startFrom - 1];
+		if (startQuote) {
+			if (startQuote["_sumMF " + sd.name])
+				sumMoneyFlow = startQuote["_sumMF " + sd.name];
+			if (startQuote["_sumV " + sd.name])
+				sumVolume = startQuote["_sumV " + sd.name];
+		}
+		for (var i = sd.startFrom; i < quotes.length; i++) {
+			if (quotes[i].High == quotes[i].Low) quotes[i]["_MFV " + sd.name] = 0;
+			else
+				quotes[i]["_MFV " + sd.name] =
+					(quotes[i].Volume *
+						(2 * quotes[i].Close - quotes[i].High - quotes[i].Low)) /
+					(quotes[i].High - quotes[i].Low);
+			sumMoneyFlow += quotes[i]["_MFV " + sd.name];
+			sumVolume += quotes[i].Volume;
+			if (i > sd.days - 1) {
+				sumMoneyFlow -= quotes[i - sd.days]["_MFV " + sd.name];
+				sumVolume -= quotes[i - sd.days].Volume;
+				if (sumVolume)
+					quotes[i]["Result " + sd.name] = sumMoneyFlow / sumVolume;
+			}
+			quotes[i]["_sumMF " + sd.name] = sumMoneyFlow;
+			quotes[i]["_sumV " + sd.name] = sumVolume;
+		}
+	};
+
+	CIQ.Studies.calculateChaikinVolatility = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days) {
+			sd.error = true;
+			return;
+		}
+		var i;
+		for (i = sd.startFrom; i < quotes.length; i++) {
+			if (quotes[i].futureTick) break;
+			quotes[i]["_High-Low " + sd.name] = quotes[i].High - quotes[i].Low;
+		}
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			"_High-Low " + sd.name,
+			0,
+			"_MA",
+			stx,
+			sd
+		);
+
+		var roc = sd.inputs["Rate Of Change"];
+		if (!roc) roc = sd.days;
+		for (i = Math.max(sd.startFrom, roc); i < quotes.length; i++) {
+			if (!quotes[i - roc]["_MA " + sd.name]) continue;
+			if (quotes[i].futureTick) break;
+			quotes[i]["Result " + sd.name] =
+				100 *
+				(quotes[i]["_MA " + sd.name] / quotes[i - roc]["_MA " + sd.name] - 1);
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Chaikin MF": {
+			name: "Chaikin Money Flow",
+			calculateFN: CIQ.Studies.calculateChaikinMoneyFlow,
+			inputs: { Period: 20 }
+		},
+		"Chaikin Vol": {
+			name: "Chaikin Volatility",
+			calculateFN: CIQ.Studies.calculateChaikinVolatility,
+			inputs: { Period: 14, "Rate Of Change": 2, "Moving Average Type": "ma" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_chaikin_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This description explains how the **Chaikin Money Flow (CMF)** and **Chaikin Volatility (CV)** indicators are calculated, their inputs and outputs, and how they are used in technical analysis. The provided code example demonstrates their implementation in ChartIQ's technical analysis framework.

@@ -1,0 +1,43 @@
+/* These are all general styles to give the provided templates a certain aesthetic.
+ Feel free to customize, or remove this file to meet the needs of your application.
+ */
+
+html {
+	/* this keeps the page sized to exactly the window */
+	height: 100%;
+	position: fixed;
+	width: 100%;
+}
+
+body {
+	-ms-touch-action: none; /* Necessary for windows mobile devices */
+}
+
+div,
+li,
+span,
+a {
+	-webkit-tap-highlight-color: rgba(
+		0,
+		0,
+		0,
+		0
+	); /* eliminated annoying flash when tapping screen on ipads */
+	-webkit-tap-highlight-color: transparent; /* For some Androids */
+}
+
+*,
+*:focus-visible {
+	outline: none;
+}
+
+/* ------------------------------------------------------- iOS overrides ---------------------------------------------------------- */
+/* iOS supports */
+@supports (-webkit-touch-callout: none) {
+	/* change the font size to 16 for these elements so browser zoom doesn't happen */
+	input,
+	textarea,
+	select {
+		font-size: 16px;
+	}
+}

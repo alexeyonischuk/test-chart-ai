@@ -1,0 +1,271 @@
+cq-menu {
+	:host(&) {
+		background-color: unset !important;
+	}
+	:host(&),
+	& {
+		float: left;
+		cursor: pointer;
+		position: relative;
+		line-height: 40px;
+		box-sizing: border-box;
+		padding: 0 10px;
+		max-height: 41px;
+		margin-left: 5px;
+
+		.ciq-screen-reader {
+			@include screen-reader-full();
+		}
+		cq-dropdown {
+			position: relative;
+			/*top: 100%;*/
+			display: none;
+		}
+		.menu-clickable {
+			height: 24px;
+			margin-right: 6px;
+			opacity: 0.8;
+			position: relative;
+			transition: opacity 0.2s 0s;
+		}
+		.hidden {
+			display: none !important;
+		}
+	}
+	:host(&:focus),
+	&:focus {
+		outline: none;
+	}
+	:host(&.stxMenuActive) cq-dropdown,
+	&.stxMenuActive cq-dropdown {
+		display: block;
+	}
+	:host(&:not([last-interaction="touch"]):hover):before,
+	#{$hovering} &:hover:before {
+		opacity: 1;
+	}
+	&.nav-dropdown {
+		:host(&) cq-dropdown,
+		& cq-dropdown {
+			position: absolute;
+			top: 41px;
+			width: 1px; // prevents invisible in CIQ.trulyVisible
+			height: 1px;
+		}
+		&.toggle-options {
+			:host(&):before,
+			&:before {
+				width: 16px;
+				height: 16px;
+				top: 16px;
+				left: -3px;
+				border-radius: 16px;
+			}
+			:host(&) cq-dropdown,
+			& cq-dropdown {
+				top: 38px;
+			}
+		}
+		:host(&) .menu-clickable,
+		& .menu-clickable {
+			height: 40px;
+		}
+		:host(&):before,
+		&:before {
+			content: "";
+			position: absolute;
+			display: block;
+			top: 6px;
+			left: -1px;
+			width: 100%;
+			height: 36px;
+			margin: -4px 2px;
+			border-radius: 36px;
+			background: #e4e4e4;
+			opacity: 0;
+			transition: opacity 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		}
+		:host(&.full-screen):before,
+		&.full-screen:before {
+			top: 0;
+		}
+		:host(&:not(.toggle-options).break-sm):before,
+		:host(&:not(.toggle-options).break-md):before,
+		.break-sm &:not(.toggle-options):before,
+		.break-md &:not(.toggle-options):before {
+			left: -4px;
+		}
+
+		:host(&):after,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 19px;
+			right: 5px;
+			display: block;
+			width: 5px;
+			height: 5px;
+			border-right: solid thin #959595;
+			border-bottom: solid thin #959595;
+			transform: rotate(45deg) scale(1);
+		}
+		&[text] {
+			:host(&),
+			& {
+				min-width: 35px;
+			}
+		}
+		&:not([icon], [text], [binding]) {
+			:host(&),
+			& {
+				margin-top: 5px;
+				margin-left: -10px;
+				padding: 0 5px 0 2px;
+				border: 1px solid transparent;
+				height: 28px;
+
+				&:after {
+					right: 3px;
+					top: 16px;
+				}
+			}
+		}
+		:host(&.#{$DARK}):before,
+		.#{$DARK} &:before {
+			background-color: #273949;
+		}
+		:host(&.#{$DARK}):after,
+		.#{$DARK} &:after {
+			border-right: solid thin #8a8f94;
+			border-bottom: solid thin #8a8f94;
+		}
+		:host(&.break-sm):after,
+		:host(&.break-md[icon]):after,
+		:host(&.break-md[text]):after,
+		.break-sm &:after,
+		.break-md &[icon]:after,
+		.break-md &[text]:after {
+			display: none;
+		}
+		:host(&.break-sm),
+		:host(&.break-md),
+		.break-sm &,
+		.break-md & {
+			padding: 0;
+			margin: 0 1px;
+		}
+	}
+	:host(&:not(.ciq-show-help)) .help-instr,
+	cq-context:not(.ciq-show-help) & .help-instr {
+		display: none;
+	}
+	:host(&.#{$DARK}) .menu-clickable:not(cq-help),
+	.#{$DARK} & .menu-clickable:not(cq-help) {
+		color: var(--DARK-text);
+	}
+	:host(&:not([last-interaction="touch"]):hover) .menu-clickable,
+	:host(&:active) .menu-clickable,
+	:host(&.stxMenuActive) .menu-clickable,
+	#{$hovering} &:hover .menu-clickable,
+	&:active .menu-clickable,
+	&.stxMenuActive .menu-clickable {
+		opacity: 1;
+	}
+	&.alignright {
+		:host(&) cq-dropdown,
+		& cq-dropdown {
+			left: auto;
+			right: -5px;
+		}
+	}
+	:host(&.break-md.alignright) cq-dropdown,
+	:host(&.break-md.alignright-md) cq-dropdown,
+	:host(&.break-sm.alignright) cq-dropdown,
+	:host(&.break-sm.alignright-sm) cq-dropdown,
+	.break-md &.alignright cq-dropdown,
+	.break-md &.alignright-md cq-dropdown,
+	.break-sm &.alignright cq-dropdown,
+	.break-sm &.alignright-sm cq-dropdown {
+		left: auto;
+		right: 0;
+	}
+	:host(&:not(.nav-dropdown)),
+	&:not(.nav-dropdown) {
+		padding-left: 10px;
+
+		[label] {
+			margin: 0;
+		}
+	}
+	:host(&.break-sm.nav-dropdown.stxMenuActive),
+	:host(&.break-md.nav-dropdown.stxMenuActive),
+	.break-sm &.nav-dropdown.stxMenuActive,
+	.break-md &.nav-dropdown.stxMenuActive {
+		border-bottom: solid 3px #398dff;
+	}
+	:host(&.break-sm.nav-dropdown:not([icon], [text], [binding])),
+	.break-sm &.nav-dropdown:not([icon], [text], [binding]) {
+		display: none;
+	}
+	&[responsive] {
+		:host(&.break-lg) [cq-tooltip],
+		.break-lg & [cq-tooltip] {
+			display: none;
+		}
+	}
+}
+
+.menu-clickable {
+	font-weight: 400;
+	vertical-align: top;
+	display: flex;
+
+	cq-help {
+		top: 6px;
+	}
+	.icon {
+		height: 25px;
+		margin: 6px auto 0;
+		display: block;
+	}
+	[label] {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: block;
+		margin: 0 auto;
+	}
+	&.responsive {
+		:host(.break-lg) & .icon,
+		:host(.break-lg) & [cq-tooltip],
+		:host(.break-sm) & [label],
+		:host(.break-md) & [label],
+		.break-lg & .icon,
+		.break-lg & [cq-tooltip],
+		.break-sm & [label],
+		.break-md & [label] {
+			display: none;
+		}
+	}
+	&:not(.responsive) .icon:not(.hidden) + [label] {
+		margin-left: 0;
+	}
+}
+
+:host(.ciq-line-style),
+:host(.ciq-cvp-line-style),
+.ciq-line-style,
+.ciq-cvp-line-style {
+	.menu-clickable,
+	.icon {
+		height: 23px;
+	}
+}
+.ciq-tool-group-selection {
+	:host(&),
+	& {
+		.menu-clickable {
+			height: auto;
+		}
+	}
+}

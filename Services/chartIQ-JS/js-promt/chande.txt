@@ -1,0 +1,264 @@
+Here is the detailed description for the **Chande Oscillator Study**:
+
+---
+
+### **Chande Oscillator Study Overview**
+
+The **Chande Oscillator Study** includes two key indicators: **Chande Forecast Oscillator** and **Chande Momentum Oscillator**. These indicators, developed by Tushar Chande, are used to predict price movements and assess momentum in a financial instrument. The study is essential for understanding market trends and potential turning points.
+
+### **Purpose**
+
+- **Chande Forecast Oscillator (CFO)**: The CFO measures the percentage difference between the closing price and a time series moving average. It is used to determine whether prices are moving above or below the predicted forecast, offering insights into the strength of the current trend. 
+- **Chande Momentum Oscillator (CMO)**: The CMO is a momentum indicator designed to quantify market momentum by comparing the sum of recent gains to recent losses. This indicator helps traders evaluate the relative strength of price movements and identify overbought or oversold conditions.
+
+### **Core Functions**
+
+1. **Function Name**: `calculateChandeForecast`
+
+   **Functionality**:
+   - The **Chande Forecast Oscillator (CFO)** calculates the percentage difference between the price and its time series moving average. A positive value suggests that the price is above its forecast, while a negative value indicates that it is below the forecast.
+   - This oscillator provides insights into price direction and potential reversals.
+
+   **Inputs**:
+   - **Period**: (Number) The period over which the moving average is calculated. A common default is 14 periods.
+   - **Field**: (String) The data field (e.g., "Close") used for the calculation.
+
+   **Outputs**:
+   - **Result**: (Number) The percentage difference between the price and the forecast moving average.
+
+2. **Function Name**: `calculateChandeMomentum`
+
+   **Functionality**:
+   - The **Chande Momentum Oscillator (CMO)** compares the sum of recent gains to recent losses over a defined period. The result oscillates between -100 and +100, where values above zero indicate positive momentum, and values below zero suggest negative momentum.
+   - This oscillator helps identify overbought and oversold conditions in the market.
+
+   **Inputs**:
+   - **Period**: (Number) The number of periods used for the momentum calculation. Typically, 9 periods are used.
+   - **Field**: (String) The data field (e.g., "Close") used for the calculation.
+
+   **Outputs**:
+   - **Result**: (Number) The calculated CMO value, ranging from -100 to +100.
+
+### **Calculation Process**
+
+1. **Chande Forecast Oscillator (CFO) Calculation**:
+   - The CFO formula is as follows:
+   \[
+   CFO = 100 \times \left(1 - \frac{MA}{Price}\right)
+   \]
+   Where:
+   - **MA** is the time series moving average of the price over the defined period.
+   - **Price** is the current price of the asset.
+   - A positive CFO value indicates that the price is above the forecast, while a negative value indicates it is below the forecast.
+
+2. **Chande Momentum Oscillator (CMO) Calculation**:
+   - The CMO formula compares the sum of recent gains to recent losses:
+   \[
+   CMO = 100 \times \frac{(Sum \ of \ Gains \ - \ Sum \ of \ Losses)}{(Sum \ of \ Gains \ + \ Sum \ of \ Losses)}
+   \]
+   Where:
+   - **Gains** and **Losses** are the price movements over the specified period.
+   - Values range from -100 to +100, indicating overbought or oversold conditions.
+
+### **Libraries Required**
+
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides the study functions necessary for CFO and CMO calculations and display.
+
+### **Warnings and Best Practices**
+
+- **Warning**: Do not modify the library files directly. If changes are required, create a separate file and load it after the core library.
+- **Activation**: Both the CFO and CMO studies require the "studies" feature to be activated in the ChartIQ library.
+
+### **Code Example**
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_chande_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("chande feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.prettify.variable = "vma";
+	CIQ.Studies.movingAverage.conversions.vma = "variable";
+	CIQ.Studies.movingAverage.translations.variable = "Variable";
+	CIQ.Studies.movingAverage.typeMap.vma = "Variable";
+	CIQ.Studies.movingAverage.typeMap.variable = "Variable";
+
+	CIQ.Studies.calculateChandeForecast = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+		CIQ.Studies.MA("time series", sd.days, field, 0, "MA", stx, sd);
+		for (var i = Math.max(1, sd.startFrom); i < quotes.length; i++) {
+			var val = CIQ.Studies.getQuoteFieldValue(quotes[i], field, sd.subField);
+			quotes[i]["Result " + sd.name] =
+				100 * (1 - quotes[i]["MA " + sd.name] / val);
+		}
+	};
+
+	CIQ.Studies.calculateChandeMomentum = function (stx, sd) {
+		var name = sd.name;
+		for (var p in sd.outputs) {
+			name = p + " " + name;
+		}
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close"; // only used when called from VMA
+
+		var sumMomentum = 0,
+			absSumMomentum = 0;
+		var history = [];
+		for (var i = sd.startFrom - sd.days + 1; i < quotes.length; i++) {
+			if (i < 1) continue;
+			var q = CIQ.Studies.getQuoteFieldValue(quotes[i], field),
+				q1 = CIQ.Studies.getQuoteFieldValue(quotes[i - 1], field);
+			if (q1 === undefined) continue; // the field is not defined yet
+
+			var diff = q - q1;
+			history.push(diff);
+			sumMomentum += diff;
+			absSumMomentum += Math.abs(diff);
+			if (history.length == sd.days) {
+				quotes[i][name] = (100 * sumMomentum) / absSumMomentum;
+				var old = history.shift();
+				sumMomentum -= old;
+				absSumMomentum -= Math.abs(old);
+			}
+		}
+	};
+
+	/**
+	 * Calculate function for variable moving average.
+	 *
+	 * The resulting values will be added to the dataSet using the field name provided by the `sd.outputMap` entry.
+	 *
+	 * **Notes:**
+	 * - This function calculates a single value, so it expects `sd.outputMap` to contain a single mapping.
+	 * - To leverage as part of a larger study calculation, use {@link CIQ.Studies.MA} instead.
+	 * - If no `outputs` object is defined in the library entry, the study will default to a single output named `Result`, which will then be used in lieu of `sd.outputs` to build the field name.
+	 * - The study name may contain the unprintable character `&zwnj;`, see {@link studyDescriptor} documentation.
+	 *
+	 * @param  {CIQ.ChartEngine} stx Chart object
+	 * @param {CIQ.Studies.StudyDescriptor} sd  Study Descriptor
+	 * @private
+	 * @memberof CIQ.Studies
+	 * @since 5.2.1 Moved `VIYDA` to `calculateMovingAverageVIDYA`.
+	 */
+	CIQ.Studies.calculateMovingAverageVariable = function (stx, sd) {
+		var type = sd.inputs.Type;
+		var quotes = sd.chart.scrubbed;
+		var alpha = 2 / (sd.days + 1);
+
+		var vmaPreviousDay = null;
+		var name = sd.name;
+		for (var p in sd.outputs) {
+			name = p + " " + name;
+		}
+
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close"; // Handle when the default inputs are passed in
+
+		sd.cmo = new CIQ.Studies.StudyDescriptor(sd.name, "cmo", sd.panel);
+		sd.cmo.chart = sd.chart;
+		sd.cmo.days = 9;
+		sd.cmo.inputs = { Field: field };
+		sd.cmo.startFrom = sd.startFrom;
+		sd.cmo.outputs = { _CMO: null };
+		CIQ.Studies.calculateChandeMomentum(stx, sd.cmo);
+
+		var offset = parseInt(sd.inputs.Offset, 10);
+		if (isNaN(offset)) offset = 0;
+
+		var i, val, ft;
+		var start = sd.startFrom;
+		// find vmaPreviousDay
+		var offsetBack = offset;
+		for (i = sd.startFrom - 1; i >= 0; i--) {
+			val = quotes[i][name];
+			if (!val && val !== 0) continue;
+			if (vmaPreviousDay === null) vmaPreviousDay = val;
+			if (offsetBack <= 0) break;
+			offsetBack--;
+			start = i;
+		}
+		if (vmaPreviousDay === null) {
+			vmaPreviousDay = start = 0;
+		}
+		var futureTicks = [];
+		for (i = start; i < quotes.length; i++) {
+			var quote = quotes[i];
+			val = quote[field];
+			if (val && typeof val == "object") val = val[sd.subField];
+			var notOverflowing = i + offset >= 0 && i + offset < quotes.length;
+			var offsetQuote = notOverflowing ? quotes[i + offset] : null;
+			if (!val && val !== 0) {
+				if (offsetQuote) offsetQuote[name] = null;
+				else if (i + offset >= quotes.length) {
+					ft = {};
+					ft[name] = null;
+					futureTicks.push(ft);
+				}
+				continue;
+			}
+			if (!quote["_CMO " + sd.name] && quote["_CMO " + sd.name] !== 0) continue;
+			var vi = Math.abs(quote["_CMO " + sd.name]) / 100;
+			var vma = alpha * vi * val + (1 - alpha * vi) * vmaPreviousDay;
+			vmaPreviousDay = vma;
+			if (i < sd.days) vma = null;
+			if (offsetQuote) offsetQuote[name] = vma;
+			else if (i + offset >= quotes.length) {
+				ft = {};
+				ft[name] = vma;
+				futureTicks.push(ft);
+			}
+		}
+		sd.appendFutureTicks(stx, futureTicks);
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Chande Fcst": {
+			name: "Chande Forecast Oscillator",
+			calculateFN: CIQ.Studies.calculateChandeForecast,
+			inputs: { Period: 14, Field: "field" }
+		},
+		"Chande Mtm": {
+			name: "Chande Momentum Oscillator",
+			calculateFN: CIQ.Studies.calculateChandeMomentum,
+			inputs: { Period: 9 },
+			parameters: {
+				init: {
+					studyOverZonesEnabled: true,
+					studyOverBoughtValue: 50,
+					studyOverBoughtColor: "auto",
+					studyOverSoldValue: -50,
+					studyOverSoldColor: "auto"
+				}
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_chande_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This description provides an overview of the **Chande Forecast Oscillator (CFO)** and **Chande Momentum Oscillator (CMO)**, detailing their purpose, inputs, outputs, and calculation processes. The actual code implementation is referenced as a placeholder.

@@ -1,0 +1,27 @@
+{
+	"name": "sample-template-webpack",
+	"description": "Webpack demo using advanced template functionality",
+	"type": "module",
+	"scripts": {
+		"build": "webpack",
+		"build:min": "webpack --config webpack.config.minimal.js",
+		"build:mobile": "webpack --config webpack.config.mobile.js",
+		"build:term": "webpack --config webpack.config.term.js",
+		"watch": "NODE_ENV=development webpack --watch",
+		"watch:min": "NODE_ENV=development webpack --config webpack.config.minimal.js --watch",
+		"watch:mobile": "NODE_ENV=development webpack --config webpack.config.mobile.js --watch",
+		"watch:term": "NODE_ENV=development webpack --config webpack.config.term.js --watch"
+	},
+	"devDependencies": {
+		"copy-webpack-plugin": "^11.0.0",
+		"css-loader": "^6.9.0",
+		"html-webpack-partials-plugin": "^0.8.0",
+		"html-webpack-plugin": "^5.6.0",
+		"mini-css-extract-plugin": "^2.7.7",
+		"sass": "^1.69.7",
+		"sass-loader": "^13.3.3",
+		"webpack": "^5.89.0",
+		"webpack-bundle-analyzer": "^4.10.1",
+		"webpack-cli": "^5.1.4"
+	}
+}

@@ -1,0 +1,124 @@
+The **Klinger Volume Oscillator** is a technical indicator designed to track long-term trends of money flow while remaining sensitive enough to detect short-term fluctuations in volume. It achieves this by comparing the difference between two exponential moving averages (EMAs) of volume. The indicator then creates a signal line based on these calculations to help traders identify potential buying or selling opportunities.
+
+### Key Components:
+1. **Short Cycle EMA**: This is the shorter period EMA (default: 34 periods), which reacts faster to recent changes in volume.
+2. **Long Cycle EMA**: The longer period EMA (default: 55 periods), which smooths out fluctuations and focuses on longer-term trends.
+3. **Signal Periods**: This is another EMA calculated from the difference between the short and long EMAs (default: 13 periods), which is used as a signal line to generate trade signals.
+4. **Klinger Oscillator**: The difference between the short and long EMAs of the signed volume.
+5. **Histogram**: The difference between the Klinger Oscillator and its signal line is plotted as a histogram, visually showing the strength of the volume movement.
+
+### How It Works:
+- The Klinger Oscillator is positive when the short EMA of the signed volume is greater than the long EMA and negative when it is less, signaling bullish or bearish momentum, respectively.
+- When the Klinger Oscillator crosses above the signal line, it may signal a **buy opportunity**.
+- When the Klinger Oscillator crosses below the signal line, it may signal a **sell opportunity**.
+
+### **Code Example**:
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_klinger_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("klinger feature requires first activating studies feature.");
+} else {
+	/**
+	 * Calculate function for klinger
+	 * @param  {CIQ.ChartEngine} stx Chart object
+	 * @param {CIQ.Studies.StudyDescriptor} sd  Study Descriptor
+	 * @memberOf CIQ.Studies
+	 */
+	CIQ.Studies.calculateKlinger = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		var shortCycle = Number(sd.inputs["Short Cycle"]);
+		var longCycle = Number(sd.inputs["Long Cycle"]);
+		if (quotes.length < Math.max(shortCycle, longCycle) + 1) {
+			sd.error = true;
+			return;
+		}
+
+		var field = sd.name + "_hist",
+			klinger = "Klinger " + sd.name,
+			klingerSignal = "KlingerSignal " + sd.name,
+			signedVolume = "_SV " + sd.name,
+			shortEMA = "_EMA-S " + sd.name,
+			longEMA = "_EMA-L " + sd.name,
+			i;
+		for (i = Math.max(1, sd.startFrom); i < quotes.length; i++) {
+			var sv = quotes[i].Volume;
+			if (quotes[i]["hlc/3"] < quotes[i - 1]["hlc/3"]) sv *= -1;
+			if (sv) quotes[i][signedVolume] = sv;
+		}
+
+		CIQ.Studies.MA(
+			"exponential",
+			shortCycle,
+			signedVolume,
+			0,
+			"_EMA-S",
+			stx,
+			sd
+		);
+		CIQ.Studies.MA(
+			"exponential",
+			longCycle,
+			signedVolume,
+			0,
+			"_EMA-L",
+			stx,
+			sd
+		);
+
+		for (i = Math.max(longCycle, sd.startFrom); i < quotes.length; i++) {
+			if (
+				quotes[i].futureTick ||
+				quotes[i][shortEMA] === null ||
+				quotes[i][longEMA] === null
+			)
+				break;
+			quotes[i][klinger] = quotes[i][shortEMA] - quotes[i][longEMA];
+		}
+
+		CIQ.Studies.MA(
+			"exponential",
+			Number(sd.inputs["Signal Periods"]),
+			klinger,
+			0,
+			"KlingerSignal",
+			stx,
+			sd
+		);
+
+		for (i = sd.startFrom; i < quotes.length; i++) {
+			quotes[i][field] = quotes[i][klinger] - quotes[i][klingerSignal];
+		}
+		sd.outputMap[field] = "";
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Klinger: {
+			name: "Klinger Volume Oscillator",
+			seriesFN: CIQ.Studies.displayHistogramWithSeries,
+			calculateFN: CIQ.Studies.calculateKlinger,
+			inputs: { "Signal Periods": 13, "Short Cycle": 34, "Long Cycle": 55 },
+			outputs: {
+				Klinger: "auto",
+				KlingerSignal: "#FF0000",
+				"Increasing Bar": "#00DD00",
+				"Decreasing Bar": "#FF0000"
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_klinger_(typeof window !== "undefined" ? window : global);
+
+
+This example demonstrates how the Klinger Oscillator is calculated using volume and EMAs to highlight shifts in volume trends, allowing traders to make more informed decisions.

@@ -1,0 +1,139 @@
+### **Choppiness Index Study Overview**
+
+The **Choppiness Index (CHOP)** is a technical analysis tool that measures the strength of a price trend or lack thereof. It helps traders understand whether the market is trending or consolidating (moving sideways). A high Choppiness Index reading indicates a choppy, sideways market, while a low reading signals a trending market.
+
+### **Purpose**
+The Choppiness Index is primarily used to evaluate the direction and volatility of an asset's price movement. By using a logarithmic scale, the study compares the current price range (Highs and Lows) to the accumulated **True Range** over a set period. This comparison allows traders to assess whether the market is trending strongly or behaving erratically (choppy).
+
+### **Core Functions**
+
+1. **Function Name**: `calculateChoppiness`
+
+   **Functionality**:
+   - This function calculates the Choppiness Index for each quote in the chart by comparing the **Sum of True Range** with the difference between the highest and lowest prices over the chosen period. The resulting value is normalized on a logarithmic scale to fall between 0 and 100, where higher values indicate more "chop" or consolidation, and lower values indicate a stronger trend.
+   
+   **Inputs**:
+   - **Period**: (Number) The period over which the Choppiness Index is calculated.
+   - **True Range**: (Boolean) A standard input for calculating market volatility.
+   
+   **Outputs**:
+   - **Result**: (Number) The calculated Choppiness Index value for each quote, which indicates the degree of market choppiness.
+
+### **Calculation Process**
+The Choppiness Index calculation includes the following steps:
+
+1. **True Range Calculation**: The sum of the True Range values is calculated over a specified period. True Range helps measure the volatility of price movement by considering the highest and lowest prices and accounting for gaps.
+   
+2. **Lowest Low and Highest High**: The lowest low and highest high prices are identified over the same period.
+   
+3. **Choppiness Formula**:
+   \[
+   Choppiness Index = 100 \times \frac{\log(Sum\ True\ Range / (Highest\ High - Lowest\ Low))}{\log(Period)}
+   \]
+   Where:
+   - The numerator compares the price range to the True Range, and the denominator normalizes this value on a logarithmic scale.
+   - The result ranges between 0 and 100.
+
+### **Libraries Required**
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides necessary functions for CHOP calculation and display.
+
+### **Warnings and Best Practices**
+- **Warning**: Do not modify the library files directly. If you need to make changes, create a separate file and load it after the main library is initialized.
+- **Activation**: The Choppiness Index study requires the "studies" feature to be activated first.
+
+### **Zones and Parameters**
+The Choppiness Index study incorporates zones to help traders determine when the market is entering overbought or oversold conditions:
+- **Overbought Zone**: Set at 61.8 by default, indicating when the market is too choppy and a breakout is imminent.
+- **Oversold Zone**: Set at 38.2, indicating when a strong trend is weakening, and consolidation may follow.
+
+### **Attributes and Customization**
+- **Overbought Value**: Can be adjusted with a minimum of 50 and step increments of 0.1.
+- **Oversold Value**: Can be adjusted with a maximum of 50 and step increments of 0.1.
+
+### **Code Example**
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_choppiness_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"choppiness feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateChoppiness = function (stx, sd) {
+		CIQ.Studies.calculateStudyATR(stx, sd);
+
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+
+		function getLLVHHV(p, x) {
+			var h = Number.MAX_VALUE * -1,
+				l = Number.MAX_VALUE;
+			for (var j = x - p + 1; j <= x; j++) {
+				if (j < 0) continue;
+				h = Math.max(h, quotes[j].High);
+				l = Math.min(l, quotes[j].Low);
+			}
+			return [l, h];
+		}
+		for (var i = Math.max(sd.startFrom, sd.days); i < quotes.length; i++) {
+			var quote = quotes[i];
+			if (!quote) continue;
+			if (quote.futureTick) break;
+			var lh = getLLVHHV(sd.days, i);
+			if (quote["Sum True Range " + sd.name]) {
+				quote["Result " + sd.name] =
+					(100 *
+						Math.log(
+							quote["Sum True Range " + sd.name] /
+								Math.max(0.000001, lh[1] - lh[0])
+						)) /
+					Math.log(sd.days);
+			} else if (!isNaN(quote)) {
+				quote["Result " + sd.name] = 0;
+			}
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Choppiness: {
+			name: "Choppiness Index",
+			calculateFN: CIQ.Studies.calculateChoppiness,
+			centerline: 50,
+			parameters: {
+				init: {
+					studyOverZonesEnabled: true,
+					studyOverBoughtValue: 61.8,
+					studyOverBoughtColor: "auto",
+					studyOverSoldValue: 38.2,
+					studyOverSoldColor: "auto"
+				}
+			},
+			attributes: {
+				studyOverBoughtValue: { min: 50, step: "0.1" },
+				studyOverSoldValue: { max: 50, step: "0.1" }
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_choppiness_(typeof window !== "undefined" ? window : global);
+
+
+---
+
+This description outlines the **Choppiness Index** study, detailing its purpose, calculation method, and parameters. The actual code implementation is omitted for now.

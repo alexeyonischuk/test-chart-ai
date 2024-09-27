@@ -1,0 +1,127 @@
+cq-toggle {
+	:host(&),
+	& {
+		float: left;
+		cursor: pointer;
+		position: relative;
+		width: 38px;
+		text-align: center;
+		height: 34px;
+		margin-right: 3px;
+		background-color: unset !important;
+		box-sizing: content-box;
+
+		&:before {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 36px;
+			height: 36px;
+			margin: -4px 2px;
+			border-radius: 32px;
+			background: #e4e4e4;
+			opacity: 0;
+			transition: opacity 250ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+		}
+		.icon {
+			opacity: 0.85;
+			transition: opacity 0.2s 0s;
+			position: inherit;
+		}
+		.ciq-screen-reader {
+			@include screen-reader-full();
+		}
+		cq-clickable {
+			margin-top: 0 !important;
+		}
+		cq-help {
+			top: 2px;
+			left: 2px;
+			border: none;
+		}
+		.hidden {
+			display: none !important;
+		}
+	}
+	&.bottom {
+		padding-bottom: 5px;
+		:host(&):before,
+		&:before {
+			bottom: 5px;
+		}
+	}
+	&.ciq-mini-widget {
+		:host(&):before,
+		&:before {
+			width: 20px;
+			height: 20px;
+			top: 4px;
+			left: -4px;
+		}
+	}
+	:host(&:focus),
+	&:focus {
+		outline: none;
+	}
+	:host(&.active),
+	&.active {
+		border-bottom: solid 3px #398dff;
+		color: #000;
+		padding-bottom: 0;
+	}
+	:host(&:not([last-interaction="touch"]):hover):before,
+	#{$hovering} &:hover:before {
+		opacity: 1;
+	}
+	:host(&:not([last-interaction="touch"]):hover) .icon,
+	:host(&:active) .icon,
+	#{$hovering} &:hover .icon,
+	&:active .icon {
+		opacity: 1;
+		border-color: transparent !important;
+	}
+	:host(&:not([last-interaction="touch"]):hover) cq-help,
+	:host(&:active) cq-help,
+	#{$hovering} &:hover cq-help,
+	&:active cq-help {
+		border: none;
+	}
+	:host(&:not(.ciq-show-help)) .help-instr,
+	cq-context:not(.ciq-show-help) & .help-instr {
+		display: none;
+	}
+	:host(&.#{$DARK}):before,
+	.#{$DARK} &:before {
+		background-color: #273949;
+	}
+	:host(&.#{$DARK}.active),
+	.#{$DARK} &.active {
+		color: var(--DARK-text);
+	}
+	:host(&.break-lg),
+	.break-lg & {
+		display: inline-block;
+	}
+}
+
+cq-toggle.ciq-magnet {
+	:host(&.active:not(.strong)),
+	&.active:not(.strong) {
+		border-bottom-color: transparent;
+	}
+}
+
+/*
+.sidenav cq-toggle.active {
+    border-bottom: solid 3px #398dff;
+}
+cq-toolbar-settings cq-toggle.ciq-active > * {
+	display: block;
+}
+*/
+/* Hide shortcuts and info toggle (if tooltip addOn has not been initiated) on mobile screens */
+/*
+cq-context[ciq-mobile]:not([tooltip-active]) cq-toggle[member=headsUp] {
+  display: none;
+}
+*/

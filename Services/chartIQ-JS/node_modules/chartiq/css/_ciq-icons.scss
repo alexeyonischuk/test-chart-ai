@@ -1,0 +1,321 @@
+*:root {
+	/* height constant */
+	--icon-height: -29px;
+	/* display menu icons */
+	--icon-candle: calc(0 * var(--icon-height));
+	--icon-bar: calc(1 * var(--icon-height));
+	--icon-colored-bar: calc(2 * var(--icon-height));
+	--icon-line: calc(3 * var(--icon-height));
+	--icon-hollow-candle: calc(4 * var(--icon-height));
+	--icon-mountain: calc(5 * var(--icon-height));
+	--icon-baseline-mountain: calc(6 * var(--icon-height));
+	--icon-volume-candle: calc(7 * var(--icon-height));
+	--icon-heikinashi: calc(8 * var(--icon-height));
+	--icon-linebreak: calc(9 * var(--icon-height));
+	--icon-range-bars: calc(10 * var(--icon-height));
+	--icon-kagi: calc(11 * var(--icon-height));
+	--icon-renko: calc(12 * var(--icon-height));
+	--icon-vertex-line: calc(13 * var(--icon-height));
+	--icon-step: calc(14 * var(--icon-height));
+	--icon-colored-hlc: calc(15 * var(--icon-height));
+	--icon-scatterplot: calc(16 * var(--icon-height));
+	--icon-histogram: calc(17 * var(--icon-height));
+	--icon-pandf: calc(18 * var(--icon-height));
+	--icon-colored-line: calc(19 * var(--icon-height));
+	--icon-colored-vertex-line: calc(20 * var(--icon-height));
+	--icon-colored-mountain: calc(21 * var(--icon-height));
+	--icon-colored-vertex-mountain: calc(22 * var(--icon-height));
+	--icon-vertex-mountain: calc(23 * var(--icon-height));
+	--icon-baseline-vertex-mountain: calc(24 * var(--icon-height));
+	--icon-vertex-baseline: calc(25 * var(--icon-height));
+	--icon-baseline-delta: calc(26 * var(--icon-height));
+	--icon-hlc: calc(27 * var(--icon-height));
+	--icon-step-mountain: calc(28 * var(--icon-height));
+	--icon-colored-step-mountain: calc(29 * var(--icon-height));
+	--icon-colored-vertex-step: calc(30 * var(--icon-height));
+	--icon-colored-vertex-mountain-step: calc(31 * var(--icon-height));
+	--icon-vertex-mountain-step: calc(32 * var(--icon-height));
+	--icon-hlc-box: calc(33 * var(--icon-height));
+	--icon-hlc-shaded-box: calc(34 * var(--icon-height));
+	--icon-channel: calc(35 * var(--icon-height));
+	--icon-generic: calc(36 * var(--icon-height));
+	/* general menu icons */
+	--icon-plus: calc(0 * var(--icon-height));
+	--icon-close: calc(1 * var(--icon-height));
+	--icon-options: calc(2 * var(--icon-height));
+	/* menu bar icons */
+	--icon-glass: calc(0 * var(--icon-height));
+	--icon-flag: calc(1 * var(--icon-height));
+	--icon-pin: calc(2 * var(--icon-height));
+	--icon-arrows: calc(3 * var(--icon-height));
+	--icon-pencil: calc(4 * var(--icon-height));
+	--icon-function: calc(5 * var(--icon-height));
+	--icon-display: calc(6 * var(--icon-height));
+	--icon-info: calc(7 * var(--icon-height));
+	--icon-crosshair: calc(8 * var(--icon-height));
+	--icon-eye: calc(9 * var(--icon-height));
+	--icon-keyboard: calc(10 * var(--icon-height));
+	--icon-3dots: calc(11 * var(--icon-height));
+	--icon-table: calc(12 * var(--icon-height));
+	--icon-cog: calc(13 * var(--icon-height));
+	--icon-question: calc(14 * var(--icon-height));
+	/* language flags */
+	--icon-US: calc(0 * var(--icon-height));
+	--icon-arabic: calc(1 * var(--icon-height));
+	--icon-FR: calc(2 * var(--icon-height));
+	--icon-DE: calc(3 * var(--icon-height));
+	--icon-HU: calc(4 * var(--icon-height));
+	--icon-PT: calc(5 * var(--icon-height));
+	--icon-IT: calc(6 * var(--icon-height));
+	--icon-RU: calc(7 * var(--icon-height));
+	--icon-ES: calc(8 * var(--icon-height));
+	--icon-ZH: calc(9 * var(--icon-height));
+	--icon-JP: calc(10 * var(--icon-height));
+}
+
+[interactable] {
+	:host(&) {
+		.icon {
+			background-repeat: no-repeat;
+			background-position-x: 0px;
+			background-origin: border-box;
+			background-clip: padding-box;
+			width: 28px;
+			height: 27.5px; /* safari seems to not like 28px; it's too much for the sprite */
+			display: inline-block;
+			margin-top: 5px;
+			box-sizing: border-box;
+			border: 1px solid transparent;
+			background-position-y: var(--icon-generic);
+
+			/* put generic first to allow more sepcifc chart type to override */
+			&.generic {
+				background-position-y: var(--icon-generic);
+			}
+			&.candle {
+				background-position-y: var(--icon-candle);
+			}
+			&.bar {
+				background-position-y: var(--icon-bar);
+			}
+			&.colored-bar {
+				background-position-y: var(--icon-colored-bar);
+			}
+			&.line {
+				background-position-y: var(--icon-line);
+			}
+			&.colored-line {
+				background-position-y: var(--icon-colored-line);
+			}
+			&.vertex-line {
+				background-position-y: var(--icon-vertex-line);
+			}
+			&.step {
+				background-position-y: var(--icon-step);
+			}
+			&.mountain {
+				background-position-y: var(--icon-mountain);
+			}
+			&.baseline-delta {
+				background-position-y: var(--icon-baseline-delta);
+			}
+			&.hollow-candle {
+				background-position-y: var(--icon-hollow-candle);
+			}
+			&.volume-candle {
+				background-position-y: var(--icon-volume-candle);
+			}
+			&.colored-hlc {
+				background-position-y: var(--icon-colored-hlc);
+			}
+			&.scatterplot {
+				background-position-y: var(--icon-scatterplot);
+			}
+			&.histogram {
+				background-position-y: var(--icon-histogram);
+			}
+			&.heikinashi {
+				background-position-y: var(--icon-heikinashi);
+			}
+			&.kagi {
+				background-position-y: var(--icon-kagi);
+			}
+			&.linebreak {
+				background-position-y: var(--icon-linebreak);
+			}
+			&.renko {
+				background-position-y: var(--icon-renko);
+			}
+			&.rangebars {
+				background-position-y: var(--icon-range-bars);
+			}
+			&.pandf {
+				background-position-y: var(--icon-pandf);
+			}
+
+			&.plus {
+				background-position-y: var(--icon-plus);
+			}
+			&.close {
+				background-position-y: var(--icon-close);
+			}
+			&.options {
+				background-position-y: var(--icon-options);
+			}
+
+			&.search {
+				background-position-y: var(--icon-glass);
+			}
+			&.display {
+				background-position-y: var(--icon-candle);
+			}
+			&.views {
+				background-position-y: var(--icon-eye);
+			}
+			&.studies {
+				background-position-y: var(--icon-function);
+			}
+			&.events {
+				background-position-y: var(--icon-flag);
+			}
+			&.preferences {
+				background-position-y: var(--icon-cog);
+			}
+			&.draw {
+				background-position-y: var(--icon-pencil);
+			}
+			&.crosshair {
+				background-position-y: var(--icon-crosshair);
+			}
+			&.info {
+				background-position-y: var(--icon-info);
+			}
+			&.tableview {
+				background-position-y: var(--icon-table);
+			}
+			&.morenav {
+				background-position-y: var(--icon-3dots);
+			}
+			&.trade {
+				background-position-y: var(--icon-arrows);
+			}
+			&.watch {
+				background-position-y: var(--icon-pin);
+			}
+			&.shortcuts {
+				background-position-y: var(--icon-keyboard);
+			}
+			&.help {
+				background-position-y: var(--icon-question);
+			}
+
+			&.search,
+			&.display,
+			&.views,
+			&.studies,
+			&.events,
+			&.preferences,
+			&.draw,
+			&.crosshair,
+			&.info,
+			&.tableview,
+			&.morenav,
+			&.trade,
+			&.watch,
+			&.shortcuts,
+			&.help {
+				background-image: url(img/stx-sprite-ui-v2.svg);
+			}
+
+			&.candle,
+			&.bar,
+			&.colored-bar,
+			&.line,
+			&.colored-line,
+			&.vertex-line,
+			&.step,
+			&.mountain,
+			&.baseline-delta,
+			&.hollow-candle,
+			&.volume-candle,
+			&.colored-hlc,
+			&.scatterplot,
+			&.histogram,
+			&.heikinashi,
+			&.kagi,
+			&.linebreak,
+			&.renko,
+			&.rangebars,
+			&.pandf,
+			&.generic {
+				background-image: url(img/stx-sprite-chart-types-v2.svg);
+			}
+
+			&.plus,
+			&.close,
+			&.options {
+				background-image: url(img/stx-sprite-menu-controls.svg);
+				opacity: 0.5;
+			}
+
+			&.flag {
+				background-image: url(img/languages.svg);
+			}
+		}
+
+		.flag {
+			&[cq-lang="en"],
+			&[cq-lang="en-US"] {
+				background-position-y: var(--icon-US);
+			}
+
+			&[cq-lang^="ar"] {
+				background-position-y: var(--icon-arabic);
+			}
+			&[cq-lang="fr"],
+			&[cq-lang="fr-FR"] {
+				background-position-y: var(--icon-FR);
+			}
+			&[cq-lang="de"],
+			&[cq-lang="de-DE"] {
+				background-position-y: var(--icon-DE);
+			}
+			&[cq-lang="hu"],
+			&[cq-lang="hu-HU"] {
+				background-position-y: var(--icon-HU);
+			}
+			&[cq-lang="pt"],
+			&[cq-lang="pt-PT"] {
+				background-position-y: var(--icon-PT);
+			}
+			&[cq-lang="it"],
+			&[cq-lang="it-IT"] {
+				background-position-y: var(--icon-IT);
+			}
+			&[cq-lang="ru"],
+			&[cq-lang="ru-RU"] {
+				background-position-y: var(--icon-RU);
+			}
+			&[cq-lang="es"],
+			&[cq-lang="es-ES"] {
+				background-position-y: var(--icon-ES);
+			}
+			&[cq-lang="zh"],
+			&[cq-lang="zh-CN"] {
+				background-position-y: var(--icon-ZH);
+			}
+			&[cq-lang="ja"],
+			&[cq-lang="ja-JP"] {
+				background-position-y: var(--icon-JP);
+			}
+		}
+	}
+	:host(&.ciq-night) {
+		.icon {
+			background-position-x: -30px;
+			&.flag {
+				background-position-x: 0px;
+			}
+		}
+	}
+}

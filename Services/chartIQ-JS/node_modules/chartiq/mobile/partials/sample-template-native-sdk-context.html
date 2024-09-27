@@ -1,0 +1,23 @@
+
+<div class="ciq-chart-area">
+	<div class="ciq-chart">
+		<cq-message-toaster defaultDisplayTime="20" defaultTransition="slide" defaultPosition="top"></cq-message-toaster>
+		<div class="chartContainer">
+			<cq-loader></cq-loader>
+				<cq-measure><span class="mMeasure" style="display:none;"></span></cq-measure>
+			<cq-undo></cq-undo>
+			<cq-redo></cq-redo>
+			<cq-study-legend class="hovershow" marker-label="Signals" filter="signal" cq-marker></cq-study-legend>
+			<cq-study-legend class="hovershow" marker-label="Plots" clone-to-panel filter="panel" button-remove="true" series="true" cq-marker></cq-study-legend>
+		</div>
+		<!-- End Chart Container -->
+	</div>
+	<!-- End Chart Box -->
+</div>
+
+<cq-dialog id="simulation-warning" cq-close-button="false">
+	<strong>Displayed data is simulated.</strong>
+	<br><br>
+	<div>DO NOT use this data as the basis for any trades or financial decisions.</div>
+	<div class="ciq-btn clear" stxtap="close()">Close</div>
+</cq-dialog>

@@ -1,0 +1,95 @@
+### **Disparity Index Study Overview**
+
+The **Disparity Index** is a technical indicator used to assess the degree of divergence between an asset's price and a moving average. This index highlights the percentage difference between the price of a security and a selected moving average, indicating whether the price is overbought or oversold in relation to its historical trend.
+
+### **Study Purpose and Calculation**
+
+The **Disparity Index** measures the percentage difference between the current price of a security and a moving average over a specified period. Traders use this indicator to gauge whether a security's price is extended beyond typical levels in either direction and to identify potential reversal points or trends.
+
+#### Key Elements:
+- **Disparity Index**: Represents the percentage deviation of the price from the selected moving average.
+- **Moving Average**: The indicator uses a moving average, which can be of different types (e.g., simple, exponential), to calculate the disparity.
+- **Price Field**: Typically, the closing price is used to compute the disparity index, but other fields like open, high, or low can also be selected.
+
+### **Inputs**:
+- **Period**: (Number) Defines the number of periods used to calculate the moving average.
+- **Field**: (String) Specifies the price field used for calculation, typically the "Close" price.
+- **Moving Average Type**: (String) Specifies the type of moving average used (e.g., simple moving average).
+
+### **Outputs**:
+- **Result**: The calculated Disparity Index value, representing the percentage difference between the price and the moving average.
+
+### **Study Calculation Process**:
+1. **Moving Average Calculation**: A moving average is calculated based on the selected field (e.g., "Close" price) and period.
+2. **Disparity Calculation**: The percentage difference between the current price and the moving average is computed as follows:
+   \[
+   \text{Disparity Index} = \left( \frac{\text{Current Price}}{\text{Moving Average}} - 1 \right) \times 100
+   \]
+3. **Result**: The result is displayed as a percentage, allowing traders to identify price deviations from the moving average.
+
+### **Study Libraries Required**:
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Provides essential functionalities for study calculations.
+
+### **Warnings and Best Practices**:
+- **Activation**: Ensure the "studies" feature is activated before using the Disparity Index.
+- **Note**: Modifications to the core library files should be avoided. Create separate files to maintain compatibility with future updates.
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_disparity_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("disparity feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateDisparity = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			field,
+			0,
+			"_MA",
+			stx,
+			sd
+		);
+		for (var i = Math.max(sd.startFrom, sd.days - 1); i < quotes.length; i++) {
+			if (!quotes[i]) continue;
+			var qMA = quotes[i]["_MA " + sd.name];
+			if (qMA)
+				quotes[i]["Result " + sd.name] =
+					100 * (CIQ.Studies.getQuoteFieldValue(quotes[i], field) / qMA - 1);
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Disparity: {
+			name: "Disparity Index",
+			calculateFN: CIQ.Studies.calculateDisparity,
+			inputs: { Period: 14, Field: "field", "Moving Average Type": "ma" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_disparity_(typeof window !== "undefined" ? window : global);
+
+
+This description outlines the **Disparity Index Study**, including its key features, inputs, outputs, and calculation method, with a placeholder for the implementation code.

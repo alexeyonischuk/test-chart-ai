@@ -1,0 +1,129 @@
+### **Fractal Chaos Studies Overview**
+
+The **Fractal Chaos** studies are based on fractal theory, aiming to identify patterns in chaotic price movements. These studies can help traders recognize reversals or identify important support and resistance levels in the market.
+
+### **Included Studies**
+1. **Fractal Chaos Oscillator**:
+   - **Purpose**: Detects potential turning points in the market by identifying fractals—patterns formed when the market makes a series of higher highs and lower lows.
+   - **Outputs**:
+     - **Result**: Displays a value of 1 when a fractal high pattern is identified and -1 for a fractal low pattern, signaling potential bullish or bearish reversals.
+
+2. **Fractal Chaos Bands**:
+   - **Purpose**: Forms a channel by identifying fractal highs and lows over a period, used to determine the overall trend and possible breakout points.
+   - **Inputs**:
+     - **Channel Fill**: Option to visually fill the area between the fractal high and fractal low bands on the chart.
+   - **Outputs**:
+     - **Fractal High**: Represents the highest price over a set period where a fractal pattern forms.
+     - **Fractal Low**: Represents the lowest price over a set period with a fractal pattern.
+
+### **Calculation Process**
+- **Fractal Chaos Oscillator**: 
+   - Evaluates price action by comparing the current price with previous prices over a window of 5 bars. When a fractal high or low is detected based on predefined conditions, the oscillator outputs 1 or -1 respectively.
+  
+- **Fractal Chaos Bands**:
+   - Tracks fractal high and low points over a period and forms a visual band on the price chart. These bands can act as potential support and resistance zones.
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_fractalChaos_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error(
+		"fractalChaos feature requires first activating studies feature."
+	);
+} else {
+	CIQ.Studies.calculateFractalChaos = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+
+		var fractalHigh = 0;
+		var fractalLow = 0;
+		var test = 0;
+		if (sd.startFrom && sd.type == "Fractal Chaos Bands") {
+			fractalHigh = quotes[sd.startFrom - 1]["Fractal High " + sd.name];
+			fractalLow = quotes[sd.startFrom - 1]["Fractal Low " + sd.name];
+		}
+		for (var i = Math.max(4, sd.startFrom); i < quotes.length; i++) {
+			if (quotes[i].futureTick) break;
+			var nHi = !isNaN(quotes[i].High),
+				nLo = !isNaN(quotes[i].Low);
+			if (nHi || nLo) quotes[i]["Result " + sd.name] = 0;
+			var j;
+			test = 0;
+			for (j = 0; j <= i; j++) {
+				if (!quotes[i - j]) break;
+				if (quotes[i - j].High > quotes[i - 2].High) break;
+				if (j < 2 && quotes[i - j].High == quotes[i - 2].High) break;
+				if (quotes[i - j].High < quotes[i - 2].High) test++;
+				if (test == 4) {
+					fractalHigh = quotes[i - 2].High;
+					break;
+				}
+			}
+			if (sd.type == "Fractal Chaos Bands") {
+				if (nHi)
+					quotes[i]["Fractal High " + sd.name] =
+						fractalHigh > 0 ? fractalHigh : null;
+			} else if (test == 4) {
+				//oscillator
+				quotes[i]["Result " + sd.name] = 1;
+			}
+			test = 0;
+			for (j = 0; j <= i; j++) {
+				if (!quotes[i - j]) break;
+				if (quotes[i - j].Low < quotes[i - 2].Low) break;
+				if (j < 2 && quotes[i - j].Low == quotes[i - 2].Low) break;
+				if (quotes[i - j].Low > quotes[i - 2].Low) test++;
+				if (test == 4) {
+					fractalLow = quotes[i - 2].Low;
+					break;
+				}
+			}
+			if (sd.type == "Fractal Chaos Bands") {
+				if (nLo)
+					quotes[i]["Fractal Low " + sd.name] =
+						fractalLow > 0 ? fractalLow : null;
+			} else if (test == 4) {
+				//oscillator
+				quotes[i]["Result " + sd.name] = -1;
+			}
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		"Fractal Chaos": {
+			name: "Fractal Chaos Oscillator",
+			range: "-1 to 1",
+			calculateFN: CIQ.Studies.calculateFractalChaos,
+			inputs: {},
+			centerline: null // so centerline is drawn but not included in the range calculation
+		},
+		"Fractal Chaos Bands": {
+			name: "Fractal Chaos Bands",
+			overlay: true,
+			calculateFN: CIQ.Studies.calculateFractalChaos,
+			seriesFN: CIQ.Studies.displayChannel,
+			inputs: { "Channel Fill": true },
+			outputs: {
+				"Fractal High": "auto",
+				"Fractal Low": "auto",
+				"Fractal Channel": "auto"
+			}
+		}
+	});
+}
+
+};
+__js_advanced_studies_fractalChaos_(typeof window !== "undefined" ? window : global);
+
+
+This description provides a high-level summary of the **Fractal Chaos** studies, their purpose, inputs, and outputs, with a placeholder for the actual code implementation.

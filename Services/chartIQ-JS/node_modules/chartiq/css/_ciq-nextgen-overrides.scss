@@ -1,0 +1,26 @@
+/* Icon variables */
+@import "ciq-icons";
+@import "perfect-scrollbar";
+
+[interactable] {
+	&.ciq-night {
+		background: revert;
+		color: revert;
+	}
+	:host(&) .close {
+		opacity: 0.5;
+		transition: opacity 0.2s;
+	}
+	:host(&) .ciq-icon.ciq-close:after,
+	:host(&) .hidden {
+		display: none !important;
+	}
+}
+.ciq-nav cq-toggle[interactable] {
+	height: 39px;
+	margin-top: 2px;
+}
+/*.ciq-toggles {
+	margin-top: 2px;
+	z-index: 3;
+}*/

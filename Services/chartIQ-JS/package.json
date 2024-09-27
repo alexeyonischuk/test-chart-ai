@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "chartiq": "file:chartiq-9.4.0.tgz",
+    "http-server": "^14.1.1"
+  },
+  "scripts": {
+    "start": "npx http-server ./chartiq -p 3000"
+  }
+}

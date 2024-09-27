@@ -1,0 +1,40 @@
+:root {
+	--stx-marker-signal-small: 8px;
+	--stx-marker-signal-medium: 11px;
+	--stx-marker-signal-large: 14px;
+	--stx-marker-signal-xlarge: 18px;
+}
+
+.stx-marker.signal .stx-visual {
+	width: var(--stx-marker-signal-small);
+	height: var(--stx-marker-signal-small);
+}
+
+.stx-marker.signal.medium .stx-visual,
+.stx-marker.text.signal .stx-visual,
+[ciq-mobile] .stx-marker.signal .stx-visual {
+	width: var(--stx-marker-signal-medium);
+	height: var(--stx-marker-signal-medium);
+}
+
+.stx-marker.signal.large .stx-visual,
+.stx-marker.text.signal.medium .stx-visual,
+[ciq-mobile] .stx-marker.signal.medium .stx-visual {
+	width: var(--stx-marker-signal-large);
+	height: var(--stx-marker-signal-large);
+}
+
+.stx-marker.text.signal.large .stx-visual,
+[ciq-mobile] .stx-marker.signal.large .stx-visual {
+	width: var(--stx-marker-signal-xlarge);
+	height: var(--stx-marker-signal-xlarge);
+}
+
+.stx-performance-marker.signal.stx-marker-expand h4 {
+	display: block;
+	white-space: nowrap;
+}
+
+.stx-performance-marker.signal.stx-marker-expand p {
+	margin-top: -1em;
+}

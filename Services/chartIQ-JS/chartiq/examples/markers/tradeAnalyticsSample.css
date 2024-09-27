@@ -1,0 +1,28 @@
+body .ta_markers-ui {
+	display: inherit;
+}
+
+[feature="ta_markers"] {
+	display: revert;
+}
+
+.stx-marker.trade .stx-visual {
+	background: #c950d7;
+	width: 5px;
+	height: 5px;
+}
+
+.stx-marker.analysis .stx-visual {
+	background: rgba(36, 88, 242, 0.85);
+	height: 27px;
+	width: 200px;
+}
+
+.stx-performance-marker.stx-marker-expand h4 {
+	display: block;
+}
+
+.stx-marker.analysis p {
+	text-align: left;
+	white-space: pre-line;
+}

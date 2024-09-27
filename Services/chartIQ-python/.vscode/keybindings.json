@@ -1,0 +1,8 @@
+[
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.formatDocument",
+        "when": "editorLangId == 'python'"
+    }
+  ]
+  

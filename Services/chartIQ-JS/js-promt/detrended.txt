@@ -1,0 +1,97 @@
+### **Detrended Price Oscillator Overview**
+
+The **Detrended Price Oscillator (DPO)** is a technical analysis tool used to remove trends from price data, focusing on cycles and overbought or oversold levels. Unlike many other oscillators, DPO does not extend into the future. Instead, it looks back at past periods to identify cycles and price movements.
+
+### **Study Purpose and Calculation**
+
+The **Detrended Price Oscillator** calculates the difference between the current price and a moving average that has been shifted back by a specific offset, typically half of the selected period. The result highlights short-term fluctuations by detrending the price, helping traders identify price cycles, overbought/oversold conditions, and potential reversals.
+
+#### Key Elements:
+- **Detrending**: Removes long-term trends from price data to highlight short-term price cycles.
+- **Moving Average**: A moving average is used to smooth the price data and is shifted by a period to calculate the detrended price.
+- **Offset**: The moving average is shifted by half the period, plus one, to calculate the price oscillator.
+
+### **Inputs**:
+- **Period**: (Number) Defines the number of periods used to calculate the moving average.
+- **Field**: (String) Specifies the price field used for calculation, typically the "Close" price.
+- **Moving Average Type**: (String) Determines the type of moving average used for smoothing the price data (e.g., simple moving average).
+
+### **Outputs**:
+- **Result**: The output of the oscillator, representing the difference between the price and the shifted moving average.
+
+### **Study Calculation Process**:
+1. **Moving Average Calculation**: A moving average is calculated based on the selected field (e.g., "Close" price) and the specified period.
+2. **Offset**: The moving average is shifted backward by half the period plus one to create a lag.
+3. **Detrended Price**: The difference between the price and the shifted moving average is calculated, resulting in the Detrended Price Oscillator value.
+
+### **Study Libraries Required**:
+- **chartiq.js**: Core charting library.
+- **standard/studies.js**: Essential for study calculations.
+
+### **Warnings and Best Practices**:
+- **Activation**: Ensure that the "studies" feature is activated before using the Detrended Price Oscillator.
+- **Note**: Avoid modifying core library files directly. Create separate files for extensions or modifications to maintain compatibility with updates.
+
+### **Code Example**:
+
+
+import { CIQ as _CIQ } from "../../../js/chartiq.js";
+import "../../../js/standard/studies.js";
+
+
+let __js_advanced_studies_detrended_ = (_exports) => {
+
+/* global _CIQ, _timezoneJS, _SplinePlotter */
+
+
+var CIQ = typeof _CIQ !== "undefined" ? _CIQ : _exports.CIQ;
+
+if (!CIQ.Studies) {
+	console.error("detrended feature requires first activating studies feature.");
+} else {
+	CIQ.Studies.calculateDetrendedPrice = function (stx, sd) {
+		var quotes = sd.chart.scrubbed;
+		if (quotes.length < sd.days + 1) {
+			sd.error = true;
+			return;
+		}
+		var field = sd.inputs.Field;
+		if (!field || field == "field") field = "Close";
+		var offset = Math.floor(sd.days / 2 + 1);
+		CIQ.Studies.MA(
+			sd.inputs["Moving Average Type"],
+			sd.days,
+			field,
+			-offset,
+			"MA",
+			stx,
+			sd
+		);
+
+		for (
+			var i = Math.max(sd.days - offset - 1, sd.startFrom - offset);
+			i < quotes.length - offset;
+			i++
+		) {
+			if (i < 0) continue;
+			var val = CIQ.Studies.getQuoteFieldValue(quotes[i], field, sd.subField);
+			var maVal = CIQ.Studies.getQuoteFieldValue(quotes[i], "MA " + sd.name);
+			if (val !== null && maVal !== null)
+				quotes[i]["Result " + sd.name] = val - maVal;
+		}
+	};
+
+	CIQ.Studies.studyLibrary = CIQ.extend(CIQ.Studies.studyLibrary, {
+		Detrended: {
+			name: "Detrended Price Oscillator",
+			calculateFN: CIQ.Studies.calculateDetrendedPrice,
+			inputs: { Period: 14, Field: "field", "Moving Average Type": "ma" }
+		}
+	});
+}
+
+};
+__js_advanced_studies_detrended_(typeof window !== "undefined" ? window : global);
+
+
+This description outlines the **Detrended Price Oscillator**, its key features, inputs, outputs, and calculation process, and includes a placeholder for the implementation code.
