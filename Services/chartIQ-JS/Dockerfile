@@ -8,7 +8,9 @@ RUN npm install -g pnpm
 
 WORKDIR /chartiq-project/Services/chartIQ-JS
 
-COPY package.json package-lock.json ./
+# COPY package.json package-lock.json ./
+
+COPY package*.json ./
 
 COPY chartiq-9.4.0.tgz ./
 
@@ -20,7 +22,9 @@ RUN pnpm list --depth 0
 
 RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
 
-COPY . /chartiq-project
+# COPY . /chartiq-project
+
+COPY --chown=node:node . /chartiq-project
 
 EXPOSE 3000
 
