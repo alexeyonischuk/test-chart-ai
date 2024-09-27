@@ -15,7 +15,7 @@ services:
 
   js-ap:
     build:
-      context: ./
+      context: ./Services/chartIQ-JS
       dockerfile: ./Services/chartIQ-JS/Dockerfile
     ports:
       - "39111:3000"
