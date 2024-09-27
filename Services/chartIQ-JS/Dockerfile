@@ -14,13 +14,13 @@ WORKDIR /chartiq-project
 
 # COPY ./chartiq /chartiq-project
 
-COPY ../Services /chartiq-project/Services
+COPY . /chartiq-project/Services
 
 WORKDIR /chartiq-project/Services/chartIQ-JS
 
-RUN pnpm install --force
+# RUN pnpm install --force
 
-RUN pnpm list --depth 0
+# RUN pnpm list --depth 0
 
 # RUN tar -xzvf ./chartiq-9.4.0.tgz -C /chartiq-project
 
