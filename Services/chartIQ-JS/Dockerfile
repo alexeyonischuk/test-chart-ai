@@ -14,7 +14,7 @@ WORKDIR /chartiq-project
 
 # COPY ./chartiq /chartiq-project
 
-COPY ./Services Services
+COPY ./Services Service
 
 # WORKDIR /chartiq-project/Services/chartIQ-JS
 
