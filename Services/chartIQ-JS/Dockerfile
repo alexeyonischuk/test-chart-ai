@@ -22,8 +22,6 @@ RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
 
 COPY . /chartiq-project
 
-WORKDIR /chartiq-project/Services/chartIQ-JS
-
 EXPOSE 3000
 
 CMD ["pnpm", "start"]
