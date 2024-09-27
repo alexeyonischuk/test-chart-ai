@@ -14,9 +14,9 @@ WORKDIR /chartiq-project
 
 # COPY ./chartiq /chartiq-project
 
-COPY ./Services Service
+# COPY ./Services Service
 
-WORKDIR /chartiq-project/Service/chartIQ-JS
+WORKDIR /chartiq-project/Services/chartIQ-JS
 
 RUN pnpm install --force
 
