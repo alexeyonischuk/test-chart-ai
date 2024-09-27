@@ -26,4 +26,4 @@ RUN pnpm list --depth 0
 
 EXPOSE 3000
 
-CMD ["cd /chartiq-project/Services/chartIQ-JS",";pnpm start"]
+CMD ["cd /Services/chartIQ-JS",";pnpm start"]
