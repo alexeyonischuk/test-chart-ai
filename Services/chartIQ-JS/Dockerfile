@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g pnpm
 
-# WORKDIR /chartiq-project
+WORKDIR /chartiq-project
 
 # COPY package.json package-lock.json ./
 
@@ -14,7 +14,7 @@ RUN npm install -g pnpm
 
 # COPY ./chartiq /chartiq-project
 
-# COPY . /chartiq-project/Services
+COPY ../.. /chartiq-project/Services
 
 WORKDIR /chartiq-project/Services/chartIQ-JS
 
