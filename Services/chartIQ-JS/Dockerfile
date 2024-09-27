@@ -20,7 +20,9 @@ RUN pnpm install --force
 
 RUN pnpm list --depth 0
 
-RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
+RUN ls -la
+
+RUN tar -xzvf ./chartiq-9.4.0.tgz -C /chartiq-project
 
 # WORKDIR /chartiq-project/Services/chartIQ-JS
 
