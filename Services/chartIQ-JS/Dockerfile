@@ -25,7 +25,7 @@ RUN pnpm list --depth 0
 RUN ls -la
 
 
-RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
+RUN tar -xzvf ./chartiq-9.4.0.tgz -C /chartiq-project
 
 EXPOSE 3000
 
