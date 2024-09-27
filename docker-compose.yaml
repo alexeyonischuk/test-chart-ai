@@ -1,4 +1,3 @@
-version: '5'
 services:
   python-app:
     build:
