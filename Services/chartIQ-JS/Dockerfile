@@ -22,11 +22,8 @@ RUN pnpm install --force
 
 RUN pnpm list --depth 0
 
-RUN ls -la
-
-
 # RUN tar -xzvf ./chartiq-9.4.0.tgz -C /chartiq-project
 
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["cd /chartiq-project/Services/chartIQ-JS",";pnpm start"]
