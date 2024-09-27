@@ -14,14 +14,14 @@ services:
     networks:
       - chartiq-network
 
-  js-appp:
+  js-app:
     build:
       context: ./Services/chartIQ-JS
       dockerfile: Dockerfile
     ports:
       - "39111:3000"
     volumes:
-      - .:/chartiq-project
+      - ./Services/chartIQ-JS:/chartiq-project
     networks:
       - chartiq-network
 
