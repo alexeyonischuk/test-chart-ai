@@ -14,7 +14,7 @@ services:
     networks:
       - chartiq-network
 
-  js-app:
+  js-appp:
     build:
       context: ./Services/chartIQ-JS
       dockerfile: Dockerfile
