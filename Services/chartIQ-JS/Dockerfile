@@ -26,4 +26,4 @@ RUN pnpm list --depth 0
 
 EXPOSE 3000
 
-CMD ["pnpm" "start"]
+CMD ["pnpm", "start"]
