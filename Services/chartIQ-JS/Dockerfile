@@ -24,4 +24,5 @@ COPY . /chartiq-project
 
 EXPOSE 3000
 
+CMD ["sleep", "infinity"]
 
