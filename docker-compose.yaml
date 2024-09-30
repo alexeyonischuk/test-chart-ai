@@ -8,8 +8,8 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ASSISTANT_ID=${ASSISTANT_ID}
-    volumes:
-      - .:/chartiq-project
+    # volumes:
+    #   - .:/chartiq-project
     networks:
       - chartiq-network
 
@@ -19,8 +19,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "39111:3000"
-    volumes:
-      - .:/chartiq-project
+    # volumes:
+    #   - .:/chartiq-project
     networks:
       - chartiq-network
 
@@ -28,6 +28,6 @@ networks:
   chartiq-network:
     driver: bridge
 
-volumes:
-  chartiq-project:
-    external: true
+# volumes:
+#   chartiq-project:
+#     external: true
