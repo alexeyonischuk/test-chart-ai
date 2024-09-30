@@ -12,7 +12,7 @@ COPY package.json package-lock.json ./
 
 COPY chartiq-9.4.0.tgz ./
 
-COPY ./chartiq /chartiq-project
+COPY chartiq /chartiq-project
 
 RUN pnpm install --force
 
