@@ -6,7 +6,7 @@ services:
     build:
       context: ./Services/chartIQ-JS
     ports:
-      - "39111:3000"
+      - "3000:3000"
     volumes:
       - shared-data:/app/chartiq/js/advanced/studies
     networks:
