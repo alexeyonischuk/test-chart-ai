@@ -24,8 +24,6 @@ COPY . /chartiq-project
 
 EXPOSE 3000
 
-WORKDIR /chartiq-project/Services/chartIQ-JS
-
 CMD ["pnpm", "start"]
 
 
