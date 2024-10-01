@@ -5,7 +5,7 @@ services:
     build:
       context: ./Services/chartIQ-python
     ports:
-      - "8001:8001"
+      - "39110:8001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ASSISTANT_ID=${ASSISTANT_ID}
@@ -18,7 +18,7 @@ services:
     build:
       context: ./Services/chartIQ-JS
     ports:
-      - "3000:3000"
+      - "39111:3000"
     volumes:
       - shared-data:/chartiq-project/chartiq
     networks:
