@@ -1,37 +1,30 @@
 version: '3'
 services:
 
-
+  python-app:
+    build:
+      context: ./Services/chartIQ-python
+    ports:
+      - "8001:8001"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ASSISTANT_ID=${ASSISTANT_ID}
+    volumes:
+      - .:/app
+    networks:
+      - chartiq-network
+       
   js-app:
     build:
       context: ./Services/chartIQ-JS
     ports:
       - "3000:3000"
     volumes:
-      - shared-data:/app/chartiq/js/advanced/studies
+      - .:/app
     networks:
       - chartiq-network
       
-  python-app:
-    build:
-      context: ./Services/chartIQ-python
-    ports:
-      - "39110:8001"
-    environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - ASSISTANT_ID=${ASSISTANT_ID}
-    volumes:
-      - shared-data:/app/shared    
-    networks:
-      - chartiq-network
-
 
 networks:
   chartiq-network:
     driver: bridge
-
-volumes:
-  shared-data:
-
-
-    
