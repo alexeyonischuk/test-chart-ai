@@ -13,13 +13,12 @@ _client = OpenAI(api_key=config.chart_iq.open_ai_api_key)
 
 parent_dir = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 
+_HTML_FILE_PATH = '/app/Services/chartIQ-JS/chartiq/active-trader-chart.html'
+_STUDIES_DIR = '/app/Services/chartIQ-JS/chartiq/js/advanced/studies'
 
 print(f"Trying to access HTML file at path: {_HTML_FILE_PATH}")
 # print("Files in the directory:", os.listdir(os.path.dirname(_HTML_FILE_PATH)))
 
-
-_HTML_FILE_PATH = '/chartiq-project/shared/active-trader-chart.html'
-_STUDIES_DIR = '/chartiq-project/shared/js/advanced/studies'
 
 
 
