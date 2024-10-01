@@ -26,11 +26,8 @@ COPY --from=builder /usr/local/bin /usr/local/bin
 
 COPY . /app
 
-WORKDIR /
+WORKDIR /app/Services/chartIQ-python
 
 EXPOSE 8001
 
-ENV PYTHONPATH=/app/
-
-CMD ["uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "8001"]
-
+CMD ["uvicorn", "src.app.main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]
