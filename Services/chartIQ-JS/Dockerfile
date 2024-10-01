@@ -6,24 +6,24 @@ RUN apt-get update && apt-get install -y \
 
 RUN npm install -g pnpm
 
-WORKDIR /chartiq-project
+WORKDIR /app
 
 COPY package.json package-lock.json ./
 
 COPY chartiq-9.4.0.tgz ./
 
-COPY chartiq /chartiq-project
+COPY chartiq /app
 
 RUN pnpm install --force
 
 RUN pnpm list --depth 0
 
-RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
+RUN tar -xzvf chartiq-9.4.0.tgz -C /app
 
-COPY . /chartiq-project
+COPY . /app
 
 EXPOSE 3000
 
+WORKDIR /app/Services/chartIQ-JS
+
 CMD ["pnpm", "start"]
-
-
