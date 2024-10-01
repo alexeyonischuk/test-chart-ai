@@ -10,7 +10,7 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ASSISTANT_ID=${ASSISTANT_ID}
     volumes:
-      - .:/app
+      - shared-data:/chartiq-project/shared
     networks:
       - chartiq-network
        
@@ -20,7 +20,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
+      - shared-data:/chartiq-project/chartiq
     networks:
       - chartiq-network
       
@@ -28,3 +28,7 @@ services:
 networks:
   chartiq-network:
     driver: bridge
+
+volumes:
+  shared-data:
+
