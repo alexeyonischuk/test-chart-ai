@@ -9,9 +9,9 @@ RUN pip install poetry
 
 ENV POETRY_VIRTUALENVS_CREATE=false
 
-WORKDIR /app
+WORKDIR /chartiq-project
 
-COPY poetry.lock pyproject.toml /app/
+COPY poetry.lock pyproject.toml /chartiq-project/
 
 RUN poetry install --no-dev --no-root
 
@@ -24,9 +24,9 @@ RUN apt-get update && apt-get install -y \
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-COPY . /app
+COPY . /chartiq-project
 
-WORKDIR /app/Services/chartIQ-python
+WORKDIR /chartiq-project
 
 EXPOSE 8001
 
