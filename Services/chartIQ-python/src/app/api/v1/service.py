@@ -18,8 +18,9 @@ print(f"Trying to access HTML file at path: {_HTML_FILE_PATH}")
 # print("Files in the directory:", os.listdir(os.path.dirname(_HTML_FILE_PATH)))
 
 
-_HTML_FILE_PATH = '/app/Services/chartIQ-JS/chartiq/active-trader-chart.html'
-_STUDIES_DIR = '/app/Services/chartIQ-JS/chartiq/js/advanced/studies'
+_HTML_FILE_PATH = '/chartiq-project/shared/active-trader-chart.html'
+_STUDIES_DIR = '/chartiq-project/shared/js/advanced/studies'
+
 
 
 
