@@ -5,7 +5,7 @@ from src.app.api.v1.service import generate_js_code
 from src.app.core.schemas import StudyRequest, StudyResponse
 
 
-templates = Jinja2Templates(directory="/app/src/app/templates")
+templates = Jinja2Templates(directory="/chartiq-project/src/app/templates")
 
 async def generate_study_view(request: StudyRequest) -> StudyResponse:
     js_code = await generate_js_code(request.question)
