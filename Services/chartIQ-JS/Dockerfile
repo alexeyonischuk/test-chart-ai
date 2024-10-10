@@ -10,7 +10,7 @@ WORKDIR /chartiq-project
 
 COPY package.json package-lock.json ./
 
-COPY chartiq-9.4.0.tgz ./
+COPY chartiq-9.5.1.tgz ./
 
 COPY chartiq /chartiq-project
 
@@ -18,7 +18,7 @@ RUN pnpm install --force
 
 RUN pnpm list --depth 0
 
-RUN tar -xzvf chartiq-9.4.0.tgz -C /chartiq-project
+RUN tar -xzvf chartiq-9.5.1.tgz -C /chartiq-project
 
 COPY . /chartiq-project
 

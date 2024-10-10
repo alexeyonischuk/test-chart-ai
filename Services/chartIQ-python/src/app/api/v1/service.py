@@ -11,16 +11,8 @@ config = load_config()
 
 _client = OpenAI(api_key=config.chart_iq.open_ai_api_key)
 
-parent_dir = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
-
 _HTML_FILE_PATH = '/chartiq-project/shared/active-trader-chart.html'
 _STUDIES_DIR = '/chartiq-project/shared/js/advanced/studies'
-
-print(f"Trying to access HTML file at path: {_HTML_FILE_PATH}")
-# print("Files in the directory:", os.listdir(os.path.dirname(_HTML_FILE_PATH)))
-
-
-
 
 
 def _create_thread_with_assistant(prompt: str):
@@ -77,16 +69,10 @@ def _format_js_code(js_code: str) -> str:
     opts.indent_size = 4
     return jsbeautifier.beautify(js_code, opts)
 
-import os
-print(f"Current working directory: {os.getcwd()}")
 
 async def _update_html_with_study(file_name: str) -> str:
     """Updates the HTML file by adding an import line for the generated study."""
-    print('-----------------------------------------------------------------')
-    print(f"Trying to access HTML file at path: {_HTML_FILE_PATH}")
-
     if not os.path.exists(_HTML_FILE_PATH):
-        print(f"File not found: {_HTML_FILE_PATH}")
         raise FileNotFoundError(f"HTML file not found at path: {_HTML_FILE_PATH}")
 
     async with aiofiles.open(_HTML_FILE_PATH, 'r', encoding='utf-8') as f:
@@ -100,7 +86,6 @@ async def _update_html_with_study(file_name: str) -> str:
     async with aiofiles.open(_HTML_FILE_PATH, 'w', encoding='utf-8') as f:
         await f.write(html_content)
 
-    print(f"Successfully updated HTML file with import for {file_name}")
     return f"HTML file updated with import for {file_name}"
 
 
