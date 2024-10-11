@@ -35,7 +35,7 @@
 		filesystem: false,
 		licenseExpiration: "2025/01/01",
 		trialExpiration: undefined,
-		version: '9.4.0'
+		version: '9.5.1'
 	}, {
 		daysUntilExpired: {
 			get: function(){return Math.round((this.expirationDate - new Date()) / 86400000)}
