@@ -59,7 +59,7 @@ CIQ.packageInfo = Object.freeze(
 			generationDate: "2024-08-28T15:51:29.272Z",
 			licenseType: "annual",
 			packageType: "Core alacarte",
-			version: "9.4.0"
+			version: "9.5.1"
 		},
 		CIQ.packageInfo
 	)
@@ -8060,7 +8060,7 @@ CIQ.getFn = (path, defaultValue) => {
  * @return {Function} Restore function to restore original definition
  * @memberof CIQ
  *
- * @since 9.4.0
+ * @since 9.5.1
  */
 CIQ.decorateFn = function (obj, methodName, fn, postExecution = true) {
 	const original = obj[methodName];

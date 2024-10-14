@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "chartiq": "file:chartiq-9.4.0.tgz",
+    "chartiq": "file:chartiq-9.5.1.tgz",
     "http-server": "^14.1.1"
   },
   "scripts": {

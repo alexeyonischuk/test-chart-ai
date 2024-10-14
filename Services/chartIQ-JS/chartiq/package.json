@@ -1,6 +1,6 @@
 {
 	"name": "chartiq",
-	"version": "9.4.0",
+	"version": "9.5.1",
 	"description": "Enterprise grade HTML5 Charting Library by ChartIQ",
 	"private": true,
 	"main": "js/chartiq.js",
